@@ -1,0 +1,25 @@
+// UsingConverter.mmp
+
+// Copyright (c) Symbian Software Ltd 2006. All rights reserved.
+
+// Using relative paths for sourcepath and user includes
+
+TARGET		UsingConverter.exe
+TARGETTYPE	exe
+
+UID           	0 0xE800009C
+VENDORID	0x70000001
+CAPABILITY	None
+SOURCEPATH	.
+SOURCE		UsingConverter.cpp 
+
+userinclude	.
+SYSTEMINCLUDE	\epoc32\include
+systeminclude	\epoc32\include\ecom
+
+
+LIBRARY		EUSER.LIB  APMIME.LIB EFSRV.LIB ESTOR.LIB
+LIBRARY		CONARC.LIB	BAFL.LIB
+LIBRARY		ECOM.LIB
+
+

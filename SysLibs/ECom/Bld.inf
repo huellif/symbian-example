@@ -1,0 +1,14 @@
+// BLD.INF
+// Component description file
+//
+// Copyright (c) 2001 Symbian Ltd.  All rights reserved.
+
+// Export the interface definition
+PRJ_EXPORTS
+InterfaceDefinition\Interface.h
+InterfaceDefinition\Interface.inl
+
+PRJ_MMPFILES
+InterfaceImplementation\InterfaceImplementation.mmp
+InterfaceClient\InterfaceClient.mmp
+InterfaceDefinition\InterfaceDefinition.mmp

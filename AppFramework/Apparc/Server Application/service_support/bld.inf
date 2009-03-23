@@ -1,0 +1,12 @@
+// bld.inf
+//
+// Copyright (c) 1999-2005 Symbian Software Ltd.  All rights reserved.
+
+PRJ_EXPORTS
+inc\client_api.h \epoc32\include\client_api.h
+inc\session.h \epoc32\include\session.h
+inc\definitions.h \epoc32\include\definitions.h
+
+PRJ_MMPFILES
+
+service_support.mmp

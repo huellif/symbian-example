@@ -1,0 +1,21 @@
+// SendAs2Example.mmp
+//
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+TARGET        	SendAs2Example.exe
+TARGETTYPE    	exe
+
+UID           	0xE80000A9
+CAPABILITY 	ReadDeviceData WriteDevicedata ProtServ NetworkControl NetworkServices LocalServices ReaduserData WriteUserData
+
+SOURCEPATH	.
+SOURCE        	SendAs2Example.cpp
+
+USERINCLUDE	.
+SYSTEMINCLUDE 	\epoc32\include
+
+LIBRARY       	euser.lib sendas2.lib efsrv.lib msgs.lib estor.lib
+LIBRARY       	etext.lib bifu.lib biut.lib BioDB.lib
+
+

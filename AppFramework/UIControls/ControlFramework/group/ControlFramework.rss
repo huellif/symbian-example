@@ -1,0 +1,77 @@
+// ControlFramework.RSS
+//
+// Copyright (c) 2006 Symbian Ltd.  All rights reserved.
+//
+
+NAME CONE
+
+#include <eikon.rh>
+#include <appinfo.rh>
+
+#include <gulfont.hrh>
+#include "ControlFramework.hrh"
+#include "ControlFramework.rls"
+
+RESOURCE RSS_SIGNATURE { }
+
+RESOURCE TBUF { buf=""; }
+
+RESOURCE EIK_APP_INFO
+	{
+	toolbar=r_guibase_toolbar;
+	}
+
+
+
+
+RESOURCE TOOLBAR r_guibase_toolbar
+	{
+	breadth=KTechViewToolbarWidth;
+	
+	controls=
+		{
+		TBAR_BUTTON 
+			{ 
+			id=ECmdToggleBoldFont;  
+			length=KEikStdToolBarButtonHeight;
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			txt=STRING_r_toolbar1; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;
+			},
+		TBAR_BUTTON 
+			{ 
+			id=ECmdToggleItalicFont; 
+			length=KEikStdToolBarButtonHeight;						   
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			txt=STRING_r_toolbar2;
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;
+			},
+		TBAR_BUTTON 
+			{ 
+			id=ECmdToggleUnderline; 
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			length=KEikStdToolBarButtonHeight;
+			txt=STRING_r_toolbar3; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;	
+			},
+		TBAR_BUTTON 
+			{ 
+			id=ECmdToggleStrikethrough; 
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			length=KEikStdToolBarButtonHeight;
+			txt=STRING_r_toolbar4; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;			
+			},
+		TBAR_BUTTON 
+			{ 
+			id=EEikCmdExit; 
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			length=KEikStdToolBarButtonHeight;
+			txt=STRING_r_toolbar5; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;			
+			}
+		};	
+	}
+
+
+RESOURCE TBUF r_welcome_text { buf=STRING_r_welcome; }

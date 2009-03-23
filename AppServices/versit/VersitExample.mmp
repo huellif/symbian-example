@@ -1,0 +1,19 @@
+// VersitExample.mmp
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+
+TARGET		VersitExample.exe
+TARGETTYPE	exe
+UID		0 0xE8000094
+
+// using relative paths for source and user includes
+
+SOURCEPATH    	.
+SOURCE        	VersitExample.cpp
+USERINCLUDE   	.
+SYSTEMINCLUDE 	\Epoc32\include
+
+
+library		CHARCONV.LIB  EUSER.LIB  EFSRV.LIB  ESTOR.LIB
+library		VERSIT.LIB  VCARD.LIB 
+

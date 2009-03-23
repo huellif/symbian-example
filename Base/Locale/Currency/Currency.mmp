@@ -1,0 +1,23 @@
+// Currency.mmp
+//
+// Copyright (C) Symbian Software Ltd 2000-2005.  All rights reserved.
+
+// using relative paths for source and userinclude directories
+
+// No explicit capabilities required to run this.
+
+TARGET        Currency.exe
+TARGETTYPE    exe
+UID           0xE800002D
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        Currency.cpp
+
+USERINCLUDE   .
+USERINCLUDE   ..\..\CommonFramework
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib
+
+CAPABILITY    None

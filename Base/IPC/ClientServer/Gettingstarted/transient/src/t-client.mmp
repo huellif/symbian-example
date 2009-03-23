@@ -1,0 +1,20 @@
+// t-client.mmp
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+//
+
+// Transient server example - client interface DLL
+
+capability All -Tcb
+
+target t-client.dll
+targettype dll
+
+systeminclude . \epoc32\include
+
+//project server
+sourcepath .
+
+source client.cpp
+
+library euser.lib

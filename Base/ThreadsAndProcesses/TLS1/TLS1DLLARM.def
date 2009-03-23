@@ -1,0 +1,11 @@
+EXPORTS
+	_ZN7CSetter14SetStaticTextLERK7TDesC16 @ 1 NONAME
+	_ZN7CSetterC1ER12CConsoleBase @ 2 NONAME
+	_ZN7CSetterC2ER12CConsoleBase @ 3 NONAME
+	_ZN8CGeneralC1ER12CConsoleBase @ 4 NONAME
+	_ZN8CGeneralC2ER12CConsoleBase @ 5 NONAME
+	_ZNK7CSetter14ShowStaticTextEv @ 6 NONAME
+	_ZNK8CGeneral14ShowStaticTextEv @ 7 NONAME
+	_ZTI7CSetter @ 8 NONAME ; #<TI>#
+	_ZTV7CSetter @ 9 NONAME ; #<VT>#
+

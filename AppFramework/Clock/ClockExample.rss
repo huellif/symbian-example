@@ -1,0 +1,129 @@
+// ClockExample.RSS
+//
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+NAME CLOK
+
+#include <eikon.rh>
+#include <appinfo.rh>
+#include <eikcore.rsg>
+
+#include "ClockExample.hrh"
+
+RESOURCE RSS_SIGNATURE { }
+
+RESOURCE TBUF { buf=""; }
+
+RESOURCE EIK_APP_INFO
+	{
+	hotkeys=r_hotkeys;
+	menubar=r_menubar;
+	}
+
+RESOURCE HOTKEYS r_hotkeys
+    {
+    control=
+        {
+	HOTKEY { command=ETestDo10; key='l'; },
+	HOTKEY { command=ETestDo11; key='r'; }, 
+	
+	HOTKEY { command=ETestDo12; key='h'; },
+        HOTKEY { command=ETestDo13; key='s'; },
+        
+        HOTKEY { command=EEikCmdExit; key='e'; }
+        };
+    shift_control=
+    	{
+    	HOTKEY { command=ETestDo0; key='l'; },
+	HOTKEY { command=ETestDo1; key='r'; }, 
+	
+    	HOTKEY { command=ETestDo2; key='h'; },
+    	HOTKEY { command=ETestDo3; key='s'; }
+    	};
+    }
+
+RESOURCE MENU_BAR r_menubar
+    {
+    titles=
+        {
+        MENU_TITLE { menu_pane=r_clock_menu; txt="Clock"; }
+		};
+    }
+  
+RESOURCE MENU_PANE r_clock_menu
+ 	{
+ 	items=
+ 		{
+ 		MENU_ITEM { command=EExampleItem0; cascade=r_analog_menu; txt="Analogue"; },
+ 		MENU_ITEM { command=EExampleItem1; cascade=r_digital_menu; txt="Digital"; },
+ 		MENU_ITEM { command=EEikCmdExit; txt="Close"; }
+         	};
+    	}
+
+RESOURCE MENU_PANE r_analog_menu
+	{
+	items=
+		{
+		MENU_ITEM { command=EAnalogPostion; cascade=r_analog_pos_menu; txt="Shift"; },		
+		MENU_ITEM { command=ETestDo12; txt="Hide"; },
+		MENU_ITEM { command=ETestDo13; txt="Show"; },
+		MENU_ITEM { command=EAnalogIncrement;cascade=r_analog_incr_menu; txt="Increment"; }
+        	};
+    	}
+
+RESOURCE MENU_PANE r_analog_pos_menu
+	{
+	items=
+		{
+		MENU_ITEM { command=ETestDo10; txt="Left"; },
+		MENU_ITEM { command=ETestDo11; txt="Right"; }
+		};
+    	}
+    
+RESOURCE MENU_PANE r_analog_incr_menu
+    	{
+    	items=
+    		{
+		MENU_ITEM { command=ETestDo14; txt="one hour"; },
+		MENU_ITEM { command=ETestDo15; txt="half an hour"; },
+		MENU_ITEM { command=ETestDo16; txt="one min"; },
+		MENU_ITEM { command=ETestDo17; txt="one second"; }
+		};
+    	}
+
+    
+RESOURCE MENU_PANE r_digital_menu
+	{
+	items=
+		{
+		MENU_ITEM { command=EDigitalPostion; cascade=r_digital_pos_menu; txt="Shift"; },		
+		MENU_ITEM { command=ETestDo2; txt="Hide"; },
+		MENU_ITEM { command=ETestDo3; txt="Show"; },
+		MENU_ITEM { command=EDigitalIncrement;cascade=r_digital_incr_menu; txt="Increment"; }
+        	};
+    	}
+
+RESOURCE MENU_PANE r_digital_pos_menu
+	{
+	items=
+		{
+		MENU_ITEM { command=ETestDo0; txt="Left"; },
+		MENU_ITEM { command=ETestDo1; txt="Right"; }
+		};
+    	}
+    
+RESOURCE MENU_PANE r_digital_incr_menu
+    	{
+    	items=
+    		{
+		MENU_ITEM { command=ETestDo4; txt="one hour"; },
+		MENU_ITEM { command=ETestDo5; txt="half an hour"; },
+		MENU_ITEM { command=ETestDo6; txt="one min"; },
+		MENU_ITEM { command=ETestDo7; txt="one second"; }
+		};
+    	}
+    
+	
+RESOURCE TBUF r_title_text_clock_example { buf="Welcome to the clock application example"; }
+

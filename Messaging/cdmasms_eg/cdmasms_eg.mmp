@@ -1,0 +1,37 @@
+// cdmasms_eg.mmp
+//
+// Copyright (c) 2004 Symbian Ltd.  All rights reserved.
+
+
+TARGET        cdmasms_eg.exe
+TARGETTYPE    exe
+UID           0x100039CE 0xE800005B
+VENDORID 0x70000001
+
+// user data capabilities are required to create a message
+// other capabilities are required to send SMS and alter service settings
+CAPABILITY	  ReadUserData WriteUserData ReadDeviceData WriteDeviceData NetworkServices
+
+SOURCEPATH    .
+SOURCE       cdmasms_eg.cpp cdmasmsui.cpp
+
+START RESOURCE	cdmasms_eg.rss
+HEADER
+targetpath	\resource\apps
+lang		sc
+end
+
+START RESOURCE	cdmasms_eg_reg.rss
+TARGETPATH		\private\10003a3f\apps
+END
+
+USERINCLUDE   .
+SYSTEMINCLUDE \Epoc32\include\messaging\sms
+SYSTEMINCLUDE \Epoc32\include
+SYSTEMINCLUDE \Epoc32\include\TechView
+
+LIBRARY       euser.lib msgs.lib smcm.lib gsmu.lib cdmau.lib etext.lib
+LIBRARY			cone.lib eikcore.lib eikcoctl.lib apparc.lib WS32.lib bafl.lib
+
+MACRO GSM_COMPATIBILITY_MODE
+MACRO CDMA_API_ENABLED

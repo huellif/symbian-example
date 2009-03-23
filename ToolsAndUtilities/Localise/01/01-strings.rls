@@ -1,0 +1,10 @@
+// Strings localised for UK
+rls_string STRING_r_example_first_menu_name "Hello"
+rls_string STRING_r_example_item0 "Item 0"
+rls_string STRING_r_example_item1 "Item 1"
+rls_string STRING_r_example_item2 "Item 2"
+rls_string STRING_r_example_menu_exit "Close"
+rls_string STRING_r_example_hello_text "Hello World"
+rls_string STRING_r_example_short_caption "HW"
+rls_string STRING_r_example_caption "helloworld"
+rls_string STRING_r_example_iconfile "\\resource\\apps\\helloworld01.mbm"

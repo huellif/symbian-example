@@ -1,0 +1,64 @@
+// TXTU.RSS
+//
+// Copyright (c) 1999 Symbian Ltd.  All rights reserved.
+//
+
+NAME TXTU
+
+#include <eikon.rh>   //LABEL
+#include <EIKON.RSG>     //default resources in rom
+#include "TXTUCMDS.H"
+#include "TXTU.HRH"
+
+
+RESOURCE RSS_SIGNATURE
+	{ }
+
+RESOURCE TBUF16 { buf=""; }
+
+RESOURCE TBUF40 r_text_mtmui_export_dialog_title	{ buf="Export message text to file"; }
+RESOURCE TBUF40 r_text_mtmui_viewer_message		{ buf="Viewing message..."; }
+RESOURCE TBUF40 r_text_mtmui_edit_message		{ buf="Editing message..."; }
+
+RESOURCE DIALOG r_dialog_service_settings
+	{
+	flags=EEikDialogFlagWait;
+	title="Edit service settings";
+	buttons=R_EIK_BUTTONS_CANCEL_OK;
+	items=
+		{
+		DLG_LINE
+			{
+			prompt="Folder";
+			type=EEikCtFolderNameSel;
+			id=ETxtEditServiceFolder;
+			control=FOLDERNAMESELECTOR {};
+			}
+		};
+	}
+
+
+RESOURCE DIALOG r_dialog_refuse_edit_remote_message
+    {
+	flags=EEikDialogFlagWait;
+	title="Edit remote message";
+	buttons=R_EIK_BUTTONS_CANCEL_OK;
+	items=
+		{
+		DLG_LINE
+			{
+			prompt="";
+			type=EEikCtLabel;
+			id=ETxtEditRemoteServiceLabel1;
+			control=LABEL {txt="Copy to local inbox?";};
+			itemflags=EEikDlgItemSeparatorAfter;
+			},
+		DLG_LINE
+			{
+			prompt="";
+			type=EEikCtLabel;
+			id=ETxtEditRemoteServiceLabel2;
+			control=LABEL {txt="Can not edit text on remote service"; standard_font=EEikLabelFontLegend;};
+			}
+		};
+	}

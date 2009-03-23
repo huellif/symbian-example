@@ -1,0 +1,10 @@
+// Strings localised for German
+rls_string STRING_r_example_first_menu_name "Hallo"
+rls_string STRING_r_example_item0 "Eintrag 0"
+rls_string STRING_r_example_item1 "Eintrag 1"
+rls_string STRING_r_example_item2 "Eintrag 2"
+rls_string STRING_r_example_menu_exit "Beenden"
+rls_string STRING_r_example_hello_text "Hallo Welt"
+rls_string STRING_r_example_short_caption "Hallo"
+rls_string STRING_r_example_caption "Hallo Welt"
+rls_string STRING_r_example_iconfile "\\resource\\apps\\helloworld03.mbm"

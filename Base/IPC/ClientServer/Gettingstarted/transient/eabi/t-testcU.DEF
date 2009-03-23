@@ -1,0 +1,5 @@
+EXPORTS
+	_ZN9CMyClient4NewLEv @ 1 NONAME
+	_ZTI9CMyClient @ 2 NONAME ; #<TI>#
+	_ZTV9CMyClient @ 3 NONAME ; #<VT>#
+

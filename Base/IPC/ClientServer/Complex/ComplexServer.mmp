@@ -1,0 +1,32 @@
+// ComplexServer.mmp
+//
+// Copyright (C) Symbian Software Ltd 2000-2005.  All rights reserved.
+
+// using relative paths for source and userinclude directories
+
+// no special capabailties required by this DLL
+
+TARGET        ComplexServer.dll
+TARGETTYPE    dll
+UID           0xE800002A
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        ComplexServer.cpp
+SOURCE        ComplexServerCCountServer.cpp
+SOURCE        ComplexServerCCountSession.cpp
+SOURCE        ComplexServerCCountSubSession.cpp
+
+USERINCLUDE   .
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib
+
+#if defined(WINS)
+    deffile .\ComplexServerWINS.def
+#else if defined(ARM)
+    deffile .\ComplexServerARM.def
+#endif
+nostrictdef
+
+CAPABILITY None

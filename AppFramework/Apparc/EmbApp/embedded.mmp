@@ -1,0 +1,33 @@
+// embedded.mmp
+//
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+TARGET        	embedded.dll
+TARGETTYPE    	PLUGIN
+TARGETPATH		\sys\bin
+
+UID 			0x10009d8d 0xE800008E
+VENDORID 		0x70000001
+CAPABILITY 		All -Tcb
+
+SOURCEPATH    	.
+SOURCE        	embedded_main.cpp
+SOURCE        	embedded.cpp
+
+USERINCLUDE   	.
+SYSTEMINCLUDE 	\epoc32\include
+SYSTEMINCLUDE 	\epoc32\include\techview
+SYSTEMINCLUDE 	\epoc32\include\Ecom
+
+START RESOURCE 	E800008E.rss
+TARGET 			embedded.rsc
+END
+
+
+LIBRARY       	APPARC.LIB
+LIBRARY       	CONE.LIB 
+LIBRARY       	EIKCORE.LIB 
+LIBRARY       	ECOM.LIB
+LIBRARY       	EUSER.LIB
+LIBRARY       	GDI.LIB

@@ -1,0 +1,15 @@
+// BmpAnimGui.hrh
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+//
+
+#define ECidFileNameLabel				0x11c6
+
+
+#define EGuiBaseDo0					0x1150
+#define EGuiBaseDo1					0x1151
+#define EGuiBaseDo2					0x1152
+#define EGuiBaseDo3					0x1153
+										
+// Common view controls
+#define ETimewCidToolSpacer				0x1302

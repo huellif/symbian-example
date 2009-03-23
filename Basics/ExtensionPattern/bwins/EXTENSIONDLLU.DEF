@@ -1,0 +1,4 @@
+EXPORTS
+	?AddNumbers@CNumberStore@@QBEHXZ @ 1 NONAME ; public: int __thiscall CNumberStore::AddNumbers(void)const 
+	?MultiplyNumbers@CNumberStore@@QBEHXZ @ 2 NONAME ; public: int __thiscall CNumberStore::MultiplyNumbers(void)const 
+

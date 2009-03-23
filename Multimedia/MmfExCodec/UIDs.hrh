@@ -1,0 +1,7 @@
+#ifndef _MmfExCodecUIDS_H_
+#define _MmfExCodecUIDS_H_
+
+#define KPluginDLLUID 0xE8000065
+#define KExCodecUID 0x101F81D7
+
+#endif

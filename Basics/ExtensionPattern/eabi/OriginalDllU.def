@@ -1,0 +1,11 @@
+EXPORTS
+	_ZN12CNumberStore10SetNumber1Ei @ 1 NONAME
+	_ZN12CNumberStore10SetNumber2Ei @ 2 NONAME
+	_ZN12CNumberStoreC1Eii @ 3 NONAME
+	_ZN12CNumberStoreC1Ev @ 4 NONAME
+	_ZN12CNumberStoreC2Eii @ 5 NONAME
+	_ZN12CNumberStoreC2Ev @ 6 NONAME
+	_ZNK12CNumberStore17DoMultiplyNumbersEv @ 7 NONAME
+	_ZNK12CNumberStore7Number1Ev @ 8 NONAME
+	_ZNK12CNumberStore7Number2Ev @ 9 NONAME
+

@@ -1,0 +1,69 @@
+// MediaClient.hrh
+//
+// Copyright (c) 2001-2005 Symbian Software Ltd.  All rights reserved.
+
+#ifndef MEDIACLIENTHRH
+#define MEDIACLIENTHRH
+
+/** Menu commands */
+enum TMediaClientCommands
+    {
+	/** Play tone command */
+    EMPCmdPlayTone=100,
+    /** Stop command */
+	EMPCmdStop,
+	/** Play file command */
+	EMPCmdPlayFile,
+	/** Record command */
+	EMPCmdRecordFile,
+	/** Play stream command */
+	EMPCmdPlayStream,
+	/** Play stream with queue command */
+	EMPCmdPlayStreamWithQueue,
+	/** Show meta data */
+	EMPCmdShowMetaData,
+	/** Convert file command */
+	EMPCmdConvertFile,
+	/** Volume high command */
+	EMPCmdVolumeHigh,
+	/** Volume medium command */
+	EMPCmdVolumeMedium,
+	/** Volume low command */
+	EMPCmdVolumeLow,
+	/** Gain high command */
+	EMPCmdGainHigh,
+	/** Gain medium command */
+	EMPCmdGainMedium,
+	/** Gain low command */
+	EMPCmdGainLow
+    };
+
+/** Tone dialog fields */
+enum {
+	/** Frequency field */
+	EFrequencyField  = 1000,
+	/** Duration field */
+	EDurationField
+	};
+
+/** Record dialog fields */
+enum {
+	ECvtTypeField  = 1000
+	};
+
+/** Format options dialog fields */
+enum {
+	ECodecs = 1000,
+	EBitRates,
+	ESampleRates,
+	EChannels,
+	EGain,
+	EBalance
+	};
+
+// Button ID
+enum {
+	EFormatOptions = 1000
+	};
+
+#endif

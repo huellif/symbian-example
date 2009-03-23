@@ -1,0 +1,32 @@
+// E8000078.RSS
+//
+// Copyright (c) 1997-2001 Symbian Ltd.  All rights reserved.
+//
+
+#include "RegistryInfo.rh"
+
+// Declares the interface implementation provided: a custom resolver
+RESOURCE REGISTRY_INFO theInfo
+	{
+	dll_uid = 0xE8000078;
+	interfaces = 
+		{
+		INTERFACE_INFO
+			{
+			// Interface UID of resolvers
+			interface_uid = 0x10009D90;
+			implementations = 
+				{
+				IMPLEMENTATION_INFO
+					{
+					implementation_uid = 0x10009DD0;
+					version_no = 1;
+					display_name = "";
+					default_data = "";
+					opaque_data = "";
+					}
+				};
+			}
+		};
+	}
+

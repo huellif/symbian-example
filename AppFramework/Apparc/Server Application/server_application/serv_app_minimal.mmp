@@ -1,0 +1,28 @@
+// serv_app_minimal.mmp
+//
+// Copyright (c) Symbian Software Ltd 2006. All rights reserved.
+//
+
+TARGET        serv_app_minimal.exe
+TARGETTYPE    exe
+
+UID           0x100039CE 0xE1111556
+VENDORID 	  0x70000001
+
+SOURCEPATH    .
+SOURCE        serv_app_minimal_main.cpp
+SOURCE        serv_app_minimal.cpp
+SOURCE        server.cpp
+
+USERINCLUDE   .
+USERINCLUDE   ..\service_support\inc
+
+SYSTEMINCLUDE \epoc32\include
+SYSTEMINCLUDE \epoc32\include\techview
+
+
+START RESOURCE	serv_app_minimal_reg.rss
+TARGETPATH		\private\10003a3f\apps
+END
+
+LIBRARY       euser.lib apparc.lib cone.lib eikcore.lib service_support.lib

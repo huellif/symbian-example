@@ -1,0 +1,41 @@
+// Eikecho.mmp
+//
+// Copyright (c) 2000-2005 Symbian Software Ltd.  All rights reserved.
+
+
+
+	TARGET    	Eikecho.exe
+	TARGETTYPE	exe
+	UID             0xE800006A
+	VENDORID 0x70000001
+	CAPABILITY   All -TCB
+
+
+
+SOURCEPATH	.
+
+SOURCE		Eikecho.cpp
+
+START RESOURCE	Eikecho.rss			
+TARGET			Eikecho.rsc
+TARGETPATH		\Resource\Apps
+HEADER
+LANG 01 		// Build English language versions
+END
+
+start resource 	Eikecho_reg.rss		
+targetpath 		\private\10003a3f\apps
+end
+
+start resource	Eikecho_loc.rss	
+lang 			01
+end
+
+
+USERINCLUDE 	.
+USERINCLUDE 	..\EchoClientEngine
+SYSTEMINCLUDE	\Epoc32\include
+SYSTEMINCLUDE \epoc32\include\techview
+
+LIBRARY	euser.lib apparc.lib cone.lib WS32.lib bafl.lib
+LIBRARY eikcore.lib  eikcoctl.lib echoeng.lib 

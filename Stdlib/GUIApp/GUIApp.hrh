@@ -1,0 +1,34 @@
+// GUIAppEng.HRH
+//
+// Copyright (c) 1997-1999 Symbian Ltd.  All rights reserved.
+//
+
+
+//////////////////////////////////////////////////////////////////////////////		
+//
+// Command ids
+// Identify all commands defined by this application.
+//
+//////////////////////////////////////////////////////////////////////////////
+enum
+	{
+  	EExampleCmdChecksum=0x1000,
+	EExampleCmdViewChecksums,
+	EExampleCmdDocName                     // Identify the label control on
+	                                       // the toolbar.
+  	};
+
+
+//////////////////////////////////////////////////////////////////////////////		
+//
+// Control ids
+// Identify all controls defined and used by this application.
+//
+//////////////////////////////////////////////////////////////////////////////   
+enum
+	{
+	EExampleChecksumListBox
+	};
+			
+		
+	

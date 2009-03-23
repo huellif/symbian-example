@@ -1,0 +1,140 @@
+// FileBrowse.rss
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+//
+
+NAME SFSB
+
+#include <eikon.rh>
+#include <qikon.rh>
+#include <QikCommand.rh>
+#include <QikListBox.rh>
+#include <QikListBoxStandardLayouts.hrh>
+
+#include "filebrowse.hrh"
+#include "filebrowseapp.rls"
+
+RESOURCE RSS_SIGNATURE { }
+RESOURCE TBUF { buf = ""; }
+
+RESOURCE EIK_APP_INFO
+{}
+
+RESOURCE TBUF r_filebrowse_driveC { buf = STRING_r_filebrowse_driveC; }
+RESOURCE TBUF r_filebrowse_driveD { buf = STRING_r_filebrowse_driveD; }
+RESOURCE TBUF r_filebrowse_infonote { buf = STRING_r_information_note; } 
+
+RESOURCE QIK_VIEW_CONFIGURATIONS r_filebrowse_baseview_ui_configurations
+  {
+  configurations=
+    {
+    QIK_VIEW_CONFIGURATION
+      {
+      ui_config_mode = KQikPenStyleTouchPortrait;
+      command_list = r_filebrowser_commands;
+      view = r_filebrowse_baseview_layout;      
+      },
+    QIK_VIEW_CONFIGURATION
+      {
+      ui_config_mode = KQikPenStyleTouchLandscape;
+      command_list = r_filebrowser_commands;
+      view = r_filebrowse_baseview_layout;      
+      },
+    QIK_VIEW_CONFIGURATION
+      {
+      ui_config_mode = KQikSoftkeyStylePortrait;
+      command_list = r_filebrowser_commands;
+      view = r_filebrowse_baseview_layout;
+      },
+    QIK_VIEW_CONFIGURATION
+      {
+      ui_config_mode = KQikSoftkeyStyleTouchPortrait;
+      command_list = r_filebrowser_commands;      
+      view = r_filebrowse_baseview_layout;
+      },
+    QIK_VIEW_CONFIGURATION
+      {
+      ui_config_mode = KQikSoftkeyStyleSmallPortrait;
+      command_list = r_filebrowser_commands;      
+      view = r_filebrowse_baseview_layout;
+      }
+    };
+  }
+
+
+
+RESOURCE QIK_VIEW r_filebrowse_baseview_layout
+  {
+  pages = r_filebrowse_baseview_layout_pages;
+  }
+
+
+RESOURCE QIK_VIEW_PAGES r_filebrowse_baseview_layout_pages
+  {
+  pages = 
+    {
+    QIK_VIEW_PAGE
+      {
+      page_id = EFileBrowseBaseViewPage;
+      page_content = r_filebrowse_baseview_page_control;
+      }
+    };
+  }
+
+
+RESOURCE QIK_CONTAINER_SETTINGS r_filebrowse_baseview_page_control
+  {
+  layout_manager_type = EQikRowLayoutManager;
+  layout_manager = r_row_layout_default;
+  controls =
+    {
+    QIK_CONTAINER_ITEM_CI_LI
+      { 
+      unique_handle = EFileBrowseListbox;
+      type = EQikCtListBox; 
+      control = r_filebrowse_baseview_listbox;
+      layout_data = r_row_layout_data_fill;
+      }
+    };
+  }
+
+RESOURCE QIK_ROW_LAYOUT_MANAGER r_row_layout_default
+  {
+  default_layout_data = QIK_ROW_LAYOUT_DATA {};
+  }
+
+RESOURCE QIK_LISTBOX r_filebrowse_baseview_listbox
+  {
+  layouts = { r_filebrowse_baseview_normal_layout_pair };
+  }
+
+RESOURCE QIK_LISTBOX_LAYOUT_PAIR r_filebrowse_baseview_normal_layout_pair
+  {
+  // standard layout
+  standard_normal_layout = EQikListBoxIconLine;
+  }
+
+RESOURCE QIK_ROW_LAYOUT_DATA r_row_layout_data_fill
+  {
+  vertical_alignment = EQikLayoutVAlignFill;
+  vertical_excess_grab_weight = 1;
+  }
+
+
+RESOURCE QIK_COMMAND_LIST r_filebrowser_commands 
+  { 
+  items= 
+	  { 
+	  // This command shall only be visible in debug mode because it is only
+	  // used to find memory leaks during development of the application. 
+	  QIK_COMMAND 
+	    { 
+	    id = EEikCmdExit; 
+	    type = EQikCommandTypeScreen; 
+	    // Indicate that it will only be created in debug builds 
+	    stateFlags = EQikCmdFlagDebugOnly; 
+	    text = STRING_r_filebrowser_cmd_close_debug; 
+	    shortText = STRING_r_filebrowser_cmd_close_debug_shorttext; 
+	    } 
+	  }; 
+  } 

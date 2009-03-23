@@ -1,0 +1,30 @@
+// EmbeddingShell.mmp
+//
+// Copyright (c) 2000-2005 Symbian Software Ltd.  All rights reserved.
+
+// using relative paths for source and userinclude directories
+
+TARGET        EmbeddingShell.exe
+TARGETTYPE    exe
+UID           0x100039ce 0xE8000050
+VENDORID      0x70000001
+
+SOURCEPATH    .
+SOURCE        EmbeddingShell.cpp EmbeddingGraphicsControl.cpp Picture.cpp
+
+START RESOURCE EmbeddingShell.rss
+TARGETPATH     \resource\apps
+HEADER
+END
+
+USERINCLUDE   .
+USERINCLUDE   ..\CommonGraphicsExampleFiles
+SYSTEMINCLUDE \Epoc32\include
+SYSTEMINCLUDE \epoc32\include\techview
+
+LIBRARY       euser.lib efsrv.lib  estor.lib  gdi.lib   ws32.lib 
+LIBRARY       cone.lib  apparc.lib eikcore.lib  eikcoctl.lib 
+
+START RESOURCE EmbeddingShell_reg.rss
+TARGETPATH     \private\10003a3f\apps
+END

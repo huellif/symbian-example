@@ -1,0 +1,39 @@
+// E80000AC.RSS
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+//
+#include <conplugin.rh>
+#include "ExampleConv.hrh"
+
+RESOURCE CONARC_RESOURCE_FILE
+	{
+	converter_list=
+		{
+		CONVERTER_DATA
+			{
+			conv_uid=KExampleConvImplementationUid; // UID of the converter, as returned by CConverterBase2::Uid()
+			from_list=
+				{
+				MIME 
+					{ 
+					type="example/qp"; 
+					lang_list=
+						{
+						LANG_DATA{lang_id=01;translation="quoted-printable";}
+						};
+					}
+				};
+			to_list=
+				{
+				MIME 
+					{ 
+					type="example/text";
+					lang_list=
+						{
+						LANG_DATA{lang_id=01;translation="text";}
+						};
+					}
+				};
+			}
+		};
+	}

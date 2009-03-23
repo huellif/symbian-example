@@ -1,0 +1,4 @@
+EXPORTS
+	_ZN17CBIOExampleParser4NewLER20CRegisteredParserDllR9CMsvEntryR3RFs @ 1 NONAME
+	_ZTI17CBIOExampleParser @ 2 NONAME ; #<TI>#
+	_ZTV17CBIOExampleParser @ 3 NONAME ; #<VT>#

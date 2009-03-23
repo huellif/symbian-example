@@ -1,0 +1,49 @@
+// 101F81D3.RSS
+// Copyright (c) Symbian Ltd.  All rights reserved.
+//
+//
+
+#include "RegistryInfo.rh"
+#include <mmfPluginInterfaceUIDs.hrh>
+#include "MmfExSinkSourceUIDs.hrh"
+
+RESOURCE REGISTRY_INFO theInfo
+	{
+	dll_uid = KPluginDLLUID;
+	interfaces = 
+		{
+		INTERFACE_INFO
+			{
+			interface_uid = KMmfUidPluginInterfaceDataSource; // MdataSource
+			implementations = 
+				{
+				IMPLEMENTATION_INFO
+					{
+					implementation_uid = KDescriptorSourceUID;
+					version_no = 1;
+					display_name = "CMMFExDescriptor";
+					default_data = "" ; // n/a
+					opaque_data = "";  // n/a
+					}
+
+				};
+			} ,
+		INTERFACE_INFO
+			{
+			interface_uid = KMmfUidPluginInterfaceDataSink; 
+			implementations = 
+				{
+				IMPLEMENTATION_INFO
+					{
+					implementation_uid = KDescriptorSinkUID;
+					version_no = 1;
+					display_name = "CMMFExDescriptor";
+					default_data = "" ; // n/a
+					opaque_data = "";  // n/a
+					}
+				};
+			}
+
+		};
+	}
+

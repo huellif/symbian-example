@@ -1,0 +1,25 @@
+// ExtensionDll.MMP
+//
+// Copyright (c) 2000-2005 Symbian Software  Ltd.  All rights reserved.
+//
+// An extension dll used to extend OriginalDll
+//
+TARGET	ExtensionDll.dll
+TARGETTYPE	dll
+
+UID   0xE8000042
+CAPABILITY   All -TCB
+
+VENDORID 0x70000001
+
+SOURCEPATH	..\src_extension
+SOURCE NumberStoreExtensionImplementation.cpp
+USERINCLUDE ..\src_extension
+SYSTEMINCLUDE	\epoc32\include
+SYSTEMINCLUDE 	..\include
+
+//Note the dependency on OriginalDll in order to implement call through to private functions
+LIBRARY euser.lib OriginalDll.lib
+DEFFILE ExtensionDll.def
+
+

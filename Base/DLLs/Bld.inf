@@ -1,0 +1,11 @@
+// BLD.INF
+// Component description file
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+
+PRJ_MMPFILES
+
+PolymorphicDLL1\PolymorphicDLL1.mmp
+PolymorphicDLL2\PolymorphicDLL2.mmp
+UsingDLLs\UsingDLLs.mmp
+

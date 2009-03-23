@@ -1,0 +1,26 @@
+// TXTC.MMP
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+
+TARGET        txtc.dll
+TARGETTYPE    dll
+
+UID    0x10003C5F 0xE800005D 
+VENDORID 0x70000001
+CAPABILITY   All -TCB
+
+SOURCE        txclient.cpp txtcmain.cpp
+
+USERINCLUDE   ..\txut ..\txtu ..\txtc	
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib msgs.lib txut.lib
+
+#if defined(WINS)
+    deffile .\txtcWINS.def
+#else
+    deffile .\txtcEABI.def    
+#endif
+
+nostrictdef
+NOEXPORTLIBRARY

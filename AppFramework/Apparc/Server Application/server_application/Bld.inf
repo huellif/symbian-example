@@ -1,0 +1,10 @@
+// BLD.INF
+// 
+// Minimal Server Application
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+
+PRJ_MMPFILES
+
+serv_app_minimal.mmp

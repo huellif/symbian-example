@@ -1,0 +1,6 @@
+// bld.inf
+//
+// Copyright (c) 1999-2005 Symbian Software Ltd.  All rights reserved.
+
+PRJ_MMPFILES
+harness.mmp

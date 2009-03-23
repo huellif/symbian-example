@@ -1,0 +1,19 @@
+// SecureSockets_loc.RSS
+//
+// Copyright (c) 2005 Symbian Software Ltd.  All rights reserved.
+//
+
+#include <appinfo.rh>
+   
+RESOURCE LOCALISABLE_APP_INFO
+{
+short_caption = "SecureSockets";
+caption_and_icon =
+	{
+	CAPTION_AND_ICON_INFO
+		{
+		caption = "SecureSockets";
+		number_of_icons = 0; // each icon must be a bitmap/mask pair
+		}
+	};
+}     

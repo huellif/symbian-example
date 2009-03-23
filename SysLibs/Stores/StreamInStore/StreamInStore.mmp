@@ -1,0 +1,20 @@
+// StreamInStore.mmp
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+
+// using relative paths for source and userinclude directories
+
+
+TARGET        StreamInStore.exe
+TARGETTYPE    exe
+UID           0xE8000083
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        StreamInStore.cpp
+
+USERINCLUDE   .
+USERINCLUDE   ..\..\CommonFramework
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib efsrv.lib estor.lib

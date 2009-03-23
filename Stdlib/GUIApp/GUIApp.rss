@@ -1,0 +1,156 @@
+// GUIAPP.RSS
+//
+// Copyright (c) 1997-1999 Symbian Ltd.  All rights reserved.
+//
+
+
+NAME slsm
+		// Include definitions of resource STRUCTS used by this
+		// resource script 
+
+#include <eikon.rh>
+#include <eikon.rsg>
+
+#include "GUIApp.hrh"
+
+
+RESOURCE RSS_SIGNATURE
+	{
+	}
+	
+RESOURCE TBUF { buf=""; } // default document name. if "empty" eikon takes 
+                          // the iCaption value in ApaProcess
+
+RESOURCE EIK_APP_INFO
+	{	
+	hotkeys=r_example_hotkeys; 
+	menubar=r_example_main_menubar; 
+	}
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// Short cut keys
+//
+//////////////////////////////////////////////////////////////////////////////
+RESOURCE HOTKEYS r_example_hotkeys
+    {
+	control=
+			{
+			HOTKEY {command=EEikCmdExit;                 key='e';},
+			HOTKEY {command=EExampleCmdChecksum;         key='c';},
+			HOTKEY {command=EExampleCmdViewChecksums;    key='k';}
+			};
+    }
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// The menu bar
+//
+//////////////////////////////////////////////////////////////////////////////
+RESOURCE MENU_BAR r_example_main_menubar
+    {
+    titles=
+        {
+		MENU_TITLE { menu_pane=r_example_file_menu;   txt="File"; }
+		};
+    }
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// The "file" menu pane hung directly from the menu bar
+//
+//////////////////////////////////////////////////////////////////////////////
+RESOURCE MENU_PANE r_example_file_menu
+    {
+    items=
+		{
+		MENU_ITEM
+			{
+			command=EExampleCmdChecksum;
+			txt="Calculate checksum...";
+			},
+		MENU_ITEM
+			{
+			command=EExampleCmdViewChecksums;
+			txt="View checksums...";
+			flags=EEikMenuItemSeparatorAfter; 
+			},
+		MENU_ITEM 
+			{ 
+			command=EEikCmdExit; 
+			txt="Close";
+			}
+		};
+    }
+
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// Dialog to select a file and calculate a checksum
+//
+//////////////////////////////////////////////////////////////////////////////
+RESOURCE DIALOG r_example_checksum_dialog
+	{
+	title="Calculate checksum";
+	buttons=R_EIK_BUTTONS_CONTINUE;
+	flags=EEikDialogFlagWait;
+	items=
+		{
+		DLG_LINE
+			{
+            prompt="Name";
+            type=EEikCtFileNameSel;
+            id=EEikCidFileNameSel;
+            control=FILENAMESELECTOR {};
+            },
+        DLG_LINE
+            {
+            prompt="Folder";
+            type=EEikCtFolderNameSel;
+            id=EEikCidFolderNameSel;
+            control=FOLDERNAMESELECTOR {};
+            },
+        DLG_LINE
+            {
+            prompt="Disk";
+            type=EEikCtDriveNameSel;
+            id=EEikCidDriveNameSel;
+            control=DRIVENAMESELECTOR {};
+          }
+		};
+	}
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// Dialog to view all checksums
+//
+//////////////////////////////////////////////////////////////////////////////
+RESOURCE DIALOG r_example_checksum_info_dialog
+	{
+	title = "Checksum information";
+	buttons=R_EIK_BUTTONS_CONTINUE;
+	flags=EEikDialogFlagWait;
+	items =
+		{
+		DLG_LINE
+			{
+			type = EEikCtListBox;
+			id = EExampleChecksumListBox;
+			control = LISTBOX
+				{
+				flags = EEikListBoxIncrementalMatching;
+				};
+			}
+		};
+	}
+
+//////////////////////////////////////////////////////////////////////////////
+//
+// Text used for the info messages
+//
+//////////////////////////////////////////////////////////////////////////////
+RESOURCE TBUF r_example_text_cksum			   { buf="Checksum = %u"; }
+RESOURCE TBUF r_example_text_error			   { buf="Error opening file %S"; }
+RESOURCE TBUF r_example_text_cksum_error	   { buf="Error assigning checksum"; }
+

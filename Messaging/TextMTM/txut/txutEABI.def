@@ -1,0 +1,12 @@
+EXPORTS
+	_ZN15CMTMTxtSettings13SaveSettingsLElRK15TMTMTxtSettings @ 1 NONAME
+	_ZN15CMTMTxtSettings15DeleteSettingsLEl @ 2 NONAME
+	_ZN15CMTMTxtSettings18SetDefaultServiceLEl @ 3 NONAME
+	_ZN15CMTMTxtSettings28DeleteDefaultServiceSettingLEv @ 4 NONAME
+	_ZN15CMTMTxtSettings4NewLEv @ 5 NONAME
+	_ZNK15CMTMTxtSettings13LoadSettingsLElR15TMTMTxtSettings @ 6 NONAME
+	_ZNK15CMTMTxtSettings15DefaultServiceLEv @ 7 NONAME
+	_ZTI15CMTMTxtSettings @ 8 NONAME ; #<TI>#
+	_ZTV15CMTMTxtSettings @ 9 NONAME ; #<VT>#
+	_ZN8TxtUtils17GetEntryFileNameLER4TBufILi256EER9TMsvEntry @ 10 NONAME
+

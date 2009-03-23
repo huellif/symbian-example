@@ -1,0 +1,42 @@
+// ImageConv.mmp
+//
+// Copyright (c) 2001-2005 Symbian Software Ltd.  All rights reserved.
+//
+
+TARGET          ImageConv.exe
+TARGETTYPE      exe
+UID             0x100039CE 0xE8000064
+VENDORID 	0x70000001
+
+sourcepath	..\src
+SOURCE          CImageApp.cpp
+SOURCE          CImageAppUI.cpp 
+SOURCE          CImageDocument.cpp 
+SOURCE          CImageAppView.cpp
+SOURCE          CImageHandler.cpp
+
+START RESOURCE 	ImageConv.rss
+TARGETPATH     \resource\apps
+HEADER
+END
+
+SYSTEMINCLUDE   \epoc32\include
+SYSTEMINCLUDE	\epoc32\include\techview
+
+LIBRARY         euser.lib 
+LIBRARY         apparc.lib 
+LIBRARY         ws32.lib 
+LIBRARY         cone.lib 
+LIBRARY         eikcore.lib
+LIBRARY         eikdlg.lib 
+LIBRARY         eikcoctl.lib 
+LIBRARY         eikfile.lib
+LIBRARY         eikctl.lib
+LIBRARY         fbscli.lib
+LIBRARY         ImageConversion.lib
+LIBRARY         BitmapTransforms.lib
+LIBRARY         bafl.lib
+
+START RESOURCE ImageConv_reg.rss
+TARGETPATH     \private\10003a3f\apps
+END

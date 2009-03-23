@@ -1,0 +1,14 @@
+// harness.mmp
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+
+TARGET        harness.exe
+TARGETTYPE    exe
+UID           0
+
+SOURCEPATH    .
+SOURCE        main.cpp
+
+USERINCLUDE   ..\service_support\inc
+SYSTEMINCLUDE \epoc32\include
+LIBRARY       euser.lib service_support.lib eikcore.lib

@@ -1,0 +1,22 @@
+// sqlexample.mmp
+//
+// Copyright (c) Symbian Software Ltd 2006. All rights reserved.
+//
+
+TARGET        	sqlexample.exe
+TARGETTYPE    	exe
+
+UID           		0 0xE80000AF
+
+CAPABILITY   	ReadUserData WriteUserData NetworkControl
+
+SOURCEPATH    	.
+SOURCE        	SQLEXAMPLE.CPP
+
+USERINCLUDE   	.
+SYSTEMINCLUDE 	\Epoc32\include
+
+LIBRARY 		euser.lib estor.lib 
+
+LIBRARY 		sqldb.lib efsrv.lib
+

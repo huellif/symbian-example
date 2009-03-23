@@ -1,0 +1,28 @@
+// bld.inf
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+//
+
+PRJ_PLATFORMS
+
+DEFAULT
+
+PRJ_EXPORTS
+
+// Transient server example - client interface
+
+transient\src\t-client.h
+
+PRJ_MMPFILES
+
+// Transient server example - implementation
+
+transient\src\t-client
+transient\src\t-server
+
+PRJ_TESTMMPFILES
+
+// Transient server example - test code
+
+transient\test\t-testc support
+transient\test\t-test

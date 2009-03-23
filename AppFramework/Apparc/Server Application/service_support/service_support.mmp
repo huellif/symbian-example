@@ -1,0 +1,17 @@
+// client_api.mmp
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+
+TARGET        service_support.dll
+TARGETTYPE    dll
+UID           0x1000008D 0xE1111555
+
+USERINCLUDE   inc
+SYSTEMINCLUDE \epoc32\include
+
+SOURCEPATH    .
+SOURCE        client_api.cpp session.cpp
+
+LIBRARY       euser.lib apparc.lib eikcore.lib
+
+EXPORTUNFROZEN

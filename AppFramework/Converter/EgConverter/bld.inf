@@ -1,0 +1,8 @@
+// BLD.INF
+//
+// Copyright (c) 2006 Symbian Software Ltd. All rights reserved.
+//
+
+PRJ_MMPFILES
+
+ExampleConv.MMP

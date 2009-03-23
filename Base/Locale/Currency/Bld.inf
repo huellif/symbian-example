@@ -1,0 +1,9 @@
+// BLD.INF
+// Component description file 
+//
+// Copyright (C) Symbian Software Ltd 2000-2005.  All rights reserved.
+
+
+PRJ_MMPFILES
+
+Currency.mmp

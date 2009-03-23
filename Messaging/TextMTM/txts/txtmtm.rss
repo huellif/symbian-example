@@ -1,0 +1,60 @@
+// txtdat.RSS
+//
+// Copyright (c) 2002 Symbian Ltd.  All rights reserved.
+//
+
+#include <mtmconfig.rh>
+
+RESOURCE MTM_INFO_FILE
+	{
+	mtm_type_uid = 0x10005247;
+	technology_type_uid = 0x10005247;
+	components = 
+		{
+		MTM_COMPONENT_V2
+			{
+			human_readable_name = "TextMTM";
+			component_uid = KUidMtmServerComponentVal;
+			entry_point = 1;
+			version = VERSION_V2 {};
+			filename = "z:\\system\\libs\\txts.dll";
+			},
+		MTM_COMPONENT_V2
+			{
+			human_readable_name = "TextMTM";
+			component_uid = KUidMtmClientComponentVal;
+			entry_point = 1;
+			version = VERSION_V2 {};
+			filename = "z:\\system\\libs\\txtc.dll";
+			},
+		MTM_COMPONENT_V2
+			{
+			human_readable_name = "TextMTM";
+			component_uid = KUidMtmUiComponentVal;
+			entry_point = 1;
+			version = VERSION_V2 {};
+			filename = "z:\\system\\libs\\txtu.dll";
+			},
+		MTM_COMPONENT_V2
+			{
+			human_readable_name = "TextMTM";
+			component_uid = KUidMtmUiDataComponentVal;
+			entry_point = 1;
+			version = VERSION_V2 {};
+			filename = "z:\\system\\libs\\txti.dll";
+			}			
+		};
+	}
+
+// flags to indicate that can send messages, and handle body text
+RESOURCE MTM_CAPABILITIES
+	{
+	send_capability = 1;
+	body_capability = 1;
+	}
+
+// additional capabilities required by clients of the MTM
+// none in the case of text mtm
+RESOURCE MTM_SECURITY_CAPABILITY_SET
+	{
+	}

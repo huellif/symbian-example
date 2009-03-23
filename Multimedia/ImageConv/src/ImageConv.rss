@@ -1,0 +1,173 @@
+// ImageConv.RSS
+//
+// Copyright (c) 2001-2005 Symbian Software Ltd.  All rights reserved.
+//
+
+NAME IMGC
+
+#include <eikon.rh>
+#include <eikon.rsg>
+
+#include "imageconv.hrh"
+
+
+RESOURCE RSS_SIGNATURE { }
+
+RESOURCE TBUF { buf=""; }
+
+// App UI
+RESOURCE EIK_APP_INFO
+	{
+	menubar=r_image_menubar;
+	hotkeys=r_image_hotkeys;
+	}
+
+// Command hotkeys
+RESOURCE HOTKEYS r_image_hotkeys
+	{
+	control=
+		{
+		HOTKEY { command=EImageCmdSaveAs; key='a'; },
+		HOTKEY { command=EEikCmdExit; key='e'; },
+		HOTKEY { command=EImageCmdExtractFrame; key='f'; },
+		HOTKEY { command=EImageCmdZoomIn; key='m'; },
+		HOTKEY { command=EImageCmdOpenFile; key='o'; },
+		HOTKEY { command=EImageCmdRotateClockwise; key='q'; },
+		HOTKEY { command=EImageCmdRefresh; key='r'; }
+		};
+	shift_control=
+		{
+		HOTKEY { command=EImageCmdZoomOut; key='m'; },
+		HOTKEY { command=EImageCmdRotateAntiClockwise; key='q'; }
+		};
+	}
+
+// Menu bar
+RESOURCE MENU_BAR r_image_menubar
+	{
+	titles=
+		{
+		MENU_TITLE { menu_pane=r_image_file_menu; txt="File"; },
+		MENU_TITLE { menu_pane=r_image_view_menu; txt="Image"; }
+		};
+	}
+
+// File menu
+RESOURCE MENU_PANE r_image_file_menu
+	{
+	items=
+		{
+		MENU_ITEM { command=EImageCmdOpenFile; txt="Open file"<KEllipsis>; },
+		MENU_ITEM { command=EImageCmdSaveAs; txt="Save as"<KEllipsis>; flags=EEikMenuItemSeparatorAfter; },
+		MENU_ITEM { command=EEikCmdExit; txt="Close"; }
+		};
+	}
+
+// Image menu
+RESOURCE MENU_PANE r_image_view_menu
+	{
+	items=
+		{
+		MENU_ITEM { command=EImageCmdZoomIn; txt="Zoom in"; },
+		MENU_ITEM { command=EImageCmdZoomOut; txt="Zoom out"; },
+		MENU_ITEM { command=EImageCmdRotateClockwise; txt="Rotate clockwise"; },
+		MENU_ITEM { command=EImageCmdRotateAntiClockwise; txt="Rotate anti-clockwise"; },
+		MENU_ITEM { command=EImageCmdMirror; txt="Mirror"; },
+		MENU_ITEM { command=EImageCmdFlip; txt="Flip"; },
+		MENU_ITEM { command=EImageCmdRefresh; txt="Refresh"; },
+		MENU_ITEM { command=EImageCmdExtractFrame; txt="Select frame"<KEllipsis>; }
+		};
+	}
+
+// Frame selection dialog
+RESOURCE DIALOG r_image_frame_dialog
+	{
+    title="Set current frame";
+    flags=EEikDialogFlagWait;
+    buttons=R_EIK_BUTTONS_CANCEL_OK;
+    items=
+        {
+		DLG_LINE
+			{
+			prompt="Frame number:";
+		        type=EEikCtNumberEditor;
+			id=EImageIdNumberOfFrames;
+			control=NUMBER_EDITOR
+				{
+				min=0;
+				max=999999;
+				};
+			}
+		};
+	}
+
+// Save As dialog
+RESOURCE DIALOG r_image_file_saveas_dialog
+    {
+    flags=EEikDialogFlagWait;
+    title="Save as";
+    buttons=r_image_browse_cancel_ok_buttons;
+    items=
+        {
+        DLG_LINE
+            {
+            prompt="Name";
+            type=EEikCtFileNameEd;
+            id=EEikCidFileNameEd;
+            control=FILENAMEEDITOR {};
+            },
+        DLG_LINE
+            {
+            prompt="Folder";
+            type=EEikCtFolderNameSel;
+            id=EEikCidFolderNameSel;
+            control=FOLDERNAMESELECTOR {};
+            },
+        DLG_LINE
+            {
+            prompt="Disk";
+            type=EEikCtDriveNameSel;
+            id=EEikCidDriveNameSel;
+            control=DRIVENAMESELECTOR {};
+            },
+        DLG_LINE
+            {
+			type=EEikCtCheckBox;
+            prompt="Use new file";
+			id=EEikCidUseNewFileChbx;
+            },
+        DLG_LINE
+            {
+            type=EEikCtChoiceList;
+            prompt="Type";
+		id=EImageIdSaveAsFormat;
+            control=CHOICELIST {};
+            },
+        DLG_LINE
+            {
+            type=EEikCtChoiceList;
+            prompt="Sub-type";
+		id=EImageIdSubtype;
+            control=CHOICELIST {};
+            }
+        };
+    }
+
+// Set-format dialog buttons
+RESOURCE DLG_BUTTONS r_image_browse_cancel_ok_buttons
+    {
+    buttons=
+		{
+		DLG_BUTTON { id=EEikBidBrowse; button=CMBUT {txt="Browse"<KEllipsis>;}; hotkey='B'; },
+		DLG_BUTTON { id=EEikBidCancel; button=CMBUT {txt="Cancel";}; hotkey=EEikBidCancel; flags=0;},
+		DLG_BUTTON { id=EEikBidOk; button=CMBUT {txt="OK";}; hotkey=EEikBidOk; flags=0; }
+		};
+    }
+
+RESOURCE ARRAY r_no_sub_types
+	{
+	items=
+		{
+		LBUF { txt="None";}		
+		};
+	}

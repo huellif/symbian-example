@@ -1,0 +1,32 @@
+;
+; Install file for multi-lingual application
+; supporting two language variants.
+;
+
+; Languages - 
+&EN,GE
+
+; List of localised vendor names.
+%{"Symbian Software Ltd", "Symbian Software Ltd"}
+
+; Single, non-localised (global) vendor name.
+:"Symbian Software Ltd"
+
+; Installation header.
+; Two component names as we support English and German
+#{"Hello World", "Hallo Welt"}, (0xE8000096), 1,0,0
+
+; Language-neutral files to be installed
+"HelloWorld.exe"-"!:\sys\bin\HelloWorld.exe"
+"HelloWorld_reg.rsc" - "!:\private\10003a3f\import\apps\HelloWorld_reg.rsc"
+
+; Lists of language-specific files, of which only one will be installed - 
+{
+"HelloWorld.r01"
+"HelloWorld.r03"
+}-"!:\resource\apps\HelloWorld.rsc"
+
+{
+"HelloWorld01.mbm"
+"HelloWorld03.mbm"
+}-"!:\resource\apps\HelloWorld.mbm"

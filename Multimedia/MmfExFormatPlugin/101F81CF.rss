@@ -1,0 +1,47 @@
+// 101F81CF.RSS
+//
+// Copyright (c) 2002 Symbian Ltd.  All rights reserved.
+//
+
+#include "RegistryInfo.rh"
+#include <mmfPluginInterfaceUIDs.hrh>
+#include "UIDs.hrh"
+
+RESOURCE REGISTRY_INFO theInfo
+	{
+	dll_uid = KPluginDLLUID;
+	interfaces = 
+		{
+		INTERFACE_INFO
+			{
+			interface_uid = KMmfUidPluginInterfaceFormatDecode;   
+			implementations = 
+				{
+				IMPLEMENTATION_INFO
+					{
+					implementation_uid = KRawDecoder;  // CMMFRawFormatRead
+					version_no = 1;
+					display_name = "MMF read format example";
+					default_data = "0x101f5022";//Preferred Controller
+					opaque_data = "<s>Symbian<i>0x101f5d07<e>.raw";
+					}
+				};
+			},
+		INTERFACE_INFO
+			{
+			interface_uid = KMmfUidPluginInterfaceFormatEncode;    
+			implementations = 
+				{
+				IMPLEMENTATION_INFO
+					{
+					implementation_uid = KRawEncoder;  // CMMFRawFormatWrite
+					version_no = 1;
+					display_name = "MMF writer format example";
+					default_data = "0x101f5022";//Preferred Controller
+					opaque_data = "<s>Symbian<i>0x101f5d07<e>.raw";
+					}
+				};
+			}
+		};
+	}
+

@@ -1,0 +1,33 @@
+// SimpleServer.mmp
+//
+// Copyright (C) Symbian Software Ltd 2000-2005.  All rights reserved.
+
+// using relative paths for source and userinclude directories
+
+// exports are unfrozen
+
+TARGET        SimpleServer.dll
+TARGETTYPE    dll
+UID           0xE800002C
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        SimpleServer.cpp
+
+USERINCLUDE   .
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib
+
+CAPABILITY    all
+
+
+#if defined(WINS)
+    deffile .\SimpleServerWINS.def
+#else if defined(ARM)
+    deffile .\SimpleServerARM.def
+#endif
+
+nostrictdef
+
+

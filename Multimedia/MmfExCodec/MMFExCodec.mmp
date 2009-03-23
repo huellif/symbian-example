@@ -1,0 +1,27 @@
+// MMFExCodec.mmp
+//
+// Copyright (c) 1997-2005 Symbian Software Ltd.  All rights reserved.
+//
+
+TARGET MMFExCodec.dll
+TARGETTYPE PLUGIN
+
+// ECom Dll recognition UID followed by the unique UID for this dll
+UID 0x10009D8D 0xE8000065
+VENDORID 0x70000001
+CAPABILITY ALL -TCB
+
+USERINCLUDE	.
+SYSTEMINCLUDE 	\epoc32\include \epoc32\include\ecom
+
+SOURCEPATH	.
+SOURCE		main.cpp
+SOURCE		MMFExPcm8ToPcm16Codec.cpp
+
+START RESOURCE 101F81D6.rss
+TARGETPATH     \resource\Plugins
+HEADER
+END
+
+LIBRARY euser.lib
+LIBRARY ECom.lib

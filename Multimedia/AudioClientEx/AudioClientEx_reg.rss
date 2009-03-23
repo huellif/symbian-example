@@ -1,0 +1,10 @@
+// Copyright (c) 2001-2005 Symbian Software Ltd.  All rights reserved.
+
+#include <appinfo.rh>
+
+UID2 KUidAppRegistrationResourceFile
+UID3 0xE8000062 // application UID
+RESOURCE APP_REGISTRATION_INFO
+    {
+    app_file = "AudioClientEx";
+    }

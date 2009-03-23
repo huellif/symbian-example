@@ -1,0 +1,29 @@
+// E800008E.rss
+//
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+#include <RegistryInfo.rh>
+
+RESOURCE REGISTRY_INFO
+	{
+	dll_uid = 0xE800008E; 
+	interfaces =
+		{
+		INTERFACE_INFO
+			{
+			interface_uid=0x101f8c96;
+			implementations =
+				{
+				IMPLEMENTATION_INFO
+					{
+					implementation_uid = 0xE800008F; 			
+					version_no = 1;
+					display_name = "";
+					default_data = "";        
+					opaque_data = "";
+					}
+				};
+			}
+		};
+	}

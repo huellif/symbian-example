@@ -1,0 +1,20 @@
+// PDRExample.mmp
+//
+// Copyright (c) Symbian Software Ltd 2006. All rights reserved.
+//
+
+
+TARGET			pdrstoreexample.exe
+TARGETTYPE		exe
+
+UID				0xE800009D
+VENDORID 		0x70000001
+
+
+SOURCEPATH		.
+SOURCE			PDRExample.cpp
+
+SYSTEMINCLUDE	.
+SYSTEMINCLUDE	\epoc32\include
+
+LIBRARY			euser.lib efsrv.lib gdi.lib fbscli.lib pdrprt.lib fntstr.lib pdrstr.lib

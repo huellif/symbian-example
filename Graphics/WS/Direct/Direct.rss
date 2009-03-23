@@ -1,0 +1,50 @@
+// Direct.rss
+//
+// Copyright (c) 2005 Symbian Softwares Ltd.  All rights reserved.
+//
+
+NAME HELO
+
+#include <eikon.rh>
+#include <eikon.rsg>
+
+#include "Direct.hrh"
+
+RESOURCE RSS_SIGNATURE { }
+
+RESOURCE TBUF { buf=""; }
+
+RESOURCE EIK_APP_INFO
+	{
+	menubar=r_example_menubar;
+	hotkeys=r_example_hotkeys;
+	}
+
+RESOURCE HOTKEYS r_example_hotkeys
+	{
+	control=
+		{
+		HOTKEY { command=EEikCmdExit; key='e'; },
+		HOTKEY { command=EExampleCmd1; key='s'; },
+		HOTKEY { command=EExampleCmd2; key='t'; }
+		};
+	}
+
+RESOURCE MENU_BAR r_example_menubar
+	{
+	titles=
+		{
+		MENU_TITLE { menu_pane=r_example_file_menu; txt="Life"; }
+		};
+	}
+
+RESOURCE MENU_PANE r_example_file_menu
+	{
+	items=
+		{
+		MENU_ITEM { command=EExampleCmd1; txt="Start"; },
+		MENU_ITEM { command=EExampleCmd2; txt="Test overlay"; },
+		MENU_ITEM { command=EEikCmdExit; txt="Close"; }
+		};
+	}
+

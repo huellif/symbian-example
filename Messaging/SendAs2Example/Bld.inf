@@ -1,0 +1,11 @@
+// BLD.INF
+// 
+// SendAsExample
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+
+PRJ_MMPFILES
+
+SendAs2Example.mmp
+

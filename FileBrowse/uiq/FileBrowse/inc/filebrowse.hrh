@@ -1,0 +1,17 @@
+// FileBrowse.hrh
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+//
+
+#ifndef __FILEBROWSE_HRH__
+#define __FILEBROWSE_HRH__
+
+enum TMyControls
+  {
+  EFileBrowseBaseViewPage,
+  EFileBrowseListbox
+  };
+
+#endif // __FILEBROWSE_HRH__
+
+

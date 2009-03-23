@@ -1,0 +1,9 @@
+EXPORTS
+	??0CNumberStore@@QAE@HH@Z @ 1 NONAME ; public: __thiscall CNumberStore::CNumberStore(int,int)
+	??0CNumberStore@@QAE@XZ @ 2 NONAME ; public: __thiscall CNumberStore::CNumberStore(void)
+	?Number1@CNumberStore@@QBEHXZ @ 3 NONAME ; public: int __thiscall CNumberStore::Number1(void)const 
+	?Number2@CNumberStore@@QBEHXZ @ 4 NONAME ; public: int __thiscall CNumberStore::Number2(void)const 
+	?SetNumber1@CNumberStore@@QAEXH@Z @ 5 NONAME ; public: void __thiscall CNumberStore::SetNumber1(int)
+	?SetNumber2@CNumberStore@@QAEXH@Z @ 6 NONAME ; public: void __thiscall CNumberStore::SetNumber2(int)
+	?DoMultiplyNumbers@CNumberStore@@ABEHXZ @ 7 NONAME ; private: int __thiscall CNumberStore::DoMultiplyNumbers(void)const 
+

@@ -1,0 +1,3 @@
+EXPORTS
+	?NewMtmUiL@@YAPAVCBaseMtmUi@@AAVCBaseMtm@@AAVCRegisteredMtmDll@@@Z @ 1 NONAME ; class CBaseMtmUi * __cdecl NewMtmUiL(class CBaseMtm &,class CRegisteredMtmDll &)
+

@@ -1,0 +1,28 @@
+// ExampleConv.MMP
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+
+target		EXAMPLECONV.dll
+targettype	plugin
+UID		0x10009d8d 0xE800009B
+VENDORID	0x70000001
+CAPABILITY	All -Tcb
+
+sourcepath	.
+
+start resource E800009B.rss
+target exampleconv.rsc
+end
+
+start resource E80000AC.rss
+targetpath \resource\convert
+end
+
+userinclude	.
+systeminclude	. \epoc32\include 
+systeminclude 	\epoc32\include\ecom
+
+source		ExampleConv.CPP
+
+library		EUSER.LIB
+library		CONARC.LIB estor.lib

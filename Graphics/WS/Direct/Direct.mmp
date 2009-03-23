@@ -1,0 +1,42 @@
+// Direct.mmp
+//
+// Copyright (c) 2005 Symbian Softwares Ltd.  All rights reserved.
+//
+
+TARGET			Direct.exe		//	Only exe type is compatible with v9.1
+TARGETTYPE		exe
+UID			0x100039CE 0xE8000054
+VENDORID 		0x70000001
+
+SOURCEPATH		.
+SOURCE			Direct.cpp CDirectDisplayLife.cpp CLifeEngine.cpp 
+USERINCLUDE		.
+SYSTEMINCLUDE	\epoc32\include
+SYSTEMINCLUDE	\epoc32\include\techview
+
+
+START RESOURCE	Direct.rss			//	Rss file necessary in v9.1
+TARGET			Direct.rsc
+TARGETPATH		\Resource\Apps
+HEADER
+LANG 01 		// Build English language versions
+END
+
+
+// Application exe registration resource file
+start resource 	Direct_reg.rss			//	reg file necessary in v9.1
+targetpath 		\private\10003a3f\apps
+//lang			01
+end
+
+start resource	Direct_loc.rss			//	loc file necessary in v9.1
+//targetpath	\resource\apps
+lang 			01
+end
+
+LIBRARY			euser.lib
+LIBRARY			apparc.lib
+LIBRARY			cone.lib
+LIBRARY			eikcore.lib 
+LIBRARY			ws32.lib    
+LIBRARY			bitgdi.lib

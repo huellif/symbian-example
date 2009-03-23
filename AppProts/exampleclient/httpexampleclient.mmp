@@ -1,0 +1,21 @@
+// HTTPEXAMPLECLIENT.MMP
+//
+// Copyright (C) Symbian Ltd 2001
+//
+
+OPTION CW   -w off
+TARGET          HttpExampleClient.exe  
+TARGETTYPE      EXE
+UID           0xE8000005
+CAPABILITY NetworkServices
+
+SYSTEMINCLUDE   \epoc32\include \epoc32\include\ecom
+USERINCLUDE		.
+
+SOURCEPATH	    .
+SOURCE			HttpExampleClient.cpp HttpExampleUtils.cpp
+
+LIBRARY     	c32.lib euser.lib efsrv.lib http.lib inetprotutil.lib bafl.lib ecom.lib
+
+
+VENDORID 0x70000001

@@ -1,0 +1,26 @@
+// GUIApp.MMP
+//
+// Copyright (c) 1997-1999 Symbian Ltd.  All rights reserved.
+//
+TARGET        GUIApp.exe
+TARGETTYPE    exe
+UID           0x100039ce 0xE8000073
+VENDORID      0x70000001
+
+SOURCEPATH	.
+SOURCE        GUIApp.cpp
+
+START RESOURCE GUIApp.rss
+TARGETPATH     \resource\apps
+HEADER
+END
+
+SYSTEMINCLUDE \epoc32\include\libc  \epoc32\include 
+SYSTEMINCLUDE \epoc32\include\techview
+LIBRARY       GUIAppEng.lib euser.lib efsrv.lib
+LIBRARY       cone.lib  eikcore.lib  eikcoctl.lib apparc.lib 
+LIBRARY       bafl.lib estlib.lib eikfile.lib eikdlg.lib
+
+START RESOURCE GUIApp_reg.rss
+TARGETPATH     \private\10003a3f\apps
+END

@@ -1,0 +1,3 @@
+EXPORTS
+	?NewMessenger@@YAPAVCMessenger@@XZ @ 1 NONAME ; class CMessenger * NewMessenger(void)
+

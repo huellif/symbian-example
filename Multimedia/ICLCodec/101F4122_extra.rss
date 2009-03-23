@@ -1,0 +1,25 @@
+// 101F45C7_extra.rss
+//
+// Copyright (c) 2001-2002 Symbian Ltd.  All rights reserved.
+//
+// Extra resource file for the PNG Bitmap Decoder Implementation
+//
+
+STRUCT DECODER_INFO
+	{
+	LTEXT	decoder_name;
+	LTEXT	image_format;
+	LTEXT	image_dimensions;
+	LTEXT	image_depth[];
+	LTEXT	image_details;
+	}
+
+RESOURCE DECODER_INFO theDecoderInfo
+	{
+	decoder_name = "Decoder: Example Png decoder V1.0";
+	image_format = "Format: Png";
+	image_dimensions = "Dimensions: %dx%d pixels";
+	image_depth = {"Depth: %dbpp b&w", "Depth: %dbpp colour"};
+	image_details = "Details: Image includes alpha channel";
+	}
+

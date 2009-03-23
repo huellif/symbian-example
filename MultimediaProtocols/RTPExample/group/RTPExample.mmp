@@ -1,0 +1,27 @@
+// RTPExample.mmp
+//
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+TARGET		rtpexample.exe
+TARGETTYPE	exe
+
+UID         		0 0xE8000091
+VENDORID 	0x70000001
+CAPABILITY    	None
+
+SOURCEPATH	..\src
+SOURCE		RtpFileStreamer.cpp
+SOURCE		ExampleApp.cpp
+
+USERINCLUDE	..\inc
+SYSTEMINCLUDE	\epoc32\include
+
+LIBRARY		EUSER.LIB
+LIBRARY		ESOCK.LIB
+LIBRARY		insock.lib
+LIBRARY		commdb.lib
+LIBRARY		rtp.lib
+LIBRARY     	efsrv.lib
+LIBRARY		bafl.lib 
+

@@ -1,0 +1,15 @@
+//
+// Copyright (c) 2005 Symbian Software Ltd.  All rights reserved.
+//
+
+REM Example OBY file to included debugging.exe in ROM
+
+
+#ifndef __DEBUGGING_IBY__
+#define __DEBUGGING_IBY__
+
+#include <header.iby>
+
+file=ABI_DIR\DEBUG_DIR\debugging.exe    \sys\bin\debugging.exe
+
+#endif

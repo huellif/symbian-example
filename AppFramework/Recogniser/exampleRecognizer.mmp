@@ -1,0 +1,25 @@
+// EXAMPLERECOGNIZER.MMP
+//
+// Copyright (c) 2005 Symbian Software Ltd.  All rights reserved.
+
+// using relative paths for sourcepath and user includes
+
+
+target exampleRecognizer.dll
+CAPABILITY	Protserv
+targettype plugin
+uid		0x10009d8d 0xE8000002
+VENDORID 0x70000001
+
+SOURCEPATH	.
+SOURCE          exampleRecognizer.cpp
+systeminclude   \EPOC32\INCLUDE
+systeminclude	\EPOC32\INCLUDE\ECOM 
+
+
+library         EUSER.LIB APMIME.LIB EFSRV.LIB
+
+
+start resource E8000002.rss
+target exampleRecognizer.rsc
+end

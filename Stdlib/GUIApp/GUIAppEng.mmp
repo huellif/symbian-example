@@ -1,0 +1,19 @@
+// GUIAppEng.MMP
+//
+// Copyright (c) 1997-1999 Symbian Ltd.  All rights reserved.
+//
+
+TARGET		GUIAppEng.dll
+TARGETTYPE	dll
+UID             0x1000008d 0xE8000074
+VENDORID 	0x70000001
+CAPABILITY 	All -TCB
+
+SOURCEPATH	.
+SOURCE		crc.c
+SYSTEMINCLUDE	\epoc32\include\libc \epoc32\include
+LIBRARY		estlib.lib euser.lib 
+
+deffile ..\BWINS\GuiAppEng.def
+
+nostrictdef

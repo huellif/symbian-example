@@ -1,0 +1,12 @@
+// BLD.INF
+//
+// Copyright (c) 2006 Symbian Software Ltd. All rights reserved.
+//
+
+
+PRJ_MMPFILES
+UsingConverter.mmp
+
+PRJ_EXPORTS
+W7allchr.doc.qp		\Epoc32\winscw\C\Private\e800009c\W7allchr.doc.qp
+

@@ -1,0 +1,24 @@
+//SigCheck.mmp
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+
+// using relative paths for source and userinclude directories
+
+TARGET         SigCheck.exe
+TARGETTYPE     exe
+UID	       0xE8000082
+VENDORID 0x70000001
+
+SOURCEPATH     .
+SOURCE         SigCheck.cpp
+
+START RESOURCE SigCheck.rss
+header
+targetpath \Resource\apps
+END
+
+USERINCLUDE    .
+USERINCLUDE    ..\..\CommonFramework
+SYSTEMINCLUDE  \Epoc32\include
+
+LIBRARY        euser.lib efsrv.lib  bafl.lib

@@ -1,0 +1,58 @@
+// AnimExample.mmp
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+//
+
+epocstacksize 		0x5000
+
+TARGETPATH		\sys\bin
+
+TARGET			AnimExample.exe
+TARGETTYPE		exe
+
+UID           		0x100039CE 0xE80000A5
+
+VENDORID 		0x70000001
+
+SOURCEPATH    		.
+
+SOURCE        		Anim_Main.cpp
+SOURCE        		Anim_Application.cpp
+SOURCE        		Anim_Document.cpp
+SOURCE        		Anim_AppUi.cpp
+SOURCE        		Anim_AppView.cpp
+SOURCE			AnimMover.cpp
+
+USERINCLUDE   		.
+
+SYSTEMINCLUDE 		\epoc32\include
+SYSTEMINCLUDE 		\epoc32\include\techview
+SYSTEMINCLUDE 		\epoc32\include\libc
+
+LIBRARY       		euser.lib apparc.lib cone.lib eikcore.lib
+LIBRARY			eikdlg.lib eikcoctl.lib gdi.lib
+LIBRARY			eikctl.lib smlClient.lib bafl.lib charconv.lib
+LIBRARY			efsrv.lib estor.lib eikfile.lib
+LIBRARY			TechViewCtl.lib
+LIBRARY			animation.lib 
+LIBRARY			ws32.lib
+LIBRARY			estlib.lib
+
+START RESOURCE      	AnimExample.rss
+HEADER
+TARGETPATH		\resource\apps
+END
+
+START RESOURCE		AnimExample_reg.rss
+TARGETPATH		\private\10003a3f\apps
+END
+
+START BITMAP 		AnimExample_icon.mbm
+HEADER
+TARGETPATH 	 	\resource\apps
+SOURCE 			c8 AnimExample_24.BMP AnimExample_2M.BMP
+SOURCE 			c8 AnimExample_32.BMP AnimExample_3M.BMP
+SOURCE 			c8 AnimExample_48.BMP AnimExample_4M.BMP
+END
+
+

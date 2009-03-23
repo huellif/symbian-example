@@ -1,0 +1,22 @@
+// ErrorOnFail.mmp
+//
+// Copyright (C) Symbian Software Ltd 2000-2005.  All rights reserved.
+
+// using relative paths for source and userinclude directories
+
+// No explicit capabilities required to run this.
+
+TARGET        ErrorOnFail.exe
+TARGETTYPE    exe
+UID           0xE800002F
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        ErrorOnFail.cpp
+
+USERINCLUDE   .
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib
+
+CAPABILITY    None

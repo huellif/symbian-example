@@ -1,0 +1,29 @@
+// E8000002.rss
+//
+// Copyright (c) 2005 Symbian Software Ltd.  All rights reserved.
+
+
+#include <RegistryInfo.rh>
+
+RESOURCE REGISTRY_INFO r_registry
+	{
+	dll_uid = 0xE8000002; // should match name of this file
+	interfaces =
+		{
+		INTERFACE_INFO
+			{
+			interface_uid = 0x101F7D87;  // need to create this uid in the uid database
+			implementations =
+				{
+				IMPLEMENTATION_INFO
+					{
+					implementation_uid = 0x101F7DA1;
+					version_no = 1;
+					display_name = "ExampleRecognizer";
+					default_data = "";
+					opaque_data = "";
+					}
+				};
+			}
+		};
+	}

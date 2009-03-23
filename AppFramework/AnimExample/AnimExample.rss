@@ -1,0 +1,208 @@
+// Animation.RSS
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+//
+
+NAME ANIM
+
+#include <eikon.rh>
+#include <appinfo.rh>
+#include <eikon.rsg>
+#include <eikcore.rsg>
+
+#include <fontids.h>
+#include <gulfont.hrh>
+
+#include "AnimExample.hrh"
+
+RESOURCE RSS_SIGNATURE { }
+
+RESOURCE TBUF { buf=""; }
+
+RESOURCE EIK_APP_INFO
+	{
+	toolbar=r_AnimExample_toolbar;
+	menubar=r_menubar;
+	}
+
+RESOURCE MENU_BAR r_menubar
+    {
+    titles=
+        {
+         MENU_TITLE { menu_pane=r_Animation_first_menu; txt="AnimExample"; }
+		};
+    } 
+
+RESOURCE MENU_PANE r_Animation_first_menu
+	{
+	items=
+		{
+	
+		MENU_ITEM { command=EExampleItem0;cascade=r_Sprite_menu; txt="Sprite"; },
+		MENU_ITEM { command=EExampleItem1;cascade=r_Basic_menu; txt="Basic"; },
+		MENU_ITEM { command=EEikCmdExit; txt= "Close "; }
+        };
+    }
+RESOURCE MENU_PANE r_Sprite_menu
+{
+items=
+		{
+		
+		MENU_ITEM { command=EAnimToDo0; txt="S.Start"; },
+		MENU_ITEM { command=EAnimToDo1; txt="B.Start"; },
+		MENU_ITEM { command=EAnimToDo2; txt="Pause"; },
+		MENU_ITEM { command=EAnimToDo3; txt="Resume"; },
+		MENU_ITEM { command=EAnimToDo4; txt="Stop"; }
+		
+        };
+    }
+RESOURCE MENU_PANE r_Basic_menu
+	{
+	items=
+		{
+
+		MENU_ITEM { command=EAnimToDo5; txt="MoveBoth"; },
+		MENU_ITEM { command=EAnimToDo6; txt="Pause"; },
+		MENU_ITEM { command=EAnimToDo7; txt="Resume"; },
+		MENU_ITEM { command=EAnimToDo8; txt="Stop"; }
+		
+        };
+    }
+
+RESOURCE TBUF r_appname_default_file
+	{
+	buf="AnimExample";
+	}
+
+
+RESOURCE LOCALISABLE_APP_INFO r_lai
+	{
+	short_caption="ThribbetV2";
+	
+	caption_and_icon=	
+		{
+		CAPTION_AND_ICON_INFO
+			{
+			caption="AnimExample";
+			number_of_icons=3;
+			icon_file="c:\\resource\\apps\\AnimExample_icon.mbm";
+			icon_file="z:\\resource\\apps\\AnimExample_icon.mbm";
+			}
+		};
+
+	}
+	
+	
+rls_string STRING_r_test_toolbar0 "S.Start"
+rls_string STRING_r_test_toolbar1 "B.Start" 
+rls_string STRING_r_test_toolbar2 "S.Pause" 
+rls_string STRING_r_test_toolbar3 "S.Resume" 
+rls_string STRING_r_test_toolbar4 "S.Stop"
+rls_string STRING_r_test_toolbar5 "MoveBoth"
+rls_string STRING_r_test_toolbar6 "B.Pause" 
+rls_string STRING_r_test_toolbar7 "B.Resume" 
+rls_string STRING_r_test_toolbar8 "B.Stop" 
+rls_string STRING_r_test_toolbar9 "Close" 
+	
+
+RESOURCE EIK_APP_INFO 
+	{
+
+	}	
+
+#define KDenseToolBarButtonHeight 23
+#define KDenseToolBarWidth 30
+
+
+RESOURCE TOOLBAR r_AnimExample_toolbar
+	{
+	breadth=KTechViewToolbarWidth;
+	
+	controls=
+		{
+		TBAR_BUTTON 
+			{ 
+			id=EAnimToDo0;  
+			length=KDenseToolBarButtonHeight;
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			txt=STRING_r_test_toolbar0; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;
+			},
+		TBAR_BUTTON 
+			{ 
+			id=EAnimToDo1; 
+			length=KDenseToolBarButtonHeight;
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			txt=STRING_r_test_toolbar1;
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;
+			},
+		TBAR_BUTTON 
+			{ 
+			id=EAnimToDo2; 
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			length=KDenseToolBarButtonHeight;
+			txt=STRING_r_test_toolbar2; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;
+			},
+		TBAR_BUTTON 
+			{ 
+			id=EAnimToDo3; 
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			length=KDenseToolBarButtonHeight;
+			txt=STRING_r_test_toolbar3; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;
+			},
+		TBAR_BUTTON 
+			{ 
+			id=EAnimToDo4; 
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			length=KDenseToolBarButtonHeight;
+			txt=STRING_r_test_toolbar4; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;
+			},
+		TBAR_BUTTON 
+			{ 
+			id=EAnimToDo5; 
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			length=KDenseToolBarButtonHeight;
+			txt=STRING_r_test_toolbar5; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;
+			},
+		TBAR_BUTTON 
+			{ 
+			id=EAnimToDo6; 
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			length=KDenseToolBarButtonHeight;
+			txt=STRING_r_test_toolbar6; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;
+			}, 
+		TBAR_BUTTON 
+			{ 
+			id=EAnimToDo7; 
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			length=KDenseToolBarButtonHeight;
+			txt=STRING_r_test_toolbar7; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;
+			},
+		TBAR_BUTTON 
+			{ 
+			id=EAnimToDo8; 
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			length=KDenseToolBarButtonHeight;
+			txt=STRING_r_test_toolbar8; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;
+			},
+			TBAR_BUTTON 
+			{ 
+			id=EAnimToDo9; 
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			length=KDenseToolBarButtonHeight;
+			txt=STRING_r_test_toolbar9; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;
+			}
+			
+		};	
+	}
+
+
+RESOURCE TBUF r_example_text_BasicAnim { buf="Welcome to the Animation example "; }

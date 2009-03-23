@@ -1,0 +1,29 @@
+// SecureSockets.hrh
+//
+// Copyright (c) 2001 Symbian Ltd.  All rights reserved.
+//
+
+#ifndef __SEC_HRH__
+#define __SEC_HRH__
+
+/** Settings dialog fields */
+enum
+	{
+	EServerName,
+	EPort,
+	EPage
+	};
+
+/** UI commands */
+enum
+	{
+	ECmdStart = 1000,
+	ECmdCancel
+	};
+
+/** Maximum text field width */
+#define EFieldMax 128
+/** Displayed text field width */
+#define EFieldWidth 10
+
+#endif

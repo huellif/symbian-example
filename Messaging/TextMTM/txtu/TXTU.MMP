@@ -1,0 +1,34 @@
+// TXTU.MMP
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+
+target          TXTU.DLL                      
+targettype      DLL
+
+uid 0x10003C60 0xE8000060
+VENDORID 0x70000001
+CAPABILITY   All -TCB
+
+source          TXTU.CPP TXTUDLL.CPP
+
+
+START RESOURCE	txtu.rss
+HEADER
+TARGETPATH      \resource\messaging
+END
+
+USERINCLUDE   	..\txut
+USERINCLUDE   	..\txtc
+ 
+systeminclude   \Epoc32\include
+SYSTEMINCLUDE \epoc32\include\techview    
+
+library         msgs.lib euser.lib mtur.lib cone.lib eikcore.lib eikcoctl.lib eikdlg.lib eikfile.lib etext.lib efsrv.lib txut.lib
+
+#if defined(WINS)
+    deffile .\txtuWINS.def
+#else
+    deffile .\txtuEABI.def    
+#endif
+nostrictdef
+NOEXPORTLIBRARY

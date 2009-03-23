@@ -1,0 +1,57 @@
+// ClockExample.hrh
+//
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+enum TExampleMenuCommands
+	{
+	EExampleItem0 = 200,
+	EExampleItem1
+	};
+
+enum TExampleSubMenuCommands
+	{
+	EAnalogPostion = 400,
+	EAnalogIncrement,
+	EDigitalPostion,
+	EDigitalIncrement
+	};
+
+#define ECidFileNameLabel					0x11c6
+
+
+#define ETestDo0						0x1150
+#define ETestDo1						0x1151
+#define ETestDo2						0x1152
+#define ETestDo3						0x1153
+#define ETestDo4						0x1124
+#define ETestDo5						0x1155				
+#define ETestDo6						0x1156
+#define ETestDo7						0x1157
+#define ETestDo8						0x1158
+#define ETestDo9						0x1159
+#define ETestDoA						0x115A
+#define ETestDoB						0x115B
+#define ETestDoC						0x115C
+#define ETestDoD						0x115D
+#define ETestDoE						0x115E
+#define ETestDoF						0x115F
+										
+#define ETestDo10						0x1160
+#define ETestDo11						0x1161
+#define ETestDo12						0x1162
+#define ETestDo13						0x1163
+#define ETestDo14						0x1164
+#define ETestDo15						0x1165				
+#define ETestDo16						0x1166
+#define ETestDo17						0x1167
+#define ETestDo18						0x1168
+#define ETestDo19						0x1169
+#define ETestDo1A						0x116A
+#define ETestDo1B						0x116B
+#define ETestDo1C						0x116C
+#define ETestDo1D						0x116D
+#define ETestDo1E						0x116E
+#define ETestDo1F						0x116F
+
+

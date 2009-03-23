@@ -1,0 +1,20 @@
+// MClasses2.mmp
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+
+// using relative paths for sourcepath and user includes
+
+TARGET        MClasses2.exe
+TARGETTYPE    exe
+UID           0xE8000049
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        MClasses2.cpp
+
+USERINCLUDE   .
+USERINCLUDE   ..\CommonFramework
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib
+

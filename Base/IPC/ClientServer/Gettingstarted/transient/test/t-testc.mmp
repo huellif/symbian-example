@@ -1,0 +1,20 @@
+// t-testc.mmp
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+//
+
+// Transient server example - test client
+
+capability All -Tcb
+
+target t-testc.dll
+targettype dll
+
+systeminclude . \epoc32\include
+
+//project server
+sourcepath .
+
+source testclient.cpp
+
+library euser.lib t-client.lib

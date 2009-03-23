@@ -1,0 +1,20 @@
+// InetProtUtil.mmp
+//
+// Copyright (c) Symbian Software Ltd 2005.  All rights reserved.
+//
+
+
+
+TARGET			ExampleInetProtUtil.exe
+TARGETTYPE		exe
+UID           0xE8000006
+
+ 
+SOURCEPATH		.
+SOURCE			ExampleInetProtUtil.cpp
+USERINCLUDE		.
+SYSTEMINCLUDE		\epoc32\include 
+
+LIBRARY			euser.lib efsrv.lib inetprotutil.lib
+
+VENDORID 0x70000001

@@ -1,0 +1,26 @@
+// imap4example.mmp
+//
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+TARGET        	imap4example.exe
+TARGETTYPE    	exe
+
+UID           	0xE80000A7
+VENDORID 		0x70000001
+CAPABILITY   	ReadUserData WriteUserData NetworkServices CommDD Location UserEnvironment MultimediaDD ReadDeviceData WriteDeviceData NetworkControl
+
+
+
+
+
+SOURCEPATH    	.
+SOURCE        	IMAP4EXAMPLE.CPP
+SOURCE			ASYNCWAITER.CPP
+
+USERINCLUDE   	.
+SYSTEMINCLUDE 	\Epoc32\include
+
+LIBRARY		euser.lib sendas2.lib efsrv.lib msgs.lib estor.lib imcm.lib
+LIBRARY		etext.lib BioDB.lib bifu.lib biut.lib
+LIBRARY		bafl.lib charconv.lib commsdat.lib esock.lib commdb.lib		

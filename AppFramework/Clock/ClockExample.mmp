@@ -1,0 +1,61 @@
+// ClockExample.mmp
+//
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+
+epocstacksize 		0x5000
+
+TARGETPATH			\sys\bin
+
+TARGET				ClockExample.exe
+TARGETTYPE			exe
+
+UID           		0x100039CE 0xE8000098
+
+VENDORID 			0x70000001
+
+SOURCEPATH    		.
+
+SOURCE        		ClockExample_Main.cpp
+SOURCE        		ClockExample_Application.cpp
+SOURCE        		ClockExample_Document.cpp
+SOURCE        		ClockExample_AppUi.cpp
+SOURCE        		ClockExample_AppView.cpp
+
+USERINCLUDE   		.
+
+SYSTEMINCLUDE 		\epoc32\include
+SYSTEMINCLUDE 		\epoc32\include\techview
+
+LIBRARY       		euser.lib apparc.lib cone.lib eikcore.lib
+LIBRARY				fbscli.lib ws32.lib gdi.lib clock.lib
+
+START RESOURCE      ClockExample.rss
+HEADER
+TARGETPATH			\resource\apps
+END
+
+START RESOURCE		ClockExample_reg.rss
+TARGETPATH			\private\10003a3f\apps
+END
+
+START BITMAP 		ClockExample_icon.mbm
+HEADER
+TARGETPATH 	 		\resource\apps
+SOURCE 				c8 ClockExample_24.BMP ClockExample_2M.BMP
+SOURCE 				c8 ClockExample_32.BMP ClockExample_3M.BMP
+SOURCE 				c8 ClockExample_48.BMP ClockExample_4M.BMP
+END
+
+start bitmap 		MyMbs0.mbm
+header
+targetpath 			\System\Data
+sourcepath 			.
+source 				2 MyClock.bmp MyClockm.bmp
+end
+
+
+
+
+

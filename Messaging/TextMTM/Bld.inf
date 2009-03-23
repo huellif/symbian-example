@@ -1,0 +1,21 @@
+// BLD.INF
+// Component description file 
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+
+PRJ_EXPORTS
+txut\txut.h
+10005247.txt z:\private\10202BE9\10005247.txt
+
+
+PRJ_MMPFILES
+
+txut\Txut.mmp
+txtc\Txtc.mmp
+txti\Txti.mmp
+txts\Txts.mmp
+txtu\Txtu.mmp
+txin\Txin.mmp
+
+
+

@@ -1,0 +1,7 @@
+EXPORTS
+	??0CGeneral@@QAE@AAVCConsoleBase@@@Z @ 1 NONAME ; CGeneral::CGeneral(class CConsoleBase &)
+	??0CSetter@@QAE@AAVCConsoleBase@@@Z @ 2 NONAME ; CSetter::CSetter(class CConsoleBase &)
+	?SetStaticTextL@CSetter@@QAEXABVTDesC16@@@Z @ 3 NONAME ; void CSetter::SetStaticTextL(class TDesC16 const &)
+	?ShowStaticText@CGeneral@@QBEXXZ @ 4 NONAME ; void CGeneral::ShowStaticText(void) const
+	?ShowStaticText@CSetter@@QBEXXZ @ 5 NONAME ; void CSetter::ShowStaticText(void) const
+

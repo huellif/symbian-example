@@ -1,0 +1,48 @@
+// Ordinal.mmp
+//
+// Copyright (c) 2005 Symbian Softwares Ltd.  All rights reserved.
+//
+
+// From 9.1 builds supporting EKA2 with Winscw, os will treat all
+// applications with the extension exe.
+TARGET			Ordinal.exe		
+TARGETTYPE		exe
+UID			0x100039CE 0xE8000055
+VENDORID 		0x70000001
+
+SOURCEPATH		.
+SOURCE			AppHolder.cpp Base.cpp Ordinal.cpp
+USERINCLUDE		.
+SYSTEMINCLUDE	\epoc32\include
+SYSTEMINCLUDE	\epoc32\include\techview
+
+// To support the new resource compilation practice from 9.1
+// provide the following details to generate .rss files
+START RESOURCE	Ordinal.rss			
+TARGET			Ordinal.rsc
+TARGETPATH		\Resource\Apps
+HEADER
+LANG 01 		// Build English language versions
+END
+
+
+// In v8.1, both aif files and registration files are supported,
+// but from v9.0 onwards, only registration files are supported.
+start resource 	Ordinal_reg.rss
+targetpath 		\private\10003a3f\apps
+//lang			01
+end
+
+// To support localisation for the UI applicatons
+start resource	Ordinal_loc.rss			
+//targetpath	\resource\apps
+lang 			01
+end
+
+LIBRARY			euser.lib
+LIBRARY			apparc.lib
+LIBRARY			cone.lib
+LIBRARY			eikcore.lib 
+LIBRARY			ws32.lib    
+LIBRARY			gdi.lib
+

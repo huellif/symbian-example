@@ -1,0 +1,32 @@
+// PolymorphicDLL2.mmp
+//
+// Copyright (C) Symbian Software Ltd 2000-2005.  All rights reserved.
+// using relative paths for source and userinclude directories
+
+
+
+TARGET        PolymorphicDLL2.dll
+TARGETTYPE    dll
+UID           0x10004262 0xE8000017
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        PolymorphicDLL2.cpp
+
+USERINCLUDE   .
+USERINCLUDE   ..\UsingDLLs
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib
+
+START WINS
+  BASEADDRESS   0x50000000
+END
+
+#if defined(WINS)
+    deffile .\POLYMORPHICDLL2WINS.def
+#else if defined(ARM)
+    deffile .\POLYMORPHICDLL2ARM.def
+#endif
+nostrictdef
+

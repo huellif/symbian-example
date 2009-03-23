@@ -1,0 +1,31 @@
+// MenuApp.rss
+//
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+NAME MEUA
+
+#include <eikon.rh>
+#include <appinfo.rh>
+
+
+RESOURCE RSS_SIGNATURE { }
+
+RESOURCE TBUF { buf=""; }
+
+
+RESOURCE EIK_APP_INFO
+	{
+	menubar=r_example_menubar;
+	}
+RESOURCE MENU_BAR r_example_menubar
+    {
+    titles=
+        {
+       MENU_TITLE { menu_pane=r_example_first_menu; txt="Apps"; }
+		};
+    }
+RESOURCE MENU_PANE r_example_first_menu
+    {	
+    }
+

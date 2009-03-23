@@ -1,0 +1,48 @@
+// Imageconv.HRH
+//
+// Copyright (c) 2001-2005 Symbian Software Ltd.  All rights reserved.
+//
+
+// Commands
+enum
+	{
+	EImageCmdOpenFile=1,
+	EImageCmdSaveAs,
+	EImageCmdZoomIn,
+	EImageCmdZoomOut,
+	EImageCmdMirror,
+	EImageCmdFlip,
+	EImageCmdStream,
+	EImageCmdRefresh,
+	EImageCmdExtractFrame,
+	EImageCmdRotateClockwise,
+	EImageCmdRotateAntiClockwise
+	};
+
+enum
+	{
+	EImageIdNumberOfFrames=1,
+	EImageIdDisplayMode,
+	EImageIdBackgroundColor,
+	EImageIdCurrentFrameNumber
+	};
+
+enum
+	{
+	EImageIdSaveAsFormat=1000, // Avoid clashes with the existing Save As dialog controls
+	EImageIdSubtype
+	};
+
+enum
+	{
+	EImageBidFormat=1000 // Avoid clashes with the existing Save As dialog buttons
+	};
+
+enum
+	{
+	EImageIdFileFormatType=1,
+	EImageIdFileFormatBpp,
+	EImageIdFileFormatColor,
+	EImageIdFileFormatFactor,
+	EImageIdFileFormatSampling
+	};
