@@ -1,0 +1,39 @@
+// TXTI.MMP
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+//
+
+target          TXTI.DLL                     
+targettype      DLL
+
+uid 0x10003C61 0xE800005E
+VENDORID 0x70000001
+CAPABILITY   All -TCB
+
+source        	TXTI.CPP TXTIDLL.CPP
+
+START RESOURCE	txti.rss
+header
+TARGETPATH      \resource\messaging
+END
+
+userinclude     ..\txut ..\txtu ..\txtc
+systeminclude   \epoc32\include   
+SYSTEMINCLUDE \epoc32\include\techview 
+
+library         euser.lib mtur.lib msgs.lib
+
+#if defined(WINS)
+    deffile .\txtiWINS.def
+#else
+    deffile .\txtiEABI.def    
+#endif
+nostrictdef
+NOEXPORTLIBRARY
+
+start bitmap Txti.mbm
+header
+sourcepath .
+TARGETPATH  \resource\messaging
+source 4 textl1.bmp textn1.bmp texth1.bmp servn1.bmp fold1.bmp 
+end 

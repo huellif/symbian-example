@@ -1,0 +1,15 @@
+// HELLO.MMP
+//
+// Copyright (c) 1997-1999 Symbian Ltd.  All rights reserved.
+//
+
+TARGET		hello.exe
+TARGETTYPE	exe
+UID      	0xE8000075
+VENDORID 0x70000001
+SOURCEPATH	.
+SOURCE		slhello.c
+SYSTEMINCLUDE	\epoc32\include\libc  \epoc32\include 
+
+LIBRARY		estlib.lib euser.lib 
+STATICLIBRARY	ecrt0.lib

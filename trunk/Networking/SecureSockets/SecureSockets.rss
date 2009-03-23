@@ -1,0 +1,100 @@
+// SecureSockets.RSS
+//
+// Copyright (c) 2001 Symbian Ltd.  All rights reserved.
+//
+
+NAME SECS
+
+#include <eikon.rh>
+#include <eikon.rsg>
+
+#include "SecureSockets.hrh"
+
+RESOURCE RSS_SIGNATURE { }
+
+RESOURCE TBUF16 { buf=""; }
+
+RESOURCE EIK_APP_INFO { hotkeys=r_cons_hotkeys; menubar=r_cons_menubar; }
+
+RESOURCE HOTKEYS r_cons_hotkeys
+    {
+    control=
+        {
+        HOTKEY { command=EEikCmdExit; key='e'; },
+        HOTKEY { command=ECmdStart; key='s'; },
+		HOTKEY { command=ECmdCancel; key='x'; }
+        };
+    }
+
+RESOURCE MENU_BAR r_cons_menubar
+    {
+    titles=
+        {
+        MENU_TITLE { menu_pane=r_cons_file_menu; txt="Socket"; }
+        };
+    }
+
+RESOURCE MENU_PANE r_cons_file_menu
+    {
+    items=
+        {
+       MENU_ITEM 
+			{ 
+			command=ECmdStart; 
+			txt="Connect"<KEllipsis>; 
+			},
+       MENU_ITEM 
+			{ 
+			command=ECmdCancel; 
+			txt="Cancel"; 
+			},
+       MENU_ITEM 
+			{ 
+			command=EEikCmdExit; 
+			txt="Exit"; 
+			}
+        };
+    }
+
+RESOURCE DIALOG r_secs_settings
+	{
+	title="Connection settings";
+    flags=EEikDialogFlagWait;
+    buttons=R_EIK_BUTTONS_CANCEL_OK;
+    items=
+        {
+		DLG_LINE
+			{
+			prompt="Server name";
+            type=EEikCtEdwin;
+			id=EServerName;
+			control=EDWIN
+				{
+				maxlength=EFieldMax;
+				width=EFieldWidth;
+				}; 
+			},
+		DLG_LINE
+			{
+			prompt="Port";
+			type=EEikCtNumberEditor;
+			id=EPort;
+			control=NUMBER_EDITOR
+				{
+				min=1;
+				max=999;
+				};
+			},
+		DLG_LINE
+			{
+			prompt="Page";
+            type=EEikCtEdwin;
+			id=EPage;
+			control=EDWIN
+				{
+				maxlength=EFieldMax;
+				width=EFieldWidth;
+				}; 
+			}
+		};
+	}

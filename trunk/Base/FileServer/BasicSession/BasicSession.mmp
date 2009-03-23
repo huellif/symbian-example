@@ -1,0 +1,23 @@
+// BasicSession.mmp
+//
+// Copyright (C) Symbian Software Ltd 2000-2005.  All rights reserved.
+
+// using relative paths for source and userinclude directories
+
+// No explicit capabilities required to run this.
+
+TARGET        BasicSession.exe
+TARGETTYPE    exe
+UID           0xE800001A
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        BasicSession.cpp
+
+USERINCLUDE   .
+USERINCLUDE   ..\..\CommonFramework
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib efsrv.lib
+
+CAPABILITY    None

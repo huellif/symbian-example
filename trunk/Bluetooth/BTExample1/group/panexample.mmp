@@ -1,0 +1,47 @@
+// panexammple.MMP
+//
+// Copyright (c) Symbian Software Ltd 2006.  All rights reserved.
+//
+
+TARGET        panexample.exe
+TARGETTYPE    EXE
+
+SOURCEPATH ..\src      
+SOURCE console.cpp
+SOURCE panconnection.cpp
+// Scabby Queen classes
+SOURCE dealer.cpp
+SOURCE player.cpp
+// Follow classes are for generic card game
+SOURCE cardgamedealer.cpp
+SOURCE cardgameplayer.cpp
+SOURCE cardgamebase.cpp
+SOURCE cardgamesend.cpp
+SOURCE cardgamerecv.cpp
+SOURCE cardgametimer.cpp
+
+USERINCLUDE   ..\inc
+SYSTEMINCLUDE \epoc32\include
+
+LIBRARY euser.lib // General apis   
+LIBRARY esock.lib // For socket api
+LIBRARY bluetooth.lib// Bluetooth stack
+LIBRARY commdb.lib// Comms database
+LIBRARY BTExtNotifiers.lib // For PAN notifier
+LIBRARY insock.lib //TInetAddr
+LIBRARY c32.lib //For serial comms
+LIBRARY sdpdatabase.lib // For registering with SDP
+
+//Platsec capabilities
+CAPABILITY CommDD 
+CAPABILITY PowerMgmt 
+CAPABILITY ReadDeviceData 
+CAPABILITY WriteDeviceData 
+CAPABILITY TrustedUI 
+CAPABILITY ProtServ 
+CAPABILITY NetworkControl 
+CAPABILITY NetworkServices 
+CAPABILITY LocalServices 
+CAPABILITY ReadUserData 
+CAPABILITY WriteUserData
+

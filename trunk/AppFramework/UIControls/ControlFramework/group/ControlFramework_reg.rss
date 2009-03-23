@@ -1,0 +1,17 @@
+// ControlFramework_reg.rss
+//
+// Copyright (c) Symbian Software Ltd 2006. All rights reserved.
+//
+
+#include <appinfo.rh>
+
+UID2 KUidAppRegistrationResourceFile
+UID3 0xE80000A5  // the app's 3rd UID
+
+RESOURCE APP_REGISTRATION_INFO
+	{
+	// filename of application binary (minus extension)
+	app_file="ControlFramework";
+	
+	localisable_resource_file = "\\Resource\\Apps\\ControlFramework_loc";
+	}

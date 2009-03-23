@@ -1,0 +1,8 @@
+// BLD.INF
+//
+// Copyright (c) 1997 - 2005 Symbian Ltd.  All rights reserved.
+//
+
+PRJ_MMPFILES
+originaldll_v2.mmp
+extensiondll_v2.mmp

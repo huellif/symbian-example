@@ -1,0 +1,41 @@
+// SecureSockets.mmp
+//
+// Copyright (c) 2000-2005 Symbian Software Ltd.  All rights reserved.
+
+TARGET    	SecureSockets.exe
+TARGETTYPE	exe
+UID        	0x100039CE 0xE8000068
+
+VENDORID 	0x70000001
+CAPABILITY   All -TCB
+
+SOURCEPATH		.
+SOURCE			SecureSockets.cpp SecEngine.cpp
+
+START RESOURCE	SecureSockets.rss			
+TARGET			SecureSockets.rsc
+TARGETPATH		\Resource\Apps
+HEADER
+LANG 01 		// Build English language versions
+END
+
+start resource 	SecureSockets_reg.rss		
+targetpath 		\private\10003a3f\apps
+end
+
+// To support localisation for the UI applicatons
+start resource	SecureSockets_loc.rss	
+lang 			01
+end
+
+USERINCLUDE 	.
+SYSTEMINCLUDE	\Epoc32\include
+SYSTEMINCLUDE 	\epoc32\include\techview
+
+// Base libraries
+LIBRARY			euser.lib efsrv.lib 
+// UI libraries
+LIBRARY			apparc.lib cone.lib eikcore.lib  eikcoctl.lib eikdlg.lib eikctl.lib
+// Comms and security libraries
+LIBRARY			esock.lib insock.lib securesocket.lib
+LIBRARY 		crypto.lib

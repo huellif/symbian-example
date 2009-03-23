@@ -1,0 +1,32 @@
+// MenuApp.mmp
+//
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+TARGET        MenuApp.exe
+TARGETTYPE    exe
+
+UID           0x100039CE 0xE800008C
+VENDORID 	  0x70000001
+
+SOURCEPATH    .
+SOURCE        MenuApp_Main.cpp
+SOURCE        MenuApp.cpp
+
+USERINCLUDE   .
+SYSTEMINCLUDE \epoc32\include
+SYSTEMINCLUDE \epoc32\include\techview
+
+START RESOURCE	MenuApp.rss
+HEADER
+TARGETPATH		\Resource\Apps
+end
+
+START RESOURCE	MenuApp_reg.rss
+TARGETPATH		\private\10003a3f\apps
+END
+
+LIBRARY       euser.lib apparc.lib cone.lib eikcoctl.lib eikcore.lib apgrfx.lib
+
+
+

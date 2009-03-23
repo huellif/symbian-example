@@ -1,0 +1,22 @@
+PRJ_MMPFILES
+ImageConv.mmp
+
+PRJ_EXPORTS
+..\samples\bmp\symbian1.bmp ..\winscw\c\samples\bmp\symbian1.bmp
+..\samples\bmp\symbian4.bmp ..\winscw\c\samples\bmp\symbian4.bmp
+..\samples\bmp\symbian8.bmp ..\winscw\c\samples\bmp\symbian8.bmp
+..\samples\bmp\symbian24.bmp ..\winscw\c\samples\bmp\symbian24.bmp
+..\samples\gif\symbian-basic.gif ..\winscw\c\samples\gif\symbian-basic.gif
+..\samples\gif\symbian-interlaced.gif ..\winscw\c\samples\gif\symbian-interlaced.gif
+..\samples\gif\symbian-transparent.gif ..\winscw\c\samples\gif\symbian-transparent.gif
+..\samples\ico\symbian.ico ..\winscw\c\samples\ico\symbian.ico
+..\samples\jpg\symbian15quality.jpg ..\winscw\c\samples\jpg\symbian15quality.jpg
+..\samples\jpg\symbian75quality.jpg ..\winscw\c\samples\jpg\symbian75quality.jpg
+..\samples\mbm\symbian1.mbm ..\winscw\c\samples\mbm\symbian1.mbm
+..\samples\mbm\symbian24.mbm ..\winscw\c\samples\mbm\symbian24.mbm
+..\samples\ota\sy.ota ..\winscw\c\samples\ota\sy.ota
+..\samples\png\symbian-basic.png ..\winscw\c\samples\png\symbian-basic.png
+..\samples\png\symbian-interlaced.png ..\winscw\c\samples\png\symbian-interlaced.png
+..\samples\tiff\symbian-fax3.tif ..\winscw\c\samples\tiff\symbian-fax3.tif
+..\samples\wbmp\symbian.wbmp ..\winscw\c\samples\wbmp\symbian.wbmp
+..\samples\wmf\symbian.wmf ..\winscw\c\samples\wmf\symbian.wmf

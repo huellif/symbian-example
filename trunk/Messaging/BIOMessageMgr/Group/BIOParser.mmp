@@ -1,0 +1,28 @@
+// BIOParser.mmp
+//
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+TARGET        bioparser.dll
+TARGETTYPE    dll
+
+START RESOURCE  BIOParser_reg.rss
+TARGETPATH      resource\messaging\Bif
+END
+
+CAPABILITY All -TCB
+SOURCEPATH		..\src
+USERINCLUDE		..\inc
+SOURCE        BIOExampleParser.cpp
+SYSTEMINCLUDE \epoc32\include
+LIBRARY       euser.lib sendas2.lib efsrv.lib msgs.lib estor.lib
+LIBRARY       etext.lib BioDB.lib bifu.lib biut.lib
+
+UID         0x1000008d 0x10000253
+VENDORID 0x70000001
+
+deffile bioexampleparser.DEF
+
+nostrictdef
+
+

@@ -1,0 +1,3 @@
+EXPORTS
+	?NewL@CMyClient@@CAPAVCClient@@XZ @ 1 NONAME ; private: static class CClient * __cdecl CMyClient::NewL(void)
+

@@ -1,0 +1,52 @@
+// FileBrowseapp.rss
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+//
+
+NAME SFSB
+
+#include <eikon.rh>
+#include <avkon.rh>
+#include <avkon.rsg>
+
+#include "filebrowseapp.rls"
+#include "FileBrowse.hrh"
+
+RESOURCE RSS_SIGNATURE { }
+RESOURCE TBUF { buf = ""; }
+
+RESOURCE EIK_APP_INFO
+    {
+    menubar=r_filebrowse_menubar;
+    cba=R_AVKON_SOFTKEYS_OPTIONS_BACK;     
+    }
+
+
+RESOURCE MENU_BAR r_filebrowse_menubar
+    {
+    titles=
+        {
+        MENU_TITLE { menu_pane=r_filebrowse_menu; txt=""; }
+        };
+    }
+
+RESOURCE MENU_PANE r_filebrowse_menu
+    {
+    items=
+        {
+        MENU_ITEM { command=ECmdFileBrowseOpen;					txt = STRING_r_filebrowse_loc_Open; },
+        MENU_ITEM { command=EAknCmdExit;						txt = STRING_r_filebrowse_loc_Exit; }
+		};
+	}
+
+
+RESOURCE LISTBOX r_filebrowse_baseview_listbox
+  {
+  flags = EAknListBoxSelectionList;
+  }
+
+
+RESOURCE TBUF r_filebrowse_driveC { buf = STRING_r_filebrowse_driveC; }
+RESOURCE TBUF r_filebrowse_driveD { buf = STRING_r_filebrowse_driveD; }
+RESOURCE TBUF r_filebrowse_icons { buf = STRING_r_icon_file; }
+RESOURCE TBUF r_filebrowse_infonote { buf = STRING_r_information_note; } 

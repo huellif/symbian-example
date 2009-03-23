@@ -1,0 +1,20 @@
+// CClasses.mmp
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+
+// using relative paths for sourcepath and user includes
+
+TARGET        CClasses.exe
+TARGETTYPE    exe
+UID           0xE8000040
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        CClasses.cpp
+
+USERINCLUDE   .
+USERINCLUDE   ..\CommonFramework
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib
+

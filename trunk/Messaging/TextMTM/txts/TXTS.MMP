@@ -1,0 +1,31 @@
+// TXTS.MMP
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+
+TARGET        txts.dll
+TARGETTYPE    dll
+
+UID 0x10003C5E 0xE800005F
+VENDORID 0x70000001
+CAPABILITY All -TCB
+
+SOURCE        txtsmain.cpp txtserv.cpp txtscpmv.cpp txtmbox.cpp
+
+USERINCLUDE   ..\txut
+SYSTEMINCLUDE \epoc32\include
+
+LIBRARY       euser.lib efsrv.lib msgs.lib etext.lib txut.lib apparc.lib
+
+#if defined(WINS)
+    deffile .\txtsWINS.def
+#else
+    deffile .\txtsEABI.def    
+#endif
+
+nostrictdef
+NOEXPORTLIBRARY
+
+// create MTM registration file
+START RESOURCE	txtmtm.rss
+TARGETPATH      \resource\messaging\mtm
+END

@@ -1,0 +1,28 @@
+// Filenames.mmp
+//
+// Copyright (C) Symbian Software Ltd 2000-2005.  All rights reserved.
+
+// using relative paths for source and userinclude directories
+
+// No explicit capabilities required to run this.
+
+// Please note that the 2nd UID listed here has not been
+// allocated from the central pool of UI's and is not 
+// guaranteed to be unique.
+// The value is used for demonstration purposes only.
+
+TARGET        Filenames.exe
+TARGETTYPE    exe
+UID           0 0xE800001D
+VENDORID      0x70000001
+
+SOURCEPATH    .
+SOURCE        Filenames.cpp
+
+USERINCLUDE   .
+USERINCLUDE   ..\..\CommonFramework
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib efsrv.lib
+
+CAPABILITY    None

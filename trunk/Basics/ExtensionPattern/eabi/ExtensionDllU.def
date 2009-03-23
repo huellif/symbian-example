@@ -1,0 +1,4 @@
+EXPORTS
+	_ZNK12CNumberStore10AddNumbersEv @ 1 NONAME
+	_ZNK12CNumberStore15MultiplyNumbersEv @ 2 NONAME
+

@@ -1,0 +1,21 @@
+// SigCheck.rss
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+
+NAME BASE
+
+#include <badef.rh>
+
+// signature, for ConfirmSignature()
+
+RESOURCE BA_RSS_SIGNATURE 
+	{
+	signature=023;
+	}
+
+// define resources
+
+RESOURCE LBUF r_base_hello
+	{
+	txt="Bore da, pawb!";
+	}

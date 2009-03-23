@@ -1,0 +1,8 @@
+#ifndef _MmfSinkSourceUIDS_H_
+#define _MmfSinkSourceUIDS_H_
+
+#define KPluginDLLUID 0xE8000067
+#define KDescriptorSourceUID 0x101F81D4
+#define KDescriptorSinkUID 0x101F81D5
+
+#endif

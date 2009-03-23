@@ -1,0 +1,36 @@
+// GraphicsShell.mmp
+//
+// Copyright (c) 2000-2005 Symbian Software Ltd.  All rights reserved.
+
+// using relative paths for source and userinclude directories
+
+TARGET         GraphicsShell.exe
+TARGETTYPE     exe
+UID            0x100039ce 0xE800004E
+VENDORID       0x70000001
+
+SOURCEPATH     .
+SOURCE         Zoom.cpp GraphicsShell.cpp GraphicsControl.cpp Draw.cpp 
+
+START RESOURCE GraphicsShell.rss
+TARGETPATH     \resource\apps
+HEADER
+END
+
+USERINCLUDE    .
+USERINCLUDE    .\CommonGraphicsExampleFiles
+SYSTEMINCLUDE  \Epoc32\include
+SYSTEMINCLUDE  \epoc32\include\techview
+
+LIBRARY        euser.lib efsrv.lib gdi.lib ws32.lib fbscli.lib
+LIBRARY        cone.lib  apparc.lib eikcore.lib  eikcoctl.lib 
+
+START BITMAP   grbmap2.mbm
+TARGETPATH     \resource\apps
+HEADER
+SOURCE         c8 Smiley.bmp Smilmask.bmp
+END 
+
+START RESOURCE GraphicsShell_reg.rss
+TARGETPATH     \private\10003a3f\apps
+END

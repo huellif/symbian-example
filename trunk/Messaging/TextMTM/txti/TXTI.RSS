@@ -1,0 +1,30 @@
+// TXTI.RSS
+//
+// Copyright (c) 1999 Symbian Ltd.  All rights reserved.
+//
+
+NAME TXTI
+
+#include <eikon.RH>
+#include <MTUD.RH>
+#include "txtucmds.h"
+
+
+RESOURCE RSS_SIGNATURE
+	{ }
+
+// MTM-specific function array
+RESOURCE MTUD_FUNCTION_ARRAY r_textud_function_array
+	{
+	functions=      
+		{
+		MTUD_FUNCTION { functiontext="Refresh service"; command=ETxtuCommandRefreshMBox; key='r'; flags=EMtudCommandTransferReceive; },
+		MTUD_FUNCTION { functiontext="Export text to file"; command=ETxtuCommandExportText; key='e'; flags=EMtudCommandTransferSend;}
+		};
+	}
+
+// User information strings
+RESOURCE TBUF80 r_textud_only_refresh_services	{ buf="Can only refresh service entries"; }
+RESOURCE TBUF80 r_textud_can_not_edit_folders  {buf="Can not edit folders";}
+RESOURCE TBUF80 r_textud_only_messages  {buf="This can only be done on local messages";}
+RESOURCE TBUF80 r_textud_not_supported  {buf="This action is not supported";}

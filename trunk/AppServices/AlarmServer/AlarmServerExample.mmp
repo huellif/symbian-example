@@ -1,0 +1,22 @@
+// AlarmServerExample.mmp
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+
+TARGET		AlarmServerExample.exe
+TARGETTYPE	exe
+UID		0xE8000093
+
+
+CAPABILITY	WriteUserData
+
+// using relative paths for source and user includes
+
+SOURCEPATH    	.
+SOURCE        	AlarmServerExample.cpp
+USERINCLUDE   	.
+SYSTEMINCLUDE 	\Epoc32\include
+
+
+LIBRARY       EUSER.LIB
+LIBRARY	      AlarmClient.lib
+LIBRARY	      AlarmShared.lib 

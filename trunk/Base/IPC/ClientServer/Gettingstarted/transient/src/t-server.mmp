@@ -1,0 +1,22 @@
+// t-server.mmp
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+//
+
+// Transient server example - server executable
+
+capability None
+
+target t-server.exe
+targettype exe
+
+systeminclude \epoc32\include
+
+//project server
+sourcepath .
+
+source server.cpp
+
+library euser.lib
+
+uid 0 0x01000000

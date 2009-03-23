@@ -1,0 +1,28 @@
+// standalone.mmp
+//
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+TARGET        	embedded.exe
+TARGETTYPE    	exe
+TARGETPATH		\sys\bin
+
+UID           	0x100039CE 0xE800008F
+VENDORID 		0x70000001 
+CAPABILITY 		None
+
+
+SOURCEPATH    	.
+SOURCE        	standalone.cpp
+
+USERINCLUDE   	.
+SYSTEMINCLUDE 	\epoc32\include
+SYSTEMINCLUDE 	\epoc32\include\techview  
+
+
+START RESOURCE	embedded_reg.rss
+TARGETPATH		\private\10003a3f\apps
+END
+
+LIBRARY 		euser.lib apparc.lib eikcore.lib cone.lib  
+

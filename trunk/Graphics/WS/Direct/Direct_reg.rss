@@ -1,0 +1,18 @@
+// Direct.RSS
+//
+// Copyright (c) 2005 Symbian Software Ltd.  All rights reserved.
+//
+
+#include <appinfo.rh>
+
+UID2 KUidAppRegistrationResourceFile
+UID3 0xE8000054
+RESOURCE APP_REGISTRATION_INFO
+ { 
+ app_file = Direct;
+ localisable_resource_file="\\resource\\apps\\Direct_loc.rss";
+ hidden=KAppNotHidden;
+ embeddability=KAppNotEmbeddable;
+ newfile=KAppDoesNotSupportNewFile;
+ launch=KAppLaunchInForeground;
+ }

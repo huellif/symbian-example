@@ -1,0 +1,19 @@
+// SimpleClient.mmp
+//
+// Copyright (C) Symbian Software Ltd 2000-2005.  All rights reserved.
+
+// using relative paths for source and userinclude directories
+
+TARGET        SimpleClient.exe
+TARGETTYPE    exe
+UID           0xE800002B
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        SimpleClient.cpp
+
+USERINCLUDE   .
+USERINCLUDE   ..\..\..\CommonFramework
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib  SimpleServer.lib

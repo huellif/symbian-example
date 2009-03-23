@@ -1,0 +1,10 @@
+EXPORTS
+	?DefaultServiceL@CMTMTxtSettings@@QBEJXZ @ 1 NONAME ; long CMTMTxtSettings::DefaultServiceL(void) const
+	?DeleteDefaultServiceSettingL@CMTMTxtSettings@@QAEXXZ @ 2 NONAME ; void CMTMTxtSettings::DeleteDefaultServiceSettingL(void)
+	?DeleteSettingsL@CMTMTxtSettings@@QAEXJ@Z @ 3 NONAME ; void CMTMTxtSettings::DeleteSettingsL(long)
+	?LoadSettingsL@CMTMTxtSettings@@QBEXJAAVTMTMTxtSettings@@@Z @ 4 NONAME ; void CMTMTxtSettings::LoadSettingsL(long, class TMTMTxtSettings &) const
+	?NewL@CMTMTxtSettings@@SAPAV1@XZ @ 5 NONAME ; class CMTMTxtSettings * CMTMTxtSettings::NewL(void)
+	?SaveSettingsL@CMTMTxtSettings@@QAEXJABVTMTMTxtSettings@@@Z @ 6 NONAME ; void CMTMTxtSettings::SaveSettingsL(long, class TMTMTxtSettings const &)
+	?SetDefaultServiceL@CMTMTxtSettings@@QAEXJ@Z @ 7 NONAME ; void CMTMTxtSettings::SetDefaultServiceL(long)
+	?GetEntryFileNameL@TxtUtils@@SAXAAV?$TBuf@$0BAA@@@AAVTMsvEntry@@@Z @ 8 NONAME ; void TxtUtils::GetEntryFileNameL(class TBuf<256> &, class TMsvEntry &)
+

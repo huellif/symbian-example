@@ -1,0 +1,29 @@
+
+#include <mmfPluginInterfaceUIDs.hrh>
+#include "RegistryInfo.rh"
+
+#include "UIDs.hrh"
+
+RESOURCE REGISTRY_INFO theInfo
+	{
+	dll_uid = KPluginDLLUID;
+	interfaces = 
+		{
+		INTERFACE_INFO
+			{
+			interface_uid = KMmfUidPluginInterfaceCodec ;  // CMMFCodec
+			implementations = 
+				{
+				IMPLEMENTATION_INFO
+					{
+					implementation_uid = KExCodecUID;
+					version_no = 1;
+					display_name = "PCM8 ->PCM16";
+					default_data = "  P8, P16" ;//four CC codes.
+					opaque_data = "";
+					}
+				};
+			}
+		};
+	}
+

@@ -1,0 +1,30 @@
+// MmfExFormatPlugin.mmp
+//
+// Copyright (c) 2002-2005 Symbian Software Ltd.  All rights reserved.
+//
+
+TARGET MmfExFormatPlugin.dll
+TARGETTYPE PLUGIN
+
+// ECom Dll recognition UID followed by the unique UID for this dll
+UID 0x10009D8D 0xE8000066
+VENDORID 0x70000001
+CAPABILITY ALL -TCB
+
+SOURCEPATH	.
+SOURCE		MmfRawFormat.cpp 
+
+USERINCLUDE	.
+SYSTEMINCLUDE 	\epoc32\include \epoc32\include\ecom 
+SYSTEMINCLUDE 	\epoc32\include\mmf\common \epoc32\include\mmf\server
+
+START RESOURCE 101F81CF.RSS
+TARGETPATH     \resource\Plugins
+HEADER
+END
+
+LIBRARY euser.lib
+LIBRARY	mmfcontrollerframework.lib
+LIBRARY mmfserverbaseclasses.lib
+LIBRARY efsrv.lib
+LIBRARY ecom.lib

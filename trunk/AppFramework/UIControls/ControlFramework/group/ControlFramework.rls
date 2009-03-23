@@ -1,0 +1,25 @@
+//ControlFramework.RLS
+//
+// Copyright (c) 2006 Symbian Ltd.  All rights reserved.
+//
+
+
+rls_string STRING_r_caption "UI Controls"
+
+rls_string STRING_r_short_caption "UI ctrls"
+
+rls_string STRING_r_welcome "Welcome to the UI Controls Framework Example"
+
+rls_string STRING_r_icon_file	"\\Resource\\Apps\\ControlFramework_icon.mbm"
+
+rls_string STRING_r_toolbar1 "Bold" 
+	
+rls_string STRING_r_toolbar2 "Italic" 
+	
+rls_string STRING_r_toolbar3 "Underline" 
+	
+rls_string STRING_r_toolbar4 "StrikeThrough" 
+	
+rls_string STRING_r_toolbar5 "Close"
+	
+

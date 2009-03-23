@@ -1,0 +1,23 @@
+// TLS1EXE.mmp
+//
+// Copyright (C) Symbian Software Ltd 2000-2005.  All rights reserved.
+
+// using relative paths for source and userinclude directories
+
+// No special capabilities required
+
+TARGET        TLS1exe.exe
+TARGETTYPE    exe
+UID           0xE800008C
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        TLS1exe.cpp
+
+USERINCLUDE   .
+USERINCLUDE   ..\..\CommonFramework
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib  TLS1dll.lib
+
+CAPABILITY none

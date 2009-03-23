@@ -1,0 +1,31 @@
+//
+// E800009B.RSS
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+
+// ECom plug-in resource file for converter example
+//
+
+#include <RegistryInfo.rh>
+
+RESOURCE REGISTRY_INFO r_registry
+	{
+	dll_uid = 0xE800009B; // UID of the DLL, matches the name of this file
+	interfaces =
+		{
+		INTERFACE_INFO
+			{
+			interface_uid = 0x10003A30;  // Standard value - applies to all converters
+			implementations =
+				{
+				IMPLEMENTATION_INFO
+					{
+					implementation_uid = 0xE80000AC; // UID of this converter
+					version_no = 1;
+					display_name = "";
+					default_data = "";        
+					opaque_data = "1";
+					}
+				};
+			}
+		};
+	}

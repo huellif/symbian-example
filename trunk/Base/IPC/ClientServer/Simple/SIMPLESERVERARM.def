@@ -1,0 +1,7 @@
+EXPORTS
+	_Z11StartThreadR7RThread @ 1 NONAME
+	_ZTI16CCountServServer @ 2 NONAME ; #<TI>#
+	_ZTI17CCountServSession @ 3 NONAME ; #<TI>#
+	_ZTV16CCountServServer @ 4 NONAME ; #<VT>#
+	_ZTV17CCountServSession @ 5 NONAME ; #<VT>#
+

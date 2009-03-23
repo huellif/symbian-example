@@ -1,0 +1,46 @@
+// E8000079.RSS
+//
+// Copyright (c) 1997-2001 Symbian Ltd.  All rights reserved.
+//
+// Registry file for the Example Interface Implementation Collection
+
+
+#include "RegistryInfo.rh"
+
+// Declares info for two implementations
+RESOURCE REGISTRY_INFO theInfo
+	{
+	// UID for the DLL
+	dll_uid = 0xE8000079;
+	// Declare array of interface info
+	interfaces = 
+		{
+		INTERFACE_INFO
+			{
+			// UID of interface that is implemented
+			interface_uid = 0x10009DC0;
+			implementations = 
+				{
+				// Info for CImplementation1
+				IMPLEMENTATION_INFO
+					{
+					implementation_uid = 0x10009DC3;
+					version_no = 1;
+					display_name = "Implementation 1";
+					default_data = "text/wml||This is the type of data that this implementation understands. (Can be anything which will allow the resolver to identify this implementation as the correct one at run time. In this case it is a mime type).";
+					opaque_data = "test_params";
+					},
+				// Info for CImplementation2
+				IMPLEMENTATION_INFO
+					{
+					implementation_uid = 0x10009DC4;
+					version_no = 1;
+					display_name = "Implementation 1||Copyright © 1997-2001 Symbian Ltd. All Rights Reserved.||";
+					default_data = "text/xml||Type of data handled";
+					opaque_data = "";
+					}
+				};
+			}
+		};
+	}
+

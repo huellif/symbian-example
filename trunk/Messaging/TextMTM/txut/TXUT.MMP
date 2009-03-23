@@ -1,0 +1,27 @@
+// TXUT.MMP
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+
+target          TXUT.dll
+targettype      dll
+uid      0x1000008d 0xE8000061
+VENDORID 0x70000001
+CAPABILITY   All -TCB
+
+source          txut.cpp txutdll.cpp
+
+userinclude		.
+systeminclude   \Epoc32\include
+
+library         euser.lib estor.lib msgs.lib efsrv.lib 
+library         centralrepository.lib	
+
+// v2 def files
+
+#if defined(WINS)
+    deffile .\txutWINS.def
+#else
+    deffile .\txutEABI.def    
+#endif
+
+nostrictdef

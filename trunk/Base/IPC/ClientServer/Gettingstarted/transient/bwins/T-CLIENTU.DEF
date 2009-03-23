@@ -1,0 +1,6 @@
+EXPORTS
+	?CancelReceive@RMySession@@QAEXXZ @ 1 NONAME ; public: void __thiscall RMySession::CancelReceive(void)
+	?Connect@RMySession@@QAEHXZ @ 2 NONAME ; public: int __thiscall RMySession::Connect(void)
+	?Receive@RMySession@@QAEXAAVTRequestStatus@@AAVTDes16@@@Z @ 3 NONAME ; public: void __thiscall RMySession::Receive(class TRequestStatus &,class TDes16 &)
+	?Send@RMySession@@QAEHABVTDesC16@@@Z @ 4 NONAME ; public: int __thiscall RMySession::Send(class TDesC16 const &)
+

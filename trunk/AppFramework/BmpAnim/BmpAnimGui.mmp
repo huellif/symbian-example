@@ -1,0 +1,55 @@
+// BmpAnimGui.mmp
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+//
+
+
+epocstacksize 		0x5000
+
+TARGETPATH		\sys\bin
+
+TARGET			BmpAnimGui.exe
+TARGETTYPE		exe
+
+UID           		0x100039CE 0xE80000A4
+VENDORID 		0x70000001
+
+SOURCEPATH    		.
+
+SOURCE        		BmpAnimGui_Main.cpp
+SOURCE        		BmpAnimGui_Application.cpp
+SOURCE        		BmpAnimGui_Document.cpp
+SOURCE        		BmpAnimGui_AppUi.cpp
+SOURCE        		BmpAnimGui_AppView.cpp
+
+USERINCLUDE   		.
+
+SYSTEMINCLUDE 		\epoc32\include
+SYSTEMINCLUDE 		\epoc32\include\techview
+SYSTEMINCLUDE 		\epoc32\include\libc
+
+
+LIBRARY       		euser.lib apparc.lib cone.lib eikcore.lib
+LIBRARY			bmpanim.lib bafl.lib eikdlg.lib eikctl.lib ws32.lib eikcoctl.lib
+LIBRARY			fbscli.lib gdi.lib
+LIBRARY			estlib.lib
+
+START RESOURCE		BmpAnimGui.rss
+HEADER
+TARGETPATH		\resource\apps
+END
+
+START RESOURCE		BmpAnimGui_reg.rss
+TARGETPATH		\private\10003a3f\apps
+END
+
+
+START BITMAP		ColorBalls.mbm
+HEADER
+TARGETPATH 	 	\resource\apps\BmpAnimGui
+SOURCE c8		GreenBall.bmp
+SOURCE c8		BlueBall.bmp
+SOURCE c8		RedBall.bmp
+SOURCE c8		YellowBall.bmp 
+SOURCE c8		GreenBallm.bmp
+END

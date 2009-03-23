@@ -1,0 +1,12 @@
+// BLD.INF
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+//
+
+
+PRJ_MMPFILES
+
+AnimExample.mmp
+
+PRJ_EXPORTS
+GuitarPlayer.gif   \epoc32\RELEASE\WINSCW\UDEB\Z\Resource\Apps\AnimExample\GuitarPlayer.gif

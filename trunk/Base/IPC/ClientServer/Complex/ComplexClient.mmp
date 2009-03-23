@@ -1,0 +1,25 @@
+// ComplexClient.mmp
+//
+// Copyright (C) Symbian Software Ltd 2000-2005.  All rights reserved.
+
+// using relative paths for source and userinclude directories
+
+// No sepcial capabilities required by this executable
+
+TARGET        ComplexClient.exe
+TARGETTYPE    exe
+UID           0xE8000029
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        ComplexClient.cpp
+SOURCE        ComplexClientSession.cpp
+SOURCE        ComplexClientSubSession.cpp
+
+USERINCLUDE   .
+USERINCLUDE   ..\..\..\CommonFramework
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib  ComplexServer.lib
+
+CAPABILITY None

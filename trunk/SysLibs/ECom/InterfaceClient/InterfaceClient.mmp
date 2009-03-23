@@ -1,0 +1,21 @@
+// InterfaceClient.mmp
+//
+// Copyright (c) 2001 Symbian Ltd.  All rights reserved.
+
+TARGET        InterfaceClient.exe
+TARGETTYPE    exe
+UID           0xE8000077
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        InterfaceClient.cpp
+
+USERINCLUDE   .
+USERINCLUDE   ..\..\CommonFramework
+SYSTEMINCLUDE \Epoc32\include
+SYSTEMINCLUDE \Epoc32\include\ecom
+
+LIBRARY       euser.lib ECom.lib
+
+
+

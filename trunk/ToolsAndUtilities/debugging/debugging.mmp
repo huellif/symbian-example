@@ -1,0 +1,18 @@
+// debugging.mmp
+//
+// Copyright (c) 1997-2005 Symbian Software Ltd.  All rights reserved.
+//
+
+TARGET		debugging.exe
+TARGETTYPE	exe
+SRCDBG
+
+UID		0
+
+SOURCEPATH  .
+SOURCE 		debugging.cpp
+
+USERINCLUDE	.
+SYSTEMINCLUDE	\epoc32\include
+
+LIBRARY		euser.lib

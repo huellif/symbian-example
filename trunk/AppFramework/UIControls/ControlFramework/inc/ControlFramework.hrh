@@ -1,0 +1,11 @@
+// ControlFramework.hrh
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+//
+
+#define ECmdToggleBoldFont		20
+#define ECmdToggleItalicFont		21
+#define ECmdToggleUnderline		22
+#define ECmdToggleStrikethrough		23
+										
+

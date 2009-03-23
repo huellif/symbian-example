@@ -1,0 +1,5 @@
+EXPORTS
+	_Z12NewMessengerv @ 1 NONAME
+	_ZTI16CGermanMessenger @ 2 NONAME ; #<TI>#
+	_ZTV16CGermanMessenger @ 3 NONAME ; #<VT>#
+

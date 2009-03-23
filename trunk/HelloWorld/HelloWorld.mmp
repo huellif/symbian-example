@@ -1,0 +1,36 @@
+// HelloWorld.mmp
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+//
+
+// using relative paths for sourcepath and user includes
+
+TARGET        HelloWorld.exe
+TARGETTYPE    exe
+UID           0x100039CE 0xE800005A
+VENDORID 	  0x70000001
+SOURCEPATH    .
+SOURCE        HelloWorld_Main.cpp
+SOURCE        HelloWorld_Application.cpp
+SOURCE        HelloWorld_Document.cpp
+SOURCE        HelloWorld_AppUi.cpp
+SOURCE        HelloWorld_AppView.cpp
+USERINCLUDE   .
+SYSTEMINCLUDE \epoc32\include
+SYSTEMINCLUDE \epoc32\include\techview
+
+START RESOURCE	HelloWorld.RSS
+HEADER
+TARGETPATH		\Resource\Apps
+end
+
+START RESOURCE	HelloWorld_reg.rss
+TARGETPATH		\private\10003a3f\apps
+END
+
+START BITMAP	HelloWorld.mbm
+TARGETPATH		\Resource\Apps
+SOURCE			c8,1 icon24.bmp icon2m.bmp icon32.bmp icon3m.bmp icon48.bmp icon4m.bmp
+END
+
+LIBRARY       euser.lib apparc.lib cone.lib eikcore.lib gdi.lib

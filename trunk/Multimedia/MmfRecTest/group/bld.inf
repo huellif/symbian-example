@@ -1,0 +1,15 @@
+// BLD.INF
+//
+// Copyright (c) 2005 Symbian Ltd.  All rights reserved.
+//
+
+
+PRJ_PLATFORMS
+WINSCW ARMV5
+
+PRJ_EXPORTS
+
+PRJ_MMPFILES
+mmfrectest
+
+PRJ_TESTMMPFILES

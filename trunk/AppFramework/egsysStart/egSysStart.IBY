@@ -1,0 +1,30 @@
+// SysStartConfig.IBY
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+// @file
+//
+
+#ifndef __SYSSTARTCONFIG_IBY__
+#define __SYSSTARTCONFIG_IBY__
+
+#ifdef _STARTUPMODE1
+REM resource file for system starter - boot mode 1. Checking (textshell) mode.
+data=MULTI_LINGUIFY(RSC EPOCROOT##epoc32\data\Z\private\10205C44\SSCForStartupMode1_target  private\10205C44\SSCForStartupMode0)
+#elif defined _STARTUPMODE2
+REM resource file for system starter - boot mode 2. Checking mode.
+data=MULTI_LINGUIFY(RSC EPOCROOT##epoc32\data\Z\private\10205C44\SSCForStartupMode2_target  private\10205C44\SSCForStartupMode0)
+#elif defined _STARTUPMODE3
+REM resource file for system starter - boot mode 3. Checking mode.
+data=MULTI_LINGUIFY(RSC EPOCROOT##epoc32\data\Z\private\10205C44\SSCForStartupMode3_target  private\10205C44\SSCForStartupMode0)
+#elif defined _STARTUPMODE4
+REM resource file for system starter - boot mode 4. Checking mode.
+data=MULTI_LINGUIFY(RSC EPOCROOT##epoc32\data\Z\private\10205C44\SSCForStartupMode4_target  private\10205C44\SSCForStartupMode0)
+#elif defined _STARTUPMODE5
+REM resource file for system starter - boot mode 5. Checking mode.
+data=MULTI_LINGUIFY(RSC EPOCROOT##epoc32\data\Z\private\10205C44\SSCForStartupMode5_target  private\10205C44\SSCForStartupMode0)
+#else
+REM resource file for system starter - boot mode 0. Default (techview) mode.
+data=MULTI_LINGUIFY(RSC EPOCROOT##epoc32\data\Z\private\10205C44\SSCForStartupMode0_target  private\10205C44\SSCForStartupMode0)
+#endif
+
+#endif

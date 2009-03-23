@@ -1,0 +1,68 @@
+// 101F4122.rss
+//
+// Copyright (c) 2001-2002 Symbian Ltd.  All rights reserved.
+//
+// Registry file for the example PNG encoder/decoder implementation
+//
+
+#include <RegistryInfo.rh>
+#include "uids.h"
+
+RESOURCE REGISTRY_INFO theInfo
+	{
+	// UID for the DLL providing the encoder/decoder -- matches that in the .mmp file
+	dll_uid = KExPNGCodecDllUidValue;
+	interfaces = 
+		{
+		// Decoder ECom registry information
+		INTERFACE_INFO
+			{
+			// Standard UID of the ICL decoder interface
+			interface_uid = 0x101F45AD;
+			implementations = 
+				{
+				// Single implementation of the decoder interface in this DLL
+				BINARY_IMPLEMENTATION_INFO
+					{
+					// UID of this specific decoder implementation
+					implementation_uid = KExPNGDecoderImplementationUidValue;
+					version_no = 1;
+					display_name = "EXPNG";
+					// Default data is binary data that can be matched against image header
+					default_data = {0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A};
+					/* Opaque data defines:
+						Version (1 byte)
+						Image type Uid (4 bytes)
+						Image sub-type Uid (4 bytes)
+						Number of extensions (1 byte)
+						{ ".XXX" \r } (x number extensions)
+						Number mime types (1 byte)
+						[ "mimetype" \r ] (for each mimetype) */
+					opaque_data = {0, 0x10, 0x1F, 0x45, 0xC9, 0, 0, 0, 0, 1, 0x2E, 0x70, 0x6E, 0x67, 0x0D, 1, 0x69, 0x6D, 0x61, 0x67, 0x65, 0x2F, 0x70, 0x6E, 0x67, 0x0D};
+					// i.e. 0 0x101F45C9 0x00000000 1 .png 1 image/png
+					}
+				};
+			},
+		// Encoder ECom registry information
+		INTERFACE_INFO
+			{
+			// Standard UID of the ICL encoder interface
+			interface_uid = 0x101F45B4;
+			implementations = 
+				{
+				// Single implementation of the decoder interface in this DLL
+				BINARY_IMPLEMENTATION_INFO
+					{
+					// UID of this specific encoder implementation
+					implementation_uid = KExPNGEncoderImplementationUidValue;
+					version_no = 1;
+					display_name = "EXPNG";
+					default_data = {0x3F}; // "?" - Won't match
+					opaque_data = {0, 0x10, 0x1F, 0x45, 0xC9, 0, 0, 0, 0, 1, 0x2E, 0x70, 0x6E, 0x67, 0x0D, 1, 0x69, 0x6D, 0x61, 0x67, 0x65, 0x2F, 0x70, 0x6E, 0x67, 0x0D};
+					// 0 0x101F45C9 0x00000000 1 .png 1 image/png
+					}
+				};
+			}
+		};
+	}
+

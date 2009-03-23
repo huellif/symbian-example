@@ -1,0 +1,27 @@
+// Custom.MMP
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+//
+TARGET        Custom.exe
+TARGETTYPE    exe
+UID           0x100039ce 0xE8000004
+VENDORID 0x70000001
+EPOCSTACKSIZE 0x5000
+
+SOURCEPATH    .
+SOURCE        Custom.cpp
+
+START RESOURCE	Custom.rss
+TARGETPATH		\Resource\Apps
+HEADER
+END
+
+START RESOURCE	Custom_reg.rss
+TARGETPATH		\private\10003a3f\apps
+END
+
+USERINCLUDE   .
+SYSTEMINCLUDE \epoc32\include
+SYSTEMINCLUDE \epoc32\include\techview
+LIBRARY       euser.lib cone.lib  apparc.lib bafl.lib
+LIBRARY       eikcore.lib eikcoctl.lib eikdlg.lib

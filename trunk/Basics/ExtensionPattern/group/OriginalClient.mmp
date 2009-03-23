@@ -1,0 +1,20 @@
+// OriginalClient.exe
+//
+// Copyright (c) 1997-2003 Symbian Ltd.  All rights reserved.
+//
+// Client code which only uses functions defined by the original dll
+//
+TARGET        OriginalClient.exe
+TARGETTYPE    exe
+UID           0xE8000044
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        ..\src_OriginalClient\OriginalClient.cpp
+
+USERINCLUDE   .
+SYSTEMINCLUDE \Epoc32\include
+SYSTEMINCLUDE 	..\include
+
+//Note this client depends only on original dll
+LIBRARY       euser.lib originaldll.lib

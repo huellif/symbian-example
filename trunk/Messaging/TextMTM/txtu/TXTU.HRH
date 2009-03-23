@@ -1,0 +1,20 @@
+// TXTU.HRH
+//
+// Copyright (c) 1999 Symbian Ltd.  All rights reserved.
+//
+
+#if !defined(__TXTU_HRH__)
+#define __TXTU_HRH__
+
+enum TEkedCommandIds
+	{
+	ESmtiCommandSend=1,
+	ESmtiCommandConnect,
+	ESmtiCommandDisonnect
+	};
+
+#define ETxtEditServiceFolder 1
+#define ETxtEditRemoteServiceLabel1 2
+#define ETxtEditRemoteServiceLabel2 3
+
+#endif

@@ -1,0 +1,41 @@
+// PNGCodec.mmp
+//
+// Copyright (c) 2001-2005 Symbian Software Ltd.  All rights reserved.
+//
+
+TARGET		ExPNGCodec.dll
+TARGETTYPE	PLUGIN
+
+// Ecom Dll recognition UID followed by the unique UID for this dll
+UID	0x10009D8D 0xE8000063
+VENDORID 0x70000001
+CAPABILITY ALL -TCB
+
+SYSTEMINCLUDE	\epoc32\include
+SYSTEMINCLUDE	\epoc32\include\ECom
+SYSTEMINCLUDE	\epoc32\include\icl
+
+
+SOURCEPATH	.
+SOURCE		PNGCodec.cpp
+SOURCE		PNGConvert.cpp
+SOURCE		PNGScanlineDecoder.cpp
+SOURCE		PNGScanlineEncoder.cpp
+SOURCE		PNGProxy.cpp
+
+START RESOURCE 101F4122.RSS
+TARGETPATH     \resource\Plugins
+HEADER
+END
+
+START RESOURCE 101F4122_extra.RSS
+TARGETPATH     \resource\icl
+HEADER
+END
+
+LIBRARY	euser.lib
+LIBRARY	gdi.lib
+LIBRARY	fbscli.lib
+LIBRARY	ezlib.lib
+LIBRARY bafl.lib
+LIBRARY	ImageConversion.lib

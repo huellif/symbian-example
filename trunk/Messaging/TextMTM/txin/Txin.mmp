@@ -1,0 +1,14 @@
+// Txin.mmp
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+
+target          TXIN.EXE                     
+targettype      EXE
+uid             0 0xE800005C
+VENDORID 0x70000001
+CAPABILITY		WriteDeviceData
+source          TXIN.CPP
+
+systeminclude   \epoc32\include    
+
+library         euser.lib msgs.lib

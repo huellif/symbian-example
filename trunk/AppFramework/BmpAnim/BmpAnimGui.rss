@@ -1,0 +1,102 @@
+// BmpAnimGui.RSS
+//
+// Copyright (c) 2006 Symbian Ltd.  All rights reserved.
+//
+
+NAME BMGU
+
+#include <eikon.rh>
+#include <appinfo.rh>
+
+#include <gulfont.hrh>
+#include "BmpAnimGui.hrh"
+
+RESOURCE RSS_SIGNATURE { }
+
+RESOURCE TBUF { buf=""; }
+
+RESOURCE EIK_APP_INFO
+	{
+	toolbar=r_guibase_toolbar;
+	}
+
+RESOURCE TBUF r_appname_default_file
+	{
+	buf="BmpAnimGui";
+	}
+	
+	
+rls_string STRING_r_timew_toolbar1 "Play" 
+rls_string STRING_r_timew_toolbar2 "Stop" 
+rls_string STRING_r_timew_toolbar3 "Bounce" 
+rls_string STRING_r_timew_toolbar4 "Cycle" 
+rls_string STRING_r_timew_toolbar5 "Close"
+
+
+
+RESOURCE TOOLBAR r_guibase_toolbar
+	{
+	breadth=KTechViewToolbarWidth;
+	
+	controls=
+		{
+		TBAR_CTRL 
+			{
+			type=EEikCtFileNameLabel; 
+			id=ECidFileNameLabel; 
+			flags=EEikToolBarCtrlHasSetMinLength;
+			length=KEikStdFileNameLabelHeight;
+			},
+		TBAR_BUTTON 
+			{ 
+			id=EGuiBaseDo0;  
+			length=KEikStdToolBarButtonHeight;
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			txt=STRING_r_timew_toolbar1; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;
+			},
+		TBAR_BUTTON 
+			{ 
+			id=EGuiBaseDo1; 
+			length=KEikStdToolBarButtonHeight;						   
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			txt=STRING_r_timew_toolbar2;
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;
+			},
+		TBAR_BUTTON 
+			{ 
+			id=EGuiBaseDo2; 
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			length=KEikStdToolBarButtonHeight;
+			txt=STRING_r_timew_toolbar3; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;	
+			},
+		TBAR_BUTTON 
+			{ 
+			id=EGuiBaseDo3; 
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			length=KEikStdToolBarButtonHeight;
+			txt=STRING_r_timew_toolbar4; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;			
+			},
+		TBAR_BUTTON 
+			{ 
+			id=EEikCmdExit; 
+			flags=EEikToolBarCtrlHasSetMinLength; 
+			length=KEikStdToolBarButtonHeight;
+			txt=STRING_r_timew_toolbar5; 
+			layout=EEikCmdButTextRightPictureLeft|EEikCmdButShareExcess|EEikCmdButDenseFont;			
+			},
+		TBAR_CTRL
+			{
+			type=EEikCtSpacer;
+			id=ETimewCidToolSpacer;
+			flags=EEikToolBarCtrlHasSetMinLength|EEikToolBarCtrlIsStretchable;
+			length=0;
+			control=SPACER;
+			}
+		};	
+	}
+
+
+RESOURCE TBUF r_example_text_bb { buf="Welcome to Bitmap Animation Example"; }

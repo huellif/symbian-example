@@ -1,0 +1,4 @@
+EXPORTS
+; NEW:
+	_ZN14CTextServerMtm4NewLER17CRegisteredMtmDllP15CMsvServerEntry @ 1 NONAME
+

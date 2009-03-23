@@ -1,0 +1,18 @@
+// t-test.mmp
+//
+// Copyright (c) 2000 Symbian Ltd.  All rights reserved.
+//
+
+// Transient server example - test executable
+
+target t-test.exe
+targettype exe
+
+systeminclude \epoc32\include
+
+//project server
+sourcepath .
+
+source test.cpp
+
+library euser.lib efsrv.lib

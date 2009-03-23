@@ -1,0 +1,239 @@
+// AudioClientEx.rss
+//
+// Copyright (c) 2001 Symbian Ltd.  All rights reserved.
+//
+
+NAME MEDI
+
+#include <eikon.rh>
+#include <eikon.rsg>
+
+#include "MediaClient.hrh"
+
+
+RESOURCE RSS_SIGNATURE { }
+
+RESOURCE TBUF { buf="Audio"; }
+
+RESOURCE EIK_APP_INFO
+    {
+    menubar=r_mediaplay_menubar;
+    }
+
+// The menubar
+RESOURCE MENU_BAR r_mediaplay_menubar
+    {
+    titles=
+        {
+        MENU_TITLE { menu_pane=r_audioex_actions_menu; txt="Actions"; },
+        MENU_TITLE { menu_pane=r_audioex_options_menu; txt="Volume"; }
+        };
+    }
+
+// Actions menu
+RESOURCE MENU_PANE r_audioex_actions_menu
+    {
+    items=
+        {
+        MENU_ITEM { command=EMPCmdPlayTone; txt="Play tone"<KEllipsis>;},
+		MENU_ITEM { command=EMPCmdPlayFile; txt="Play file"<KEllipsis>;},
+		MENU_ITEM { command=EMPCmdRecordFile; txt="Record file"<KEllipsis>;},
+		MENU_ITEM { command=EMPCmdPlayStream; txt="Play stream";},
+		MENU_ITEM { command=EMPCmdPlayStreamWithQueue; txt="Play stream with queue";},
+		MENU_ITEM { command=EMPCmdShowMetaData; txt="Show meta data"<KEllipsis>;},
+		MENU_ITEM { command=EMPCmdConvertFile; txt="Convert file"<KEllipsis>;},
+		MENU_ITEM { command=EMPCmdStop; txt="Stop"; flags = EEikMenuItemSeparatorAfter;},
+        MENU_ITEM { command=EEikCmdExit; txt="Close"; }
+        };
+    }
+
+// Options menu
+RESOURCE MENU_PANE r_audioex_options_menu
+    {
+    items=
+        {
+		MENU_ITEM { command=EMPCmdVolumeHigh; txt="High volume";},
+		MENU_ITEM { command=EMPCmdVolumeMedium; txt="Medium volume";},
+		MENU_ITEM { command=EMPCmdVolumeLow; txt="Low volume";}
+		};
+    }
+
+// The file record\conversion dialog
+RESOURCE DIALOG r_format_dialog
+    {
+    title="Target file type";
+    buttons=r_option_dialog_buttons;
+    flags=EEikDialogFlagWait;
+    items=
+		{
+		DLG_LINE
+			{
+            type=EEikCtChoiceList;
+            prompt="Target type:";
+            id=ECvtTypeField;
+			control=CHOICELIST
+				{
+				};
+			}
+		};
+	}
+
+// The conversion format options dialog
+RESOURCE DIALOG r_record_options_dialog
+    {
+    title="Format options";
+    buttons=R_EIK_BUTTONS_CANCEL_OK;
+    flags=EEikDialogFlagWait;
+    items=
+		{
+		DLG_LINE
+			{
+            type=EEikCtChoiceList;
+            prompt="Codecs:";
+            id=ECodecs;
+			control=CHOICELIST
+				{
+				};
+			},
+		DLG_LINE
+			{
+            type=EEikCtChoiceList;
+            prompt="Bit rates:";
+            id=EBitRates;
+			control=CHOICELIST
+				{
+				};
+			},
+		DLG_LINE
+			{
+            type=EEikCtChoiceList;
+            prompt="Sample rates:";
+            id=ESampleRates;
+			control=CHOICELIST
+				{
+				};
+			},
+		DLG_LINE
+			{
+            type=EEikCtChoiceList;
+            prompt="Channels:";
+            id=EChannels;
+			control=CHOICELIST
+				{
+				};
+			},
+		DLG_LINE
+			{
+            type=EEikCtNumberEditor;
+            prompt="Gain:";
+            id=EGain;
+			control=NUMBER_EDITOR
+				{
+				min = -1000;
+				max = 1000;
+				};
+			},
+		DLG_LINE
+			{
+            type=EEikCtNumberEditor;
+            prompt="Balance:";
+            id=EBalance;
+			control=NUMBER_EDITOR
+				{
+				min = -1000;
+				max = 1000;
+				};
+			}
+		};
+	}
+
+// The conversion format options dialog
+RESOURCE DIALOG r_convert_options_dialog
+    {
+    title="Target options";
+    buttons=R_EIK_BUTTONS_CANCEL_OK;
+    flags=EEikDialogFlagWait;
+    items=
+		{
+		DLG_LINE
+			{
+            type=EEikCtChoiceList;
+            prompt="Codecs:";
+            id=ECodecs;
+			control=CHOICELIST
+				{
+				};
+			},
+		DLG_LINE
+			{
+            type=EEikCtChoiceList;
+            prompt="Bit rates:";
+            id=EBitRates;
+			control=CHOICELIST
+				{
+				};
+			},
+		DLG_LINE
+			{
+            type=EEikCtChoiceList;
+            prompt="Sample rates:";
+            id=ESampleRates;
+			control=CHOICELIST
+				{
+				};
+			},
+		DLG_LINE
+			{
+            type=EEikCtChoiceList;
+            prompt="Channels:";
+            id=EChannels;
+			control=CHOICELIST
+				{
+				};
+			}
+		};
+	}
+
+
+RESOURCE DLG_BUTTONS r_option_dialog_buttons
+	{
+	buttons=
+		{
+		DLG_BUTTON { id=EFormatOptions; button=CMBUT {txt="Options";}; flags=0; },
+		DLG_BUTTON { id=EEikBidCancel; button=CMBUT {txt="Cancel";}; hotkey=EEikBidCancel; flags=0; },
+		DLG_BUTTON { id=EEikBidOk; button=CMBUT {txt="OK";}; hotkey=EEikBidOk; flags=0; }
+		};
+	}
+
+// The tone select dialog
+RESOURCE DIALOG r_tone_dialog
+    {
+    title="Select tone";
+    buttons=R_EIK_BUTTONS_CANCEL_OK;
+    flags=EEikDialogFlagWait;
+    items=
+		{
+        DLG_LINE
+			{
+            type=EEikCtNumberEditor;
+            prompt="Frequency";
+            id=EFrequencyField;
+			control=NUMBER_EDITOR
+				{
+				min = 0;
+				max = 1000;
+				};
+			},
+		DLG_LINE
+			{
+            type=EEikCtNumberEditor;
+            prompt="Duration (seconds)";
+            id=EDurationField;
+			control=NUMBER_EDITOR
+				{
+				min = 1;
+				max = 10;
+				};
+			}
+		};
+	}

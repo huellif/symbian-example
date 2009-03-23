@@ -1,0 +1,22 @@
+// RangeChecking.mmp
+//
+// Copyright (C) Symbian Software Ltd 2000-2005.  All rights reserved.
+
+// using relative paths for sourcepath and user includes
+
+// No explicit capabilities required to run this.
+
+TARGET        RangeChecking.exe
+TARGETTYPE    exe
+UID           0xE800000A
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        RangeChecking.cpp
+
+USERINCLUDE   ..\..\CommonFramework
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib
+
+CAPABILITY    None

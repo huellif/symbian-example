@@ -1,0 +1,8 @@
+#ifndef _MmfRAWFormatUIDS_H_
+#define _MmfRAWFormatUIDS_H_
+
+#define KPluginDLLUID 0xE8000066
+#define KRawDecoder 0x101F81D0
+#define KRawEncoder 0x101F81D1
+
+#endif

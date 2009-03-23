@@ -1,0 +1,13 @@
+//   ExampleConv.hrh
+//
+// Copyright (c) 2006 Symbian Software Ltd .  All rights reserved.
+//
+
+#ifndef __ExampleConv_HRH__
+#define __ExampleConv_HRH__
+// The converter's UID is defined in an hrh file because 
+// its used both in the resource file and in the cpp file.
+#define KExampleConvImplementationUid	0xE80000AC
+
+#endif
+

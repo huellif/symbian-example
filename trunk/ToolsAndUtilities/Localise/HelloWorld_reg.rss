@@ -1,0 +1,13 @@
+#include <appinfo.rh>
+#include <HelloWorld.rsg>
+
+UID2 KUidAppRegistrationResourceFile
+UID3 0xE800005A // application UID
+
+RESOURCE APP_REGISTRATION_INFO
+	{
+	app_file = "HelloWorld";
+	localisable_resource_file = "\\resource\\apps\\HelloWorld";
+	localisable_resource_id = R_LAI;	
+	}
+	

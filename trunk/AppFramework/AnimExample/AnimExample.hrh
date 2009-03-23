@@ -1,0 +1,37 @@
+// AnimExample.hrh
+//
+//  Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+//
+
+
+enum TExampleMenuCommands
+	{
+	EExampleItem0 = 200,
+	EExampleItem1,
+	EExampleItem2
+	};
+enum TExampleSubMenuCommands
+	{
+	ESprite = 400,
+	EBasic
+	};
+#define ECidFileNameLabel			0x11c6
+
+
+#define EAnimToDo0				0x1150
+#define EAnimToDo1				0x1151
+#define EAnimToDo2				0x1152
+#define EAnimToDo3				0x1153
+#define EAnimToDo4				0x1124
+#define EAnimToDo5				0x1155				
+#define EAnimToDo6				0x1156
+#define EAnimToDo7				0x1157
+#define EAnimToDo8				0x1158
+#define EAnimToDo9				0x1159
+
+
+//	Common view controls
+
+#define ETimewCidToolLabel			0x1301
+#define ETimewCidToolSpacer			0x1302
+

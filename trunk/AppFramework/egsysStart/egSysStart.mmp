@@ -1,0 +1,39 @@
+// egSysStart.mmp
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+// @file
+//
+
+
+target          	egSysStart_Techview.EXE
+targettype      	EXE
+uid			0xE80000A1 0xE80000A0 // dummy last uid as we never keep anything we build
+VENDORID 0x70000001
+
+
+sourcepath		.
+source		egSysStart.cpp
+
+userinclude		.
+SYSTEMINCLUDE 	\Epoc32\include
+
+library		EUSER.LIB  
+
+#if defined(WINS)
+sourcepath resource\wins
+
+// Startup in techview mode without watchers  
+START RESOURCE	SSCForStartupMode5.RSS
+TARGETPATH	\private\10205C44
+END
+
+#else
+sourcepath resource\armv5
+
+// Startup in techview mode without watchers  
+START RESOURCE	SSCForStartupMode5_target.RSS
+TARGETPATH	\private\10205C44
+END
+
+#endif
+ 

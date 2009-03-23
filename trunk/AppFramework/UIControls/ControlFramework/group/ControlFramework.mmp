@@ -1,0 +1,55 @@
+// ControlFramework.mmp
+//
+// Copyright (c) 2006 Symbian Software Ltd.  All rights reserved.
+//
+
+TARGET		ControlFramework.exe
+TARGETTYPE	exe
+
+UID		0x100039CE 0xE80000A5
+VENDORID	0x70000001
+
+SOURCEPATH	..\src
+SOURCE		ControlFrameworkApplication.cpp
+SOURCE		ControlFrameworkDocument.cpp
+SOURCE		ControlFrameworkAppUi.cpp
+SOURCE		ControlFrameworkView.cpp
+
+USERINCLUDE	..\inc
+SYSTEMINCLUDE	\epoc32\include
+SYSTEMINCLUDE	\epoc32\include\techview
+
+LIBRARY		euser.lib 
+LIBRARY		apparc.lib 
+LIBRARY		cone.lib 
+LIBRARY		eikcore.lib
+LIBRARY		ws32.lib 
+LIBRARY		gdi.lib
+
+// Resource file
+SOURCEPATH	..\group
+START RESOURCE	ControlFramework.rss
+HEADER
+TARGETPATH	\resource\apps
+END
+
+// Registration file
+SOURCEPATH	.
+START RESOURCE	ControlFramework_reg.rss
+TARGETPATH	\private\10003a3f\apps
+END
+
+// Localization file
+SOURCEPATH	.
+START RESOURCE	ControlFramework_loc.rss
+TARGETPATH	\resource\apps
+END
+
+START bitmap	ControlFramework_icon.mbm
+HEADER
+TARGETPATH	\resource\apps
+SOURCEPATH	..\image
+SOURCE		c8 ControlFramework_24.BMP ControlFramework_2M.BMP
+SOURCE		c8 ControlFramework_32.BMP ControlFramework_3M.BMP
+SOURCE		c8 ControlFramework_48.BMP ControlFramework_4M.BMP
+END 

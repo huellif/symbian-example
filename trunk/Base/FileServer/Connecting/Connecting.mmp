@@ -1,0 +1,29 @@
+// Connecting.mmp
+//
+// Copyright (C) Symbian Software Ltd 2000-2005.  All rights reserved.
+
+// using relative paths for source and userinclude directories
+
+// No explicit capabilities required to run this.
+
+// Please note that the 2nd UID listed here has not been
+// allocated from the central pool of UI's and is not 
+// guaranteed to be unique.
+// The value is used for demonstration purposes only.
+//
+
+TARGET        Connecting.exe
+TARGETTYPE    exe
+UID           0x01100101 0xE800001B
+VENDORID      0x70000001
+
+SOURCEPATH    .
+SOURCE        Connecting.cpp
+
+USERINCLUDE   .
+USERINCLUDE   ..\..\CommonFramework
+SYSTEMINCLUDE \Epoc32\include
+
+LIBRARY       euser.lib efsrv.lib
+
+CAPABILITY    None

@@ -1,0 +1,7 @@
+// Direct.hrh
+//
+// Copyright (c) 2005 Symbian Softwares Ltd.  All rights reserved.
+//
+
+#define EExampleCmd1 0x1001
+#define EExampleCmd2 0x1002

@@ -1,0 +1,23 @@
+// CalExample.mmp
+//
+// Copyright (c) Symbian Software Ltd 2006. All rights reserved.
+//
+
+TARGET        	calexample.exe
+TARGETTYPE    	exe
+
+UID           	0xE8000090
+VENDORID 	0x70000001
+
+CAPABILITY 	ReadUserData WriteUserData
+
+SOURCEPATH    	.
+SOURCE        	CalExample.cpp
+
+USERINCLUDE   	.
+SYSTEMINCLUDE 	\Epoc32\include
+
+LIBRARY       	EUSER.LIB
+LIBRARY       	EFSRV.LIB  
+LIBRARY       	calinterimapi.lib 
+

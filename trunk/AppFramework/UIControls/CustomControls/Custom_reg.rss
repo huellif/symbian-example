@@ -1,0 +1,8 @@
+#include <appinfo.rh>
+
+UID2 KUidAppRegistrationResourceFile
+UID3 0xE8000004 // application UID
+RESOURCE APP_REGISTRATION_INFO
+    {
+    app_file = "Custom";
+    }

@@ -1,0 +1,12 @@
+EXPORTS
+	??0CEchoEngine@@QAE@XZ @ 1 NONAME ; CEchoEngine::CEchoEngine(void)
+	?ConnectL@CEchoEngine@@QAEXABVTDesC16@@@Z @ 2 NONAME ; void CEchoEngine::ConnectL(class TDesC16 const &)
+	?ConnectTo@CEchoEngine@@QAEXK@Z @ 3 NONAME ; void CEchoEngine::ConnectTo(unsigned long)
+	?ConstructL@CEchoEngine@@QAEXPAVMUINotify@@@Z @ 4 NONAME ; void CEchoEngine::ConstructL(class MUINotify *)
+	?NewL@CEchoEngine@@SAPAV1@PAVMUINotify@@@Z @ 5 NONAME ; class CEchoEngine * CEchoEngine::NewL(class MUINotify *)
+	?NewLC@CEchoEngine@@SAPAV1@PAVMUINotify@@@Z @ 6 NONAME ; class CEchoEngine * CEchoEngine::NewLC(class MUINotify *)
+	?Read@CEchoEngine@@QAEXXZ @ 7 NONAME ; void CEchoEngine::Read(void)
+	?Stop@CEchoEngine@@QAEXXZ @ 8 NONAME ; void CEchoEngine::Stop(void)
+	?TestGetByAddrL@CEchoEngine@@QAEXK@Z @ 9 NONAME ; void CEchoEngine::TestGetByAddrL(unsigned long)
+	?Write@CEchoEngine@@QAEXVTChar@@@Z @ 10 NONAME ; void CEchoEngine::Write(class TChar)
+

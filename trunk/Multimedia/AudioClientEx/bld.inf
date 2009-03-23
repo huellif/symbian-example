@@ -1,0 +1,6 @@
+PRJ_MMPFILES
+AudioClientEx.mmp
+
+PRJ_EXPORTS
+testing123.raw ..\winscw\c\testing123.raw
+note.wav ..\winscw\c\note.wav

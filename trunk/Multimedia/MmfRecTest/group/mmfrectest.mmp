@@ -1,0 +1,26 @@
+// mmfrectest.mmp
+//
+// Copyright (c) 2005 Symbian Ltd.  All rights reserved.
+//
+
+TARGET          RecTest.exe
+TARGETTYPE      exe
+UID             0 0x10281E10
+
+// required to do recording:
+CAPABILITY	UserEnvironment
+
+sourcepath	..\src
+USERINCLUDE     ..\src
+
+SYSTEMINCLUDE   \epoc32\include
+SYSTEMINCLUDE	\epoc32\include\mmf\common
+
+SOURCE		mmfrectest.cpp
+
+
+LIBRARY			euser.lib 
+LIBRARY			MMFControllerFramework.lib
+LIBRARY			MediaClientAudio.lib
+LIBRARY			BAFL.lib
+LIBRARY			efsrv.lib ecom.lib

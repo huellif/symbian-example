@@ -1,0 +1,17 @@
+// OriginalDll.MMP
+//
+// Copyright (c) 2000-2005 Symbian Software Ltd.  All rights reserved.
+//
+TARGET	OriginalDll.dll
+TARGETTYPE	dll
+UID  0xE8000045
+CAPABILITY   All -TCB
+VENDORID 0x70000001
+SOURCEPATH	..\src_original_v2
+SOURCE NumberStoreOriginalImplementation_v2.cpp
+USERINCLUDE ..\src_original_v2
+SYSTEMINCLUDE	\epoc32\include
+SYSTEMINCLUDE 	..\include
+LIBRARY euser.lib
+DEFFILE OriginalDll_v2.def
+

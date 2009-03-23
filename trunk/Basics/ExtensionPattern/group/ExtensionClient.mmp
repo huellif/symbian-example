@@ -1,0 +1,20 @@
+// ExtensionClient.exe
+//
+// Copyright (c) 1997-2003 Symbian Ltd.  All rights reserved.
+//
+// Client code which uses functions defined by the original dll and the extension
+//
+TARGET        ExtensionClient.exe
+TARGETTYPE    exe
+UID           0xE8000041
+VENDORID 0x70000001
+
+SOURCEPATH    .
+SOURCE        ..\src_ExtensionClient\ExtensionClient.cpp
+
+USERINCLUDE   .
+SYSTEMINCLUDE \Epoc32\include
+SYSTEMINCLUDE 	..\include
+
+//Note this client depends on both the original dll and the extension dll
+LIBRARY       euser.lib originaldll.lib extensiondll.lib

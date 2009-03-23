@@ -1,0 +1,4 @@
+EXPORTS
+; NEW:
+	_ZN14CTextMtmClient4NewLER17CRegisteredMtmDllR11CMsvSession @ 1 NONAME
+

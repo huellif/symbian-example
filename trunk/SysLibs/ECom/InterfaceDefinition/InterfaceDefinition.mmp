@@ -1,0 +1,27 @@
+// InterfaceDefinition.mmp
+//
+// Copyright (c) 2001 Symbian Ltd.  All rights reserved.
+//
+
+TARGET ExampleResolver.dll
+TARGETTYPE PLUGIN
+
+// ECom Dll recognition UID followed by the unique UID for this dll
+UID 0x10009D8D 0xE8000078
+VENDORID 0x70000001
+CAPABILITY All -TCB
+
+SOURCEPATH	.
+SOURCE		main.cpp
+SOURCE		Proxy.cpp
+SOURCE		ExampleResolver.cpp
+
+USERINCLUDE 	.
+SYSTEMINCLUDE 	\epoc32\include 
+SYSTEMINCLUDE 	\epoc32\include\ecom
+
+start resource E8000078.rss
+TARGET ExampleResolver.rsc
+end
+
+LIBRARY euser.lib

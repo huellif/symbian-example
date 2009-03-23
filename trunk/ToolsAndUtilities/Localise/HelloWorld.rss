@@ -1,0 +1,77 @@
+// HelloWorld.RSS
+//
+// Copyright (c) 1997-1999 Symbian Ltd.  All rights reserved.
+//
+
+NAME HEWO
+
+#include <eikon.rh>
+#include <eikcore.rsg>
+#include <appinfo.rh>
+
+#include "helloworld.hrh"
+
+// Conditional compile, depending on locale
+#ifdef LANGUAGE_01    // if language code is for UK
+ #include "01\01-strings.rls"
+#elif defined LANGUAGE_03  // if language code is for German
+ #include "03\03-strings.rls"
+#endif      
+// end conditional compile
+
+RESOURCE RSS_SIGNATURE { }
+
+RESOURCE TBUF { buf=""; }
+
+RESOURCE EIK_APP_INFO
+	{
+	hotkeys=r_example_hotkeys;
+	menubar=r_example_menubar;
+	}
+
+RESOURCE HOTKEYS r_example_hotkeys
+    {
+    control=
+        {
+        HOTKEY { command=EEikCmdExit; key='e'; }
+        };
+    }
+
+RESOURCE MENU_BAR r_example_menubar
+    {
+    titles=
+        {
+        MENU_TITLE { menu_pane=r_example_first_menu; txt=STRING_r_example_first_menu_name; }
+		};
+    }
+
+
+RESOURCE MENU_PANE r_example_first_menu
+	{
+	items=
+		{
+		MENU_ITEM { command=EExampleItem0; txt=STRING_r_example_item0; },
+		MENU_ITEM { command=EExampleItem1; txt=STRING_r_example_item1; },
+		MENU_ITEM { command=EExampleItem2; txt=STRING_r_example_item2; },
+		MENU_ITEM { command=EEikCmdExit; txt=STRING_r_example_menu_exit; }
+        };
+    }
+
+RESOURCE TBUF r_example_text_Hello { buf=STRING_r_example_hello_text; }
+RESOURCE TBUF r_example_text_Item0 { buf=STRING_r_example_item0; }
+RESOURCE TBUF r_example_text_Item1 { buf=STRING_r_example_item1; }
+RESOURCE TBUF r_example_text_Item2 { buf=STRING_r_example_item2; }
+
+RESOURCE LOCALISABLE_APP_INFO r_lai
+	{
+	short_caption = STRING_r_example_short_caption;
+	caption_and_icon =
+		{
+		CAPTION_AND_ICON_INFO
+			{
+			caption = STRING_r_example_caption;
+			number_of_icons = 3; // each icon must be a bitmap/mask pair
+			icon_file = STRING_r_example_iconfile;
+			}
+		};							
+	}

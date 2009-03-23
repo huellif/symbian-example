@@ -1,0 +1,25 @@
+// Minimal.mmp
+//
+// Copyright (c) Symbian Software Ltd 2005. All rights reserved.
+//
+
+TARGET        Minimal.exe
+TARGETTYPE    exe
+
+UID           0x100039CE 0xE800008B
+VENDORID 	  0x70000001
+
+SOURCEPATH    .
+SOURCE        Minimal_Main.cpp
+SOURCE        Minimal.cpp
+
+USERINCLUDE   .
+SYSTEMINCLUDE \epoc32\include
+SYSTEMINCLUDE \epoc32\include\techview
+
+
+START RESOURCE	Minimal_reg.rss
+TARGETPATH		\private\10003a3f\apps
+END
+
+LIBRARY       euser.lib apparc.lib cone.lib eikcore.lib
