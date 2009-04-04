@@ -48,6 +48,9 @@ void CMainWindow::Draw(const TRect& aRect)
 	CWindowGc* gc=SystemGc(); // get a gc
 	gc->SetClippingRect(aRect); // clip outside this rect
 	gc->Clear(aRect); // clear
+	gc->SetBrushColor(KRgbBlue);
+	gc->SetBrushStyle(CGraphicsContext::ESolidBrush);
+	gc->DrawRect(aRect);
 	}
 
 /****************************************************************************\
@@ -57,8 +60,13 @@ void CMainWindow::Draw(const TRect& aRect)
 |	Input:		aPointerEvent	The pointer event
 |	Output:		None
 \****************************************************************************/
-void CMainWindow::HandlePointerEvent (TPointerEvent& /*aPointerEvent*/)
+void CMainWindow::HandlePointerEvent (TPointerEvent& aPointerEvent)
 	{	
+	TBuf<128> infoBuffer;
+	infoBuffer.Format(_L("CSmallWindow::HandlePointerEvent((%d, %d))"),
+		aPointerEvent.iPosition.iX, aPointerEvent.iPosition.iY);
+	
+	User::InfoPrint(infoBuffer);
 	}
 
 
@@ -122,8 +130,13 @@ void CSmallWindow::Draw(const TRect& aRect)
 |	Output:		None
 \****************************************************************************/
 
-void CSmallWindow::HandlePointerEvent (TPointerEvent& /*aPointerEvent*/)
+void CSmallWindow::HandlePointerEvent (TPointerEvent& aPointerEvent)
 	{
+	TBuf<128> infoBuffer;
+	infoBuffer.Format(_L("CSmallWindow::HandlePointerEvent((%d, %d))"),
+		aPointerEvent.iPosition.iX, aPointerEvent.iPosition.iY);
+
+	User::InfoPrint(infoBuffer);
 	}
 
 //////////////////////////////////////////////////////////////////////////////
