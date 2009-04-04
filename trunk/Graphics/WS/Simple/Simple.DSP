@@ -472,10 +472,6 @@ SOURCE=\work\example\Graphics\WS\Simple\Base.h
 
 SOURCE=\work\example\Graphics\WS\Simple\Simple.h
 # End Source File
-# Begin Source File
-
-SOURCE=..\..\..\..\..\epoc32\include\w32std.h
-# End Source File
 # End Group
 # End Target
 # End Project
