@@ -49,13 +49,14 @@
 
 #include <BitmapSprite.mbg>
 
-CSprite::CSprite(CWsClient *aClient) : iClient(aClient), iSpritePos(80, 75)
+CSprite::CSprite(CWsClient *aClient) :
+	iClient(aClient), iSpritePos(80, 75)
 	{
 	}
 
 CSprite::~CSprite()
 	{
-	for (TInt i=0; i<8; i++)
+	for (TInt i = 0; i < 8; i++)
 		{
 		delete iSpriteMember[i].iBitmap;
 		delete iSpriteMember[i].iMaskBitmap;
@@ -71,24 +72,27 @@ void CSprite::UpdatePos(TPoint aAdjust)
 
 void CSprite::ConstructL(CWindow* aWindow)
 	{
-	CEikonEnv* eikenv=CEikonEnv::Static();
+	CEikonEnv* eikenv = CEikonEnv::Static();
 	iSprite = RWsSprite(iClient->iWs);
 	User::LeaveIfError(iSprite.Construct(aWindow->Window(), iSpritePos, 0));
 	// Initialize sprite members
-	_LIT(KStar,"*"); // "*" means "the <app-name>.mbm file in the app directory"
-	for (TInt i=0; i<8; i++)
+	_LIT(KStar,"*");
+	// "*" means "the <app-name>.mbm file in the app directory"
+	for (TInt i = 0; i < 8; i++)
 		{
 		iSpriteMember[i].iInvertMask = EFalse;
-		iSpriteMember[i].iOffset = TPoint (0,0);
-		iSpriteMember[i].iInterval = TTimeIntervalMicroSeconds32 (200000);
+		iSpriteMember[i].iOffset = TPoint(0, 0);
+		iSpriteMember[i].iInterval = TTimeIntervalMicroSeconds32(200000);
 		iSpriteMember[i].iBitmap = eikenv->CreateBitmapL(KStar, i);
-		if (i%2 == 0)
+		if (i % 2 == 0)
 			{
-			iSpriteMember[i].iMaskBitmap=eikenv->CreateBitmapL(KStar, EMbmBitmapspriteMil1mask);
+			iSpriteMember[i].iMaskBitmap = eikenv->CreateBitmapL(KStar,
+					EMbmBitmapspriteMil1mask);
 			}
 		else
 			{
-			iSpriteMember[i].iMaskBitmap=eikenv->CreateBitmapL(KStar, EMbmBitmapspriteMil2mask);
+			iSpriteMember[i].iMaskBitmap = eikenv->CreateBitmapL(KStar,
+					EMbmBitmapspriteMil2mask);
 			}
 		User::LeaveIfError(iSprite.AppendMember(iSpriteMember[i]));
 		}
@@ -97,7 +101,6 @@ void CSprite::ConstructL(CWindow* aWindow)
 	User::LeaveIfError(iSprite.Activate());
 	}
 
-
 //////////////////////////////////////////////////////////////////////////////
 //					 CMainWindow implementation
 //////////////////////////////////////////////////////////////////////////////
@@ -105,32 +108,31 @@ void CSprite::ConstructL(CWindow* aWindow)
 
 /****************************************************************************\
 |	Function:	Constructor/Destructor for CMainWindow
-|	Input:		aClient		Client application that owns the window
-\****************************************************************************/
-CMainWindow::CMainWindow (CWsClient* aClient)
-: CWindow (aClient)
+ |	Input:		aClient		Client application that owns the window
+ \****************************************************************************/
+CMainWindow::CMainWindow(CWsClient* aClient) :
+	CWindow(aClient)
 	{
 	}
 
-
-CMainWindow::~CMainWindow ()
+CMainWindow::~CMainWindow()
 	{
 	iWindow.Close();
 	}
 
 /****************************************************************************\
 |	Function:	CMainWindow::Draw
-|	Purpose:	Redraws the contents of CMainWindow within a given
-|				rectangle.
-|	Input:		aRect	Rectangle that needs redrawing
-|	Output:		None
-\****************************************************************************/
+ |	Purpose:	Redraws the contents of CMainWindow within a given
+ |				rectangle.
+ |	Input:		aRect	Rectangle that needs redrawing
+ |	Output:		None
+ \****************************************************************************/
 
 void CMainWindow::Draw(const TRect& aRect)
 	{
 	// Draw a hatched pattern to illustrate that sprite is drawn only 
 	// where its bitmap mask is 0
-	CWindowGc* gc=SystemGc(); // get a gc
+	CWindowGc* gc = SystemGc(); // get a gc
 	gc->SetClippingRect(aRect); // clip outside this rect
 	gc->Clear(aRect); // clear
 	gc->SetPenStyle(CGraphicsContext::ESolidPen);
@@ -138,30 +140,30 @@ void CMainWindow::Draw(const TRect& aRect)
 	TSize size = Window().Size();
 	TInt width = size.iWidth;
 	TInt height = size.iHeight;
-	TInt numHoriz=height/5;
-	TInt numVert=width/10;
-	for (TInt i=numHoriz; i>0; i--)
+	TInt numHoriz = height / 5;
+	TInt numVert = width / 10;
+	for (TInt i = numHoriz; i > 0; i--)
 		{
-		gc->DrawLine (TPoint(0,height/numHoriz*i), TPoint(width, height/numHoriz*i));
+		gc->DrawLine(TPoint(0, height / numHoriz * i), TPoint(width, height
+				/ numHoriz * i));
 		}
-	for (TInt j=numVert; j>0; j--)
+	for (TInt j = numVert; j > 0; j--)
 		{
-		gc->DrawLine (TPoint(width/numVert*j, 0), TPoint(width/numVert*j, height));
+		gc->DrawLine(TPoint(width / numVert * j, 0), TPoint(
+				width / numVert * j, height));
 		}
 	}
-
 
 /****************************************************************************\
 |	Function:	CMainWindow::HandlePointerEvent
-|	Purpose:	Handles pointer events for CMainWindow.
-|	Input:		aPointerEvent	The pointer event!
-|	Output:		None
-\****************************************************************************/
+ |	Purpose:	Handles pointer events for CMainWindow.
+ |	Input:		aPointerEvent	The pointer event!
+ |	Output:		None
+ \****************************************************************************/
 
-void CMainWindow::HandlePointerEvent (TPointerEvent& /*aPointerEvent*/)
-	{	
+void CMainWindow::HandlePointerEvent(TPointerEvent& /*aPointerEvent*/)
+	{
 	}
-
 
 //////////////////////////////////////////////////////////////////////////////
 //					 CExampleWsClient implementation
@@ -170,7 +172,7 @@ void CMainWindow::HandlePointerEvent (TPointerEvent& /*aPointerEvent*/)
 CExampleWsClient* CExampleWsClient::NewL(const TRect& aRect)
 	{
 	// make new client
-	CExampleWsClient* client=new (ELeave) CExampleWsClient(aRect); 
+	CExampleWsClient* client = new (ELeave) CExampleWsClient(aRect);
 	CleanupStack::PushL(client); // push, just in case
 	client->ConstructL(); // construct and run
 	CleanupStack::Pop();
@@ -179,118 +181,116 @@ CExampleWsClient* CExampleWsClient::NewL(const TRect& aRect)
 
 /****************************************************************************\
 |	Function:	Constructor/Destructor for CExampleWsClient
-|				Destructor deletes everything that was allocated by
-|				ConstructMainWindowL()
-\****************************************************************************/
+ |				Destructor deletes everything that was allocated by
+ |				ConstructMainWindowL()
+ \****************************************************************************/
 
-CExampleWsClient::CExampleWsClient(const TRect& aRect)
-:iRect(aRect)
+CExampleWsClient::CExampleWsClient(const TRect& aRect) :
+	iRect(aRect)
 	{
 	}
 
-CExampleWsClient::~CExampleWsClient ()
+CExampleWsClient::~CExampleWsClient()
 	{
 	delete iMainWindow;
 	delete iSprite;
 	}
 
-
 /****************************************************************************\
 |	Function:	CExampleWsClient::ConstructMainWindowL()
-|				Called by base class's ConstructL
-|	Purpose:	Allocates and creates all the windows owned by this client
-|				(See list of windows in CExampleWsCLient declaration).
-\****************************************************************************/
+ |				Called by base class's ConstructL
+ |	Purpose:	Allocates and creates all the windows owned by this client
+ |				(See list of windows in CExampleWsCLient declaration).
+ \****************************************************************************/
 
 void CExampleWsClient::ConstructMainWindowL()
 	{
-	iMainWindow=new (ELeave) CMainWindow(this);
-	iMainWindow->ConstructL(iRect, TRgb (255,255,255));
-	iSprite=new (ELeave) CSprite (this);
+	iMainWindow = new (ELeave) CMainWindow(this);
+	iMainWindow->ConstructL(iRect, TRgb(255, 255, 255));
+	iSprite = new (ELeave) CSprite(this);
 	iSprite->ConstructL(iMainWindow);
 	}
 
-
 /****************************************************************************\
 |	Function:	CExampleWsClient::RunL()
-|				Called by active scheduler when an even occurs
-|	Purpose:	Processes events according to their type
-|				For key events: calls HandleKeyEventL() (global to client)
-|				For pointer event: calls HandlePointerEvent() for window
-|                                  event occurred in.
-\****************************************************************************/
+ |				Called by active scheduler when an even occurs
+ |	Purpose:	Processes events according to their type
+ |				For key events: calls HandleKeyEventL() (global to client)
+ |				For pointer event: calls HandlePointerEvent() for window
+ |                                  event occurred in.
+ \****************************************************************************/
 void CExampleWsClient::RunL()
 	{
 	// get the event
 	iWs.GetEvent(iWsEvent);
-	TInt eventType=iWsEvent.Type();
+	TInt eventType = iWsEvent.Type();
 	// take action on it
 	switch (eventType)
 		{
-	// events global within window group
-	case EEventNull:
-		break;
-	case EEventKey:
-		{
-		TKeyEvent& keyEvent=*iWsEvent.Key(); // get key event
-		HandleKeyEventL (keyEvent);
-		break;
-		}
-	case EEventModifiersChanged:
-		break;
-	case EEventKeyUp:
-	case EEventKeyDown:
-	case EEventFocusLost:
-	case EEventFocusGained:
-	case EEventSwitchOn:
-	case EEventPassword:
-	case EEventWindowGroupsChanged:
-	case EEventErrorMessage:
-		break;
-	// events local to specific windows
-	case EEventPointer:
-		{
-		CWindow* window=(CWindow*)(iWsEvent.Handle()); // get window
-		TPointerEvent& pointerEvent=*iWsEvent.Pointer();
-		window->HandlePointerEvent (pointerEvent);
-		break;
-		}
-	case EEventPointerExit:
-	case EEventPointerEnter:
-		break;
-	case EEventPointerBufferReady:
-		{
-		break;
-		}
-	case EEventDragDrop:
-		break;
-	default:
-		break;
+		// events global within window group
+		case EEventNull:
+			break;
+		case EEventKey:
+			{
+			TKeyEvent& keyEvent = *iWsEvent.Key(); // get key event
+			HandleKeyEventL(keyEvent);
+			break;
+			}
+		case EEventModifiersChanged:
+			break;
+		case EEventKeyUp:
+		case EEventKeyDown:
+		case EEventFocusLost:
+		case EEventFocusGained:
+		case EEventSwitchOn:
+		case EEventPassword:
+		case EEventWindowGroupsChanged:
+		case EEventErrorMessage:
+			break;
+			// events local to specific windows
+		case EEventPointer:
+			{
+			CWindow* window = (CWindow*) (iWsEvent.Handle()); // get window
+			TPointerEvent& pointerEvent = *iWsEvent.Pointer();
+			window->HandlePointerEvent(pointerEvent);
+			break;
+			}
+		case EEventPointerExit:
+		case EEventPointerEnter:
+			break;
+		case EEventPointerBufferReady:
+			{
+			break;
+			}
+		case EEventDragDrop:
+			break;
+		default:
+			break;
 		}
 	IssueRequest(); // maintain outstanding request
 	}
 
 /****************************************************************************\
 |	Function:	CExampleWsClient::HandleKeyEventL()
-|	Purpose:	Processes key events for CExampleWsClient
-|				Gets the key code from the key event.  Exits on 'Escape'
-\****************************************************************************/
-void CExampleWsClient::HandleKeyEventL (TKeyEvent& aKeyEvent)
+ |	Purpose:	Processes key events for CExampleWsClient
+ |				Gets the key code from the key event.  Exits on 'Escape'
+ \****************************************************************************/
+void CExampleWsClient::HandleKeyEventL(TKeyEvent& aKeyEvent)
 	{
-	TUint	code = aKeyEvent.iCode;
+	TUint code = aKeyEvent.iCode;
 	switch (code)
 		{
 		case EKeyLeftArrow:
-			iSprite->UpdatePos(TPoint(-2,0));
+			iSprite->UpdatePos(TPoint(-2, 0));
 			break;
 		case EKeyRightArrow:
-			iSprite->UpdatePos(TPoint(2,0));
+			iSprite->UpdatePos(TPoint(2, 0));
 			break;
 		case EKeyUpArrow:
-			iSprite->UpdatePos(TPoint(0,-2));
+			iSprite->UpdatePos(TPoint(0, -2));
 			break;
 		case EKeyDownArrow:
-			iSprite->UpdatePos(TPoint(0,2));
+			iSprite->UpdatePos(TPoint(0, 2));
 			break;
 		}
 	}
