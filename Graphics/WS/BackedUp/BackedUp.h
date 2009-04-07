@@ -52,7 +52,7 @@ private:
 	void HandleKeyEventL (TKeyEvent& aKeyEvent);
 private:
 	CMainWindow*	iMainWindow;
-	CNumberedWindow* iWindow1;
+	CNumberedWindow* iNumWindow;
 	const TRect& iRect;
 	};
 
