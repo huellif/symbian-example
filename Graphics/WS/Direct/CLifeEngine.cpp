@@ -16,11 +16,11 @@ CLifeEngine::CLifeEngine(const TInt64& aSeed) :
 // Sets random initial cell states
 void CLifeEngine::Reset()
 	{
-	for (TInt y = 0; y < DIM_Y_ARRAY; y++)
+	for (TInt col = 0; col < COLS_NUM; col++)
 		{
-		for (TInt x = 0; x < DIM_X_ARRAY; x++)
+		for (TInt row = 0; row < ROWS_NUM; row++)
 			{
-			iCellArray[x][y] = (Math::Rand(iSeed) > KMaxTInt / 2) ? ETrue : EFalse;
+			iCellArray[row][col] = (Math::Rand(iSeed) > KMaxTInt / 2) ? ETrue : EFalse;
 			}
 		}
 	}
@@ -31,54 +31,62 @@ void CLifeEngine::AddGeneration()
 	{
 	TInt numNeighbours;
 
-	for (TInt y = 0; y < DIM_Y_ARRAY; y++)
+	for (TInt col = 0; col < COLS_NUM; col++)
 		{
-		for (TInt x = 0; x < DIM_X_ARRAY; x++)
+		for (TInt row = 0; row < ROWS_NUM; row++)
 			{
-			numNeighbours = NumNeighbors(x, y);
+			numNeighbours = NumNeighbors(row, col);
 
-			if (iCellArray[x][y])
+			if (iCellArray[row][col])
 			// Filled cell
 				{
 				if ((numNeighbours == 2) || (numNeighbours == 3))
-					iTempCellArray[x][y] = ETrue;
+					{
+					iTempCellArray[row][col] = ETrue;
+					}
 				else
-					iTempCellArray[x][y] = EFalse;
+					{
+					iTempCellArray[row][col] = EFalse;
+					}
 				}
 			else
 			// Empty cell
 				{
 				if (numNeighbours == 3)
-					iTempCellArray[x][y] = ETrue;
+					{
+					iTempCellArray[row][col] = ETrue;
+					}
 				else
-					iTempCellArray[x][y] = EFalse;
+					{
+					iTempCellArray[row][col] = EFalse;
+					}
 				}
 			}
 		}
 
-	for (TInt y2 = 0; y2 < DIM_Y_ARRAY; y2++)
+	for (TInt col1 = 0; col1 < COLS_NUM; col1++)
 		{
-		for (TInt x2 = 0; x2 < DIM_X_ARRAY; x2++)
+		for (TInt row1 = 0; row1 < ROWS_NUM; row1++)
 			{
-			iCellArray[x2][y2] = iTempCellArray[x2][y2];
+			iCellArray[row1][col1] = iTempCellArray[row1][col1];
 			}
 		}
 	}
 
 // Gets the number of adjacent cells to the specified cell
-TInt CLifeEngine::NumNeighbors(TInt x, TInt y)
+TInt CLifeEngine::NumNeighbors(TInt row, TInt col)
 	{
 	TInt numNeighbors = 0;
 	TInt i = 0;
 
 	// Get neighbors to the left
-	if ((x - 1) >= 0)
+	if ((row - 1) >= 0)
 		{
-		for (i = y - 1; i <= y + 1; i++)
+		for (i = col - 1; i <= col + 1; i++)
 			{
-			if ((i >= 0) && (i < DIM_Y_ARRAY))
+			if ((i >= 0) && (i < COLS_NUM))
 				{
-				if (iCellArray[x - 1][i])
+				if (iCellArray[row - 1][i])
 					{
 					numNeighbors++;
 					}
@@ -87,13 +95,13 @@ TInt CLifeEngine::NumNeighbors(TInt x, TInt y)
 		}
 	
 	// Get neighbors to the right
-	if (x + 1 < DIM_X_ARRAY)
+	if (row + 1 < ROWS_NUM)
 		{
-		for (i = y - 1; i <= y + 1; i++)
+		for (i = col - 1; i <= col + 1; i++)
 			{
-			if ((i >= 0) && (i < DIM_Y_ARRAY))
+			if ((i >= 0) && (i < COLS_NUM))
 				{
-				if (iCellArray[x + 1][i])
+				if (iCellArray[row + 1][i])
 					{
 					numNeighbors++;
 					}
@@ -102,18 +110,18 @@ TInt CLifeEngine::NumNeighbors(TInt x, TInt y)
 		}
 		
 	// Get neighbors straight above
-	if ((y - 1) >= 0)
+	if ((col - 1) >= 0)
 		{
-		if (iCellArray[x][y - 1])
+		if (iCellArray[row][col - 1])
 			{
 			numNeighbors++;
 			}
 		}
 	
 	// Get neighbors straight below
-	if ((y + 1) < DIM_Y_ARRAY)
+	if ((col + 1) < COLS_NUM)
 		{	
-		if (iCellArray[x][y + 1])
+		if (iCellArray[row][col + 1])
 			{
 			numNeighbors++;
 			}

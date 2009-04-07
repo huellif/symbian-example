@@ -89,19 +89,19 @@ void CDirectDisplayLife::RunL()
 	// Loop through cells drawing each
 	TRect drawBlock(iXOrigin, iYOrigin, iXOrigin + KBlockSize,
 			iYOrigin + KBlockSize);
-	for (int y = 0; y < DIM_Y_ARRAY; y++)
+	for (int col = 0; col < COLS_NUM; col++)
 		{
-		for (int x = 0; x < DIM_X_ARRAY; x++)
+		for (int row = 0; row < ROWS_NUM; row++)
 			{
-			if (iCells[x][y])
+			if (iCells[row][col])
 				{
-				iGc -> SetBrushColor(KRgbBlue);
+				iGc->SetBrushColor(KRgbBlue);
 				}
 			else
 				{
-				iGc -> SetBrushColor(KRgbYellow);
+				iGc->SetBrushColor(KRgbYellow);
 				}
-			iGc -> DrawRect(drawBlock);
+			iGc->DrawRect(drawBlock);
 			drawBlock.Move(KBlockSize, 0);
 			}
 		drawBlock.iTl.iX = iXOrigin;

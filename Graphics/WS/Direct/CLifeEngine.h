@@ -9,11 +9,11 @@
 #include <e32base.h>
 
 // Cell array dimensions
-const TInt DIM_X_ARRAY = 16;
-const TInt DIM_Y_ARRAY = 8;
+const TInt ROWS_NUM = 16;
+const TInt COLS_NUM = 8;
 
 // Cell array type
-typedef TBool TCellArray[DIM_X_ARRAY][DIM_Y_ARRAY];
+typedef TBool TCellArray[ROWS_NUM][COLS_NUM];
 
 // A "Game of Life" engine
 // After John Conway, Scientific American 223 (October 1970): 120-123
