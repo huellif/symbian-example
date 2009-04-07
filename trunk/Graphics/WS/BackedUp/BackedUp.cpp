@@ -204,7 +204,7 @@ CExampleWsClient::CExampleWsClient(const TRect& aRect) :
 CExampleWsClient::~CExampleWsClient()
 	{
 	delete iMainWindow;
-	delete iWindow1;
+	delete iNumWindow;
 	}
 
 /****************************************************************************\
@@ -220,8 +220,8 @@ void CExampleWsClient::ConstructMainWindowL()
 
 	iMainWindow = new (ELeave) CMainWindow(this);
 	iMainWindow->ConstructL(iRect);
-	iWindow1 = new (ELeave) CNumberedWindow(this);
-	iWindow1->ConstructL(TRect(TPoint(100, 100), TSize(100, 100)), TRgb(100,
+	iNumWindow = new (ELeave) CNumberedWindow(this);
+	iNumWindow->ConstructL(TRect(TPoint(100, 100), TSize(100, 100)), TRgb(100,
 			100, 100), iMainWindow);
 	}
 
