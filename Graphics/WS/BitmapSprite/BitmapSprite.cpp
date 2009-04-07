@@ -144,13 +144,11 @@ void CMainWindow::Draw(const TRect& aRect)
 	TInt numVert = width / 10;
 	for (TInt i = numHoriz; i > 0; i--)
 		{
-		gc->DrawLine(TPoint(0, height / numHoriz * i), TPoint(width, height
-				/ numHoriz * i));
+		gc->DrawLine(TPoint(0, height / numHoriz * i), TPoint(width, height / numHoriz * i));
 		}
 	for (TInt j = numVert; j > 0; j--)
 		{
-		gc->DrawLine(TPoint(width / numVert * j, 0), TPoint(
-				width / numVert * j, height));
+		gc->DrawLine(TPoint(width / numVert * j, 0), TPoint(width / numVert * j, height));
 		}
 	}
 
@@ -221,9 +219,10 @@ void CExampleWsClient::ConstructMainWindowL()
  \****************************************************************************/
 void CExampleWsClient::RunL()
 	{
+	TWsEvent wsEvent;
 	// get the event
-	iWs.GetEvent(iWsEvent);
-	TInt eventType = iWsEvent.Type();
+	iWs.GetEvent(wsEvent);
+	TInt eventType = wsEvent.Type();
 	// take action on it
 	switch (eventType)
 		{
@@ -232,7 +231,7 @@ void CExampleWsClient::RunL()
 			break;
 		case EEventKey:
 			{
-			TKeyEvent& keyEvent = *iWsEvent.Key(); // get key event
+			TKeyEvent& keyEvent = *wsEvent.Key(); // get key event
 			HandleKeyEventL(keyEvent);
 			break;
 			}
@@ -250,8 +249,8 @@ void CExampleWsClient::RunL()
 			// events local to specific windows
 		case EEventPointer:
 			{
-			CWindow* window = (CWindow*) (iWsEvent.Handle()); // get window
-			TPointerEvent& pointerEvent = *iWsEvent.Pointer();
+			CWindow* window = (CWindow*) (wsEvent.Handle()); // get window
+			TPointerEvent& pointerEvent = *wsEvent.Pointer();
 			window->HandlePointerEvent(pointerEvent);
 			break;
 			}
