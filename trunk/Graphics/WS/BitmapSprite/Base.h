@@ -39,7 +39,7 @@ protected:
 	CWsScreenDevice* iScreen;
 	CWsRedrawer* iRedrawer;
 	RWsSession iWs;
-	TWsEvent iWsEvent;
+// 	TWsEvent iWsEvent;
 private:
 	RWindowGroup iGroup;
 	CWindowGc* iGc;
