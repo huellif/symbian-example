@@ -31,8 +31,8 @@ public:
 	void Reset();
 
 private:
-	// Gets number of neighbors for cell x,y
-	TInt NumNeighbors(TInt x, TInt y);
+	// Gets number of neighbors for cell row,col
+	TInt NumNeighbors(TInt row, TInt col);
 
 private:
 	// Random num generator seed

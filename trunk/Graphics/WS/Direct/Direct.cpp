@@ -34,7 +34,7 @@ void CExampleAppView::ConstructL(const TRect& aRect)
 			iEikonEnv->WsSession(), // Window server session
 			Window(), // The window itself
 			iLifeEngine);
-	iDirectDisplayLife -> ConstructL();
+	iDirectDisplayLife->ConstructL();
 
 	ActivateL();
 	}
@@ -47,7 +47,7 @@ CExampleAppView::~CExampleAppView()
 // Start using the DSA
 void CExampleAppView::StartDirectL()
 	{
-	iDirectDisplayLife -> StartL();
+	iDirectDisplayLife->StartL();
 	iState = EDirectStarted;
 	}
 
@@ -55,14 +55,14 @@ void CExampleAppView::StartDirectL()
 void CExampleAppView::PauseDirect()
 	{
 	iState = EDirectPaused;
-	iDirectDisplayLife -> Cancel();
+	iDirectDisplayLife->Cancel();
 	}
 
 // Restart use of the DSA after pausing
 void CExampleAppView::RestartDirect()
 	{
 	iState = EDirectStarted;
-	iDirectDisplayLife -> Restart(RDirectScreenAccess::ETerminateCancel);
+	iDirectDisplayLife->Restart(RDirectScreenAccess::ETerminateCancel);
 	}
 
 // Gets the view state
@@ -74,11 +74,11 @@ TInt CExampleAppView::State() const
 void CExampleAppView::Draw(const TRect& /*aRect*/) const
 	{
 	CWindowGc& gc = SystemGc();
-	// white out whole rectangle
+	// gray out whole rectangle
 	TRect rect = Rect();
 	gc.SetPenStyle(CGraphicsContext::ENullPen);
 	gc.SetBrushStyle(CGraphicsContext::ESolidBrush);
-	gc.SetBrushColor(KRgbWhite);
+	gc.SetBrushColor(KRgbGray);
 	gc.DrawRect(rect);
 	// border
 	rect.Shrink(10, 10);
@@ -118,25 +118,34 @@ void CExampleAppUi::HandleCommandL(TInt aCommand)
 	switch (aCommand)
 		{
 		// Start command
-		case EExampleCmd1:
+		case EExampleCmd_Start:
+			{
 			// Different action required for very first start
 			// And subsequent restarts
-			if (iAppView -> State() == CExampleAppView::EDirectNotStarted)
-				iAppView -> StartDirectL();
+			if (iAppView->State() == CExampleAppView::EDirectNotStarted)
+				{
+				iAppView->StartDirectL();
+				}
 			else
 				{
-				iAppView -> PauseDirect();
+				iAppView->PauseDirect();
 				static_cast<CExampleDocument*> (Document())->LifeEngine().Reset();
-				iAppView -> RestartDirect();
+				iAppView->RestartDirect();
 				}
+			}
 			break;
+			
 			// Test overlay command
-		case EExampleCmd2:
+		case EExampleCmd_TestOverlay:
+			{
 			iOverlayDialog->ShowDialog();
+			}
 			break;
 			// Close command
 		case EEikCmdExit:
+			{
 			Exit();
+			}
 			break;
 		}
 	}
@@ -159,9 +168,9 @@ CExampleAppUi::COverlayDialog::~COverlayDialog()
 
 void CExampleAppUi::COverlayDialog::ShowDialog()
 	{
-	_LIT(KLine1,"Overlaying dialog");
-	_LIT(KLine2,"Owned by another thread");
-	_LIT(KBut,"OK");
+	_LIT(KLine1, "Overlaying dialog");
+	_LIT(KLine2, "Owned by another thread");
+	_LIT(KBut, "OK");
 
 	// Use a notifier to display a dialog from the notifier server thread
 	iNotifier.Notify(KLine1, KLine2, KBut, KBut, iR, iStatus);
