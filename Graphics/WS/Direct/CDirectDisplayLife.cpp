@@ -9,20 +9,19 @@
 
 // Dimension of each cell
 const TInt CDirectDisplayLife::KBlockSize = 20;
+
 // Delay between generations (microseconds)
 // Actual minimum is 1/10s on WINS
-const TInt CDirectDisplayLife::KGenerationInterval = 1000*1000;
+const TInt CDirectDisplayLife::KGenerationInterval = 1000 * 1000;
+
 // X & Y origins of upper left of cell display
 const TInt CDirectDisplayLife::iXOrigin = 50;
 const TInt CDirectDisplayLife::iYOrigin = 30;
 
-CDirectDisplayLife::CDirectDisplayLife(RWsSession& aClient, 
-									   RWindow& aWindow,
-									   CLifeEngine& aLifeEngine)
-: CTimer(CActive::EPriorityStandard),
-	iClient(aClient),
-	iWindow(aWindow),
-	iLifeEngine(aLifeEngine)
+CDirectDisplayLife::CDirectDisplayLife(RWsSession& aClient, RWindow& aWindow,
+		CLifeEngine& aLifeEngine) :
+	CTimer(CActive::EPriorityStandard), iClient(aClient), iWindow(aWindow),
+			iLifeEngine(aLifeEngine)
 	{
 	}
 
@@ -36,12 +35,11 @@ void CDirectDisplayLife::ConstructL()
 	{
 	CTimer::ConstructL();
 	// Create the DSA object
-	iDirectScreenAccess = CDirectScreenAccess::NewL(
-		iClient,				// WS session
-		*(CCoeEnv::Static()->ScreenDevice()),		// CWsScreenDevice
-		iWindow,				// RWindowBase
-		*this					// MDirectScreenAccess
-		);
+	iDirectScreenAccess = CDirectScreenAccess::NewL(iClient, // WS session
+			*(CCoeEnv::Static()->ScreenDevice()), // CWsScreenDevice
+			iWindow, // RWindowBase
+			*this // MDirectScreenAccess
+			);
 
 	CActiveScheduler::Add(this);
 	}
@@ -50,18 +48,18 @@ void CDirectDisplayLife::ConstructL()
 void CDirectDisplayLife::StartL()
 	{
 	// Initialise DSA
-	iDirectScreenAccess -> StartL();
+	iDirectScreenAccess->StartL();
 	// Get graphics context for it
-	iGc = iDirectScreenAccess -> Gc();
-	iGc -> SetBrushStyle(CGraphicsContext::ESolidBrush);
+	iGc = iDirectScreenAccess->Gc();
+	iGc->SetBrushStyle(CGraphicsContext::ESolidBrush);
 	// Get region that DSA can draw in
-	iRegion = iDirectScreenAccess -> DrawingRegion();
+	iRegion = iDirectScreenAccess->DrawingRegion();
 	// Set the display to clip to this region
-	iGc -> SetClippingRegion(iRegion); 
+	iGc->SetClippingRegion(iRegion);
 
 	After(TTimeIntervalMicroSeconds32(KGenerationInterval));
 	}
-	
+
 // Implement MDirectScreenAccess
 void CDirectDisplayLife::Restart(RDirectScreenAccess::TTerminationReasons /*aReason*/)
 	{
@@ -89,21 +87,26 @@ void CDirectDisplayLife::RunL()
 	iDirectScreenAccess->ScreenDevice()->Update();
 
 	// Loop through cells drawing each
-	TRect drawBlock(iXOrigin, iYOrigin, iXOrigin+KBlockSize,iYOrigin+KBlockSize);
-	for (int y=0; y<DIM_Y_ARRAY; y++)
+	TRect drawBlock(iXOrigin, iYOrigin, iXOrigin + KBlockSize,
+			iYOrigin + KBlockSize);
+	for (int y = 0; y < DIM_Y_ARRAY; y++)
 		{
-		for (int x=0; x<DIM_X_ARRAY; x++)
+		for (int x = 0; x < DIM_X_ARRAY; x++)
 			{
 			if (iCells[x][y])
+				{
 				iGc -> SetBrushColor(KRgbBlue);
+				}
 			else
+				{
 				iGc -> SetBrushColor(KRgbYellow);
+				}
 			iGc -> DrawRect(drawBlock);
-			drawBlock.Move(KBlockSize,0);
+			drawBlock.Move(KBlockSize, 0);
 			}
 		drawBlock.iTl.iX = iXOrigin;
-		drawBlock.iBr.iX = iXOrigin+KBlockSize;
-		drawBlock.Move(0,KBlockSize);
+		drawBlock.iBr.iX = iXOrigin + KBlockSize;
+		drawBlock.Move(0, KBlockSize);
 		}
 	iClient.Flush();
 	// Renew request
@@ -115,6 +118,6 @@ void CDirectDisplayLife::DoCancel()
 	// Cancel timer
 	CTimer::DoCancel();
 	// Cancel DSA
-	iDirectScreenAccess -> Cancel();
+	iDirectScreenAccess->Cancel();
 	}
 

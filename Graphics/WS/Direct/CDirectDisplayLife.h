@@ -11,21 +11,18 @@
 #include "CLifeEngine.h"
 
 // Displays a running Game of Life using DSA API
-class CDirectDisplayLife : 
-	public CTimer,				
-	public MDirectScreenAccess	// Call backs from DSA
+class CDirectDisplayLife : public CTimer, public MDirectScreenAccess // Call backs from DSA
 	{
 public:
 	// Construction & destruction
-	CDirectDisplayLife (RWsSession& aClient, 
-		RWindow& aWindow, 
-		CLifeEngine& aLifeEngine);
-	~CDirectDisplayLife ();
+	CDirectDisplayLife(RWsSession& aClient, RWindow& aWindow,
+			CLifeEngine& aLifeEngine);
+	~CDirectDisplayLife();
 	void ConstructL();
 
 	// Start game display
 	void StartL();
-	
+
 	// Implement MDirectScreenAccess
 	void Restart(RDirectScreenAccess::TTerminationReasons aReason);
 	void AbortNow(RDirectScreenAccess::TTerminationReasons aReason);
