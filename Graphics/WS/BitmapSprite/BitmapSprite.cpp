@@ -76,7 +76,7 @@ void CSprite::ConstructL(CWindow* aWindow)
 	iSprite = RWsSprite(iClient->iWs);
 	User::LeaveIfError(iSprite.Construct(aWindow->Window(), iSpritePos, 0));
 	// Initialize sprite members
-	_LIT(KStar,"*");
+	_LIT(KStar, "*");
 	// "*" means "the <app-name>.mbm file in the app directory"
 	for (TInt i = 0; i < 8; i++)
 		{
