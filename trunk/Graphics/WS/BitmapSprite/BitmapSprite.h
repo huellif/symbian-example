@@ -12,11 +12,11 @@
 class CMainWindow : public CWindow
 	{
 public:
-	CMainWindow (CWsClient* aClient);
-	~CMainWindow ();
-	void Draw (const TRect& aRect);
-	void HandlePointerEvent (TPointerEvent& aPointerEvent);
-	void HandlePointerMoveBufferReady ();
+	CMainWindow(CWsClient* aClient);
+	~CMainWindow();
+	void Draw(const TRect& aRect);
+	void HandlePointerEvent(TPointerEvent& aPointerEvent);
+	void HandlePointerMoveBufferReady();
 	};
 
 //////////////////////////////////////////////////////////////////////////
@@ -30,30 +30,29 @@ class CExampleWsClient : public CWsClient
 public:
 	static CExampleWsClient* NewL(const TRect& aRect);
 private:
-	CExampleWsClient (const TRect& aRect);
+	CExampleWsClient(const TRect& aRect);
 	void ConstructMainWindowL();
-	~CExampleWsClient ();
-	void RunL ();
-	void HandleKeyEventL (TKeyEvent& aKeyEvent);
+	~CExampleWsClient();
+	void RunL();
+	void HandleKeyEventL(TKeyEvent& aKeyEvent);
 private:
 	CMainWindow* iMainWindow;
-	CSprite*	iSprite;
+	CSprite* iSprite;
 	const TRect& iRect;
 	};
-
 
 class CSprite : public CBase
 	{
 public:
-	CSprite (CWsClient* aClient);
-	~CSprite ();
+	CSprite(CWsClient* aClient);
+	~CSprite();
 	void ConstructL(CWindow* aWindow);
 	void UpdatePos(TPoint aAdjust);
 private:
-	CWsClient*	iClient;
-	RWsSprite	iSprite;
-	TPoint		iSpritePos;
-	TSpriteMember	iSpriteMember[8];
+	CWsClient* iClient;
+	RWsSprite iSprite;
+	TPoint iSpritePos;
+	TSpriteMember iSpriteMember[8];
 	};
 
 #endif
