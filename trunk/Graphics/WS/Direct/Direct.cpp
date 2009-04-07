@@ -18,8 +18,8 @@
 // CExampleAppView
 //
 
-CExampleAppView::CExampleAppView(CLifeEngine& aLifeEngine)
-: iLifeEngine(aLifeEngine)
+CExampleAppView::CExampleAppView(CLifeEngine& aLifeEngine) :
+	iLifeEngine(aLifeEngine)
 	{
 	}
 
@@ -30,10 +30,10 @@ void CExampleAppView::ConstructL(const TRect& aRect)
 	SetRect(aRect);
 
 	// Set up direct displayer for life engine
-	iDirectDisplayLife = new (ELeave) CDirectDisplayLife (
-		iEikonEnv->WsSession(),		// Window server session
-		Window(),					// The window itself
-		iLifeEngine);
+	iDirectDisplayLife = new (ELeave) CDirectDisplayLife(
+			iEikonEnv->WsSession(), // Window server session
+			Window(), // The window itself
+			iLifeEngine);
 	iDirectDisplayLife -> ConstructL();
 
 	ActivateL();
@@ -54,7 +54,7 @@ void CExampleAppView::StartDirectL()
 // Pause use of the DSA
 void CExampleAppView::PauseDirect()
 	{
-	iState = EDirectPaused;	
+	iState = EDirectPaused;
 	iDirectDisplayLife -> Cancel();
 	}
 
@@ -71,23 +71,21 @@ TInt CExampleAppView::State() const
 	return iState;
 	}
 
-
 void CExampleAppView::Draw(const TRect& /*aRect*/) const
 	{
 	CWindowGc& gc = SystemGc();
 	// white out whole rectangle
-	TRect rect=Rect();
+	TRect rect = Rect();
 	gc.SetPenStyle(CGraphicsContext::ENullPen);
 	gc.SetBrushStyle(CGraphicsContext::ESolidBrush);
 	gc.SetBrushColor(KRgbWhite);
 	gc.DrawRect(rect);
 	// border
-	rect.Shrink(10,10);
+	rect.Shrink(10, 10);
 	gc.SetBrushStyle(CGraphicsContext::ENullBrush);
 	gc.SetPenStyle(CGraphicsContext::ESolidPen);
 	gc.DrawRect(rect);
 	}
-
 
 //
 // CExampleAppUi
@@ -98,7 +96,8 @@ void CExampleAppUi::ConstructL()
 	BaseConstructL();
 
 	// Construct the view
-	iAppView=new(ELeave) CExampleAppView(static_cast<CExampleDocument*>(Document())->LifeEngine());
+	iAppView = new (ELeave) CExampleAppView(
+			static_cast<CExampleDocument*> (Document())->LifeEngine());
 	iAppView->ConstructL(ClientRect());
 
 	// Construct the example overlaying dialog
@@ -118,27 +117,27 @@ void CExampleAppUi::HandleCommandL(TInt aCommand)
 	{
 	switch (aCommand)
 		{
-	// Start command
-	case EExampleCmd1:
-		// Different action required for very first start
-		// And subsequent restarts
-		if (iAppView -> State() == CExampleAppView::EDirectNotStarted)
-			iAppView -> StartDirectL();
-		else
-			{
-			iAppView -> PauseDirect();
-			static_cast<CExampleDocument*>(Document())->LifeEngine().Reset();
-			iAppView -> RestartDirect();
-			}
-		break;
-	// Test overlay command
-	case EExampleCmd2:
-		iOverlayDialog->ShowDialog();
-		break;
-	// Close command
-	case EEikCmdExit: 
-		Exit();
-		break;
+		// Start command
+		case EExampleCmd1:
+			// Different action required for very first start
+			// And subsequent restarts
+			if (iAppView -> State() == CExampleAppView::EDirectNotStarted)
+				iAppView -> StartDirectL();
+			else
+				{
+				iAppView -> PauseDirect();
+				static_cast<CExampleDocument*> (Document())->LifeEngine().Reset();
+				iAppView -> RestartDirect();
+				}
+			break;
+			// Test overlay command
+		case EExampleCmd2:
+			iOverlayDialog->ShowDialog();
+			break;
+			// Close command
+		case EEikCmdExit:
+			Exit();
+			break;
 		}
 	}
 
@@ -146,8 +145,8 @@ void CExampleAppUi::HandleCommandL(TInt aCommand)
 // CExampleAppUi::COverlayDialog
 //
 
-CExampleAppUi::COverlayDialog::COverlayDialog()
-:CActive(EPriorityStandard)
+CExampleAppUi::COverlayDialog::COverlayDialog() :
+	CActive(EPriorityStandard)
 	{
 	iNotifier.Connect();
 	}
@@ -165,7 +164,7 @@ void CExampleAppUi::COverlayDialog::ShowDialog()
 	_LIT(KBut,"OK");
 
 	// Use a notifier to display a dialog from the notifier server thread
-	iNotifier.Notify(KLine1,KLine2,KBut,KBut,iR,iStatus);
+	iNotifier.Notify(KLine1, KLine2, KBut, KBut, iR, iStatus);
 	SetActive();
 	}
 
@@ -182,8 +181,8 @@ void CExampleAppUi::COverlayDialog::DoCancel()
 // CExampleDocument
 //
 
-CExampleDocument::CExampleDocument(CEikApplication& aApp)
-		: CEikDocument(aApp)
+CExampleDocument::CExampleDocument(CEikApplication& aApp) :
+	CEikDocument(aApp)
 	{
 	}
 
@@ -206,7 +205,7 @@ CEikAppUi* CExampleDocument::CreateAppUiL()
 
 	// Create engine
 	iLifeEngine = new (ELeave) CLifeEngine(now.Int64());
-	return new(ELeave) CExampleAppUi;
+	return new (ELeave) CExampleAppUi;
 	}
 
 //
@@ -232,16 +231,15 @@ EXPORT_C CApaApplication* NewApplication()
 	return new CExampleApplication;
 	}
 
-
 //	The below section is added to make the code compatible with v9.1
 //	This is because only exe files are compatible with v9.1
 #if (defined __WINS__ && !defined EKA2)		//	E32Dll used only when WINS defined and EKA2 not defined
-GLDEF_C TInt E32Dll(enum TDllReason)		
+GLDEF_C TInt E32Dll(enum TDllReason)
 	{
 	return KErrNone;
 	}
 #else										//	else E32Main is used
-GLDEF_C TInt E32Main()		
+GLDEF_C TInt E32Main()
 	{
 	return EikStart::RunApplication(NewApplication);
 	}

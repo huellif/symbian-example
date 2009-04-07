@@ -20,7 +20,10 @@
 #include <Direct.rsg>
 #include "Direct.hrh"
 
-const TUid KUidExample = { 0xE8000054 };
+const TUid KUidExample =
+	{
+	0xE8000054
+	};
 
 class CDirectDisplayLife;
 class CLifeEngine;
@@ -30,10 +33,12 @@ class CExampleAppView : public CCoeControl
 	{
 public:
 	// View state
-	enum {
-		EDirectNotStarted=0,	// DSA not used
-		EDirectStarted,			// DSA in use
-		EDirectPaused			// Use of DSA temporarily halted
+	enum
+		{
+		EDirectNotStarted = 0, // DSA not used
+		EDirectStarted, // DSA in use
+		EDirectPaused
+		// Use of DSA temporarily halted
 		};
 
 public:
@@ -78,7 +83,7 @@ private:
 	void HandleCommandL(TInt aCommand);
 
 private:
-	class COverlayDialog: public CActive
+	class COverlayDialog : public CActive
 		{
 	public:
 		COverlayDialog();
@@ -123,7 +128,8 @@ private:
 // Application class
 class CExampleApplication : public CEikApplication
 	{
-private: // from CApaApplication
+private:
+	// from CApaApplication
 	CApaDocument* CreateDocumentL();
 	TUid AppDllUid() const;
 	};
