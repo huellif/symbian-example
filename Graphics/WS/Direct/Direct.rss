@@ -25,8 +25,8 @@ RESOURCE HOTKEYS r_example_hotkeys
 	control=
 		{
 		HOTKEY { command=EEikCmdExit; key='e'; },
-		HOTKEY { command=EExampleCmd1; key='s'; },
-		HOTKEY { command=EExampleCmd2; key='t'; }
+		HOTKEY { command=EExampleCmd_Start; key='s'; },
+		HOTKEY { command=EExampleCmd_TestOverlay; key='t'; }
 		};
 	}
 
@@ -42,8 +42,8 @@ RESOURCE MENU_PANE r_example_file_menu
 	{
 	items=
 		{
-		MENU_ITEM { command=EExampleCmd1; txt="Start"; },
-		MENU_ITEM { command=EExampleCmd2; txt="Test overlay"; },
+		MENU_ITEM { command=EExampleCmd_Start; txt="Start"; },
+		MENU_ITEM { command=EExampleCmd_TestOverlay; txt="Test overlay"; },
 		MENU_ITEM { command=EEikCmdExit; txt="Close"; }
 		};
 	}
