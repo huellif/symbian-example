@@ -23,37 +23,38 @@
 
 TExampleShellModel::TExampleShellModel()
 	{
-	iLibrary=KNullDesC;
+	iLibrary = KNullDesC;
 	}
 
 TBool TExampleShellModel::Differs(const TExampleShellModel* aCompare) const
 	{
-	return((*(TInt32*)this)!=(*(TInt32*)aCompare));
+	return ((*(TInt32*) this) != (*(TInt32*) aCompare));
 	}
 
 //
 // class CExampleShellContainer
 //
 
-void CExampleShellContainer::ConstructL(const TRect& aRect, TExampleShellModel* aModel)
-    {
-	iModel=aModel;
-    CreateWindowL();
-    Window().SetShadowDisabled(ETrue);
-    iContext=this;
-   	iBrushStyle=CGraphicsContext::ESolidBrush;
-    iBrushColor=KRgbWhite;
-    SetRect(aRect);
+void CExampleShellContainer::ConstructL(const TRect& aRect,
+		TExampleShellModel* aModel)
+	{
+	iModel = aModel;
+	CreateWindowL();
+	Window().SetShadowDisabled(ETrue);
+	iContext = this;
+	iBrushStyle = CGraphicsContext::ESolidBrush;
+	iBrushColor = KRgbWhite;
+	SetRect(aRect);
 	CreateLabelL();
-    ActivateL();
-    }
+	ActivateL();
+	}
 
 CExampleShellContainer::~CExampleShellContainer()
-    {
+	{
 	delete iExampleControl;
 	delete iLabel;
-    }
-    
+	}
+
 TInt CExampleShellContainer::CountComponentControls() const
 	{
 	return 1 + (iExampleControl ? 1 : 0);
@@ -63,19 +64,22 @@ CCoeControl* CExampleShellContainer::ComponentControl(TInt aIndex) const
 	{
 	switch (aIndex)
 		{
-	case 0: return iLabel;
-	case 1: return iExampleControl;
-	default: return 0;
+		case 0:
+			return iLabel;
+		case 1:
+			return iExampleControl;
+		default:
+			return 0;
 		};
 	}
 
-const TInt KLabelHeight=20;
+const TInt KLabelHeight = 20;
 
 void CExampleShellContainer::CreateLabelL()
 	{
-	iLabel=new (ELeave) CEikLabel;
-	TRect rect=Rect();
-	rect.iTl.iY=rect.iBr.iY-KLabelHeight; // make it bottom 20 pixels
+	iLabel = new (ELeave) CEikLabel;
+	TRect rect = Rect();
+	rect.iTl.iY = rect.iBr.iY - KLabelHeight; // make it bottom 20 pixels
 	iLabel->SetContainerWindowL(*this);
 	iLabel->SetRect(rect);
 	iLabel->SetAlignment(EHCenterVCenter); // center text
@@ -89,16 +93,20 @@ void CExampleShellContainer::ResetExampleL(CGraphicExampleControl* aExample)
 	// get rid of old control
 	delete iExampleControl;
 	// set up new one
-	iExampleControl=aExample;
+	iExampleControl = aExample;
 	// if non-zero, then carry on
-	if (!iExampleControl) return;
-	TRect rect=Rect(); // get our rect
-	rect.iBr.iY-=KLabelHeight; // make way for label
-	rect.Shrink(2,2); // shrink it a bit
-	iExampleControl->ConstructL(rect,this,*this); // construct, giving rect and observer
+	if (!iExampleControl)
+		{
+		return;
+		}
+	TRect rect = Rect(); // get our rect
+	rect.iBr.iY -= KLabelHeight; // make way for label
+	rect.Shrink(2, 2); // shrink it a bit
+	iExampleControl->ConstructL(rect, this, *this); // construct, giving rect and observer
 	}
 
 _LIT(KTxtFinished,"example finished");
+
 void CExampleShellContainer::NotifyGraphicExampleFinished()
 	{
 	NotifyStatus(KTxtFinished);
@@ -107,16 +115,22 @@ void CExampleShellContainer::NotifyGraphicExampleFinished()
 void CExampleShellContainer::NotifyStatus(const TDesC& aMessage)
 	{
 	iLabel->SetTextL(aMessage);
-	if (IsActivated()) iLabel->DrawNow();
+	if (IsActivated())
+		iLabel->DrawNow();
 	}
 
-TKeyResponse CExampleShellContainer::OfferKeyEventL(const TKeyEvent& aKeyEvent,TEventCode aType)
-    {
-	if	(iExampleControl)
-   		return iExampleControl->OfferKeyEventL(aKeyEvent,aType);
+TKeyResponse CExampleShellContainer::OfferKeyEventL(const TKeyEvent& aKeyEvent,
+		TEventCode aType)
+	{
+	if (iExampleControl)
+		{
+		return iExampleControl->OfferKeyEventL(aKeyEvent, aType);
+		}
 	else
+		{
 		return EKeyWasNotConsumed;
-    }
+		}
+	}
 
 void CExampleShellContainer::Draw(const TRect& /*aRect*/) const
 	{
@@ -125,43 +139,50 @@ void CExampleShellContainer::Draw(const TRect& /*aRect*/) const
 	gc.SetBrushStyle(CGraphicsContext::ESolidBrush);
 	gc.DrawRect(Rect());
 	}
-
 //
 // CExampleShellAppUi
 //
-
 _LIT(KTxtInitialized,"initialized");
+
 void CExampleShellAppUi::ConstructL()
-    {
-    BaseConstructL();
-	iModel=((CExampleShellDocument*)iDocument)->Model();
-    iContainer=new(ELeave) CExampleShellContainer;
-    iContainer->ConstructL(ClientRect(),iModel);
+	{
+	BaseConstructL();
+	iModel = ((CExampleShellDocument*) iDocument)->Model();
+	iContainer = new (ELeave) CExampleShellContainer;
+	iContainer->ConstructL(ClientRect(), iModel);
 	iContainer->NotifyStatus(KTxtInitialized);
 	// add container to stack; enables key event handling.
 	AddToStackL(iContainer);
-    }
+	}
 
 void CExampleShellAppUi::HandleCommandL(TInt aCommand)
 	{
 	switch (aCommand)
 		{
-	case EExampleShellSelectHello:
-		iContainer->ResetExampleL(new (ELeave) CHelloControl);
-		return;
-	case EExampleShellSelectFont:
-		iContainer->ResetExampleL(new (ELeave) CFontControl);
-		return;
-	case EEikCmdExit:
-		Exit();
-		return;
+		case EExampleShellSelectHello:
+			{
+			iContainer->ResetExampleL(new (ELeave) CHelloControl);
+			}
+			return;
+			
+		case EExampleShellSelectFont:
+			{
+			iContainer->ResetExampleL(new (ELeave) CFontControl);
+			}
+			return;
+			
+		case EEikCmdExit:
+			{
+			Exit();
+			}
+			return;
 		}
 	}
 
 CExampleShellAppUi::~CExampleShellAppUi()
 	{
 	RemoveFromStack(iContainer);
-    delete iContainer;
+	delete iContainer;
 	}
 
 //
@@ -170,7 +191,7 @@ CExampleShellAppUi::~CExampleShellAppUi()
 
 CEikAppUi* CExampleShellDocument::CreateAppUiL()
 	{
-    return(new(ELeave) CExampleShellAppUi);
+	return (new (ELeave) CExampleShellAppUi);
 	}
 
 //
@@ -184,7 +205,7 @@ TUid CExampleShellApplication::AppDllUid() const
 
 CApaDocument* CExampleShellApplication::CreateDocumentL()
 	{
-	return new(ELeave) CExampleShellDocument(*this);
+	return new (ELeave) CExampleShellDocument(*this);
 	}
 
 //
