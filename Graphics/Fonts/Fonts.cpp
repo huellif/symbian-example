@@ -32,7 +32,6 @@ void CFontControl::UpdateModelL()
 	iGraphObserver->NotifyStatus(commentaryText);
 	delete myTypefaceSupport;
 	}
-;
 
 void CFontControl::Draw(const TRect& /* aRect */) const
 	{
@@ -41,25 +40,22 @@ void CFontControl::Draw(const TRect& /* aRect */) const
 	gc.Clear();
 
 	// create a centered rectangle of the default size
-	TRect screenRect = Rect();
+	TRect drawRect = Rect();
 
 	// set up absolute font-spec and text box for 300 twip font
 	TFontSpec fontSpec(iCurrentFont, 300);
 	// find the nearest font to the specified one
-	CFont* screenFont;
-	iDeviceMap->GetNearestFontInTwips(screenFont, fontSpec);
+	CFont* drawFont;
+	iDeviceMap->GetNearestFontInTwips(drawFont, fontSpec);
 	// use it for this graphics context
-	gc.UseFont(screenFont);
+	gc.UseFont(drawFont);
 
-	// get height of screen box
-	TInt screenHeight = screenRect.Height();
 	// get font height
-	TInt textHeight = screenFont->HeightInPixels();
+	TInt textHeight = drawFont->HeightInPixels();
 
 	// set up the positioning of the character set rows
 	TInt exampleMargin = 0;
-	TInt currentOffset = ((screenHeight + textHeight) / 2) - (TInt) (textHeight
-			* 2.4);
+	TInt currentOffset = ((drawRect.Height() + textHeight) / 2) - (TInt) (textHeight * 2.4);
 
 	// set up descriptors to hold Unicode characters 32 to 255
 	TBuf<50> buffer;
@@ -76,7 +72,7 @@ void CFontControl::Draw(const TRect& /* aRect */) const
 			count++;
 			}
 		// draw the row in the current font
-		gc.DrawText(buffer, screenRect, currentOffset,
+		gc.DrawText(buffer, drawRect, currentOffset,
 				CGraphicsContext::ECenter, exampleMargin);
 		currentOffset = currentOffset + (TInt) (textHeight * 1.2);
 		buffer.Zero();
@@ -84,5 +80,5 @@ void CFontControl::Draw(const TRect& /* aRect */) const
 
 	// discard and release font
 	gc.DiscardFont();
-	iDeviceMap->ReleaseFont(screenFont);
+	iDeviceMap->ReleaseFont(drawFont);
 	}
