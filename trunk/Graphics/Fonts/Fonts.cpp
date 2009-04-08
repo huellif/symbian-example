@@ -42,7 +42,7 @@ void CFontControl::Draw(const TRect& /* aRect */) const
 	// create a centered rectangle of the default size
 	TRect drawRect = Rect();
 
-	// set up absolute font-spec and text box for 300 twip font
+	// set up absolute font-spec and text box for 300 twips font
 	TFontSpec fontSpec(iCurrentFont, 300);
 	// find the nearest font to the specified one
 	CFont* drawFont;
