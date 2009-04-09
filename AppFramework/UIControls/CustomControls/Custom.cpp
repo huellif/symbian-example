@@ -62,9 +62,9 @@ void CMainWinControl::ConstructL(const TRect& rect)
 	SetRect(rect);
 
 	// Create its only component, a CSmileyContainer
-	iContainer = new(ELeave) CSmileyContainer;
+	iContainer = new (ELeave) CSmileyContainer;
 	iContainer->SetContainerWindowL(*this);
-	TRect containerRect=Rect();
+	TRect containerRect = Rect();
 	iContainer->ConstructL(containerRect);
 	// Activate the main window control - this will also activate the 
 	// CSmileyContainer and its components.
@@ -86,7 +86,7 @@ CCoeControl* CMainWinControl::ComponentControl(TInt /*aIndex*/) const
 // Draw the main window.
 void CMainWinControl::Draw(const TRect& /*aRect*/) const
 	{
-	CWindowGc& gc=SystemGc();
+	CWindowGc& gc = SystemGc();
 	gc.SetBrushColor(KRgbWhite);
 	gc.Clear(Rect());
 	}
@@ -94,7 +94,8 @@ void CMainWinControl::Draw(const TRect& /*aRect*/) const
 // CSmileyContainer can't be put on the control stack, because it's a component of this 
 // control. The main window control goes on the stack and passes on any key events it gets
 // to the CSmileyContainer.
-TKeyResponse CMainWinControl::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEventCode aType)
+TKeyResponse CMainWinControl::OfferKeyEventL(const TKeyEvent& aKeyEvent,
+		TEventCode aType)
 	{
 	return (iContainer->OfferKeyEventL(aKeyEvent, aType));
 	}
@@ -105,32 +106,31 @@ TKeyResponse CMainWinControl::OfferKeyEventL(const TKeyEvent& aKeyEvent, TEventC
 //
 //////////////////////////////////////////////////////////////////////////////
 CSmileyContainer::CSmileyContainer()
-	{}
+	{
+	}
 
-	
 CSmileyContainer::~CSmileyContainer()
 	{
-	  // Delete all the contained controls 
+	// Delete all the contained controls 
 	delete iSmiley1;
 	delete iSmiley2;
 	}
-
 
 // Because CSmileyContainer is a compound control, it needs a
 // ConstructL() for when it's created outside a dialog, and a
 // ConstructFromResourceL() for when it's created inside a dialog.
 void CSmileyContainer::ConstructL(const TRect& aRect)
 	{
-	TBool isSmiling=ETrue;
+	TBool isSmiling = ETrue;
 
 	// Create the two CSmileys. Their size and position is 
 	// set in CSmileyContainer::SizeChangedL().
-	iSmiley1 = new(ELeave) CSmiley(isSmiling);
+	iSmiley1 = new (ELeave) CSmiley(isSmiling);
 	iSmiley1->SetContainerWindowL(*this);
 
-	isSmiling=EFalse;
+	isSmiling = EFalse;
 
-	iSmiley2 = new(ELeave) CSmiley(isSmiling);
+	iSmiley2 = new (ELeave) CSmiley(isSmiling);
 	iSmiley2->SetContainerWindowL(*this);
 
 	iSmiley1->SetFocus(ETrue);
@@ -150,21 +150,20 @@ void CSmileyContainer::ConstructL(const TRect& aRect)
 	SetRect(aRect);
 	}
 
-
 // This function is used when the CSmileyContainer is created inside a dialog.
 void CSmileyContainer::ConstructFromResourceL(TResourceReader& aReader)
 	{
 	// Read the smiley mood from the resource file
-	TBool isSmiling=(TBool)aReader.ReadInt8();
+	TBool isSmiling = (TBool) aReader.ReadInt8();
 	// Read the width of the smiley container from the resource file.
-	TInt width=aReader.ReadInt16();
+	TInt width = aReader.ReadInt16();
 	// Set the height of the container to be half its width
-	TSize containerSize (width, width/2);
+	TSize containerSize(width, width / 2);
 
-	iSmiley1 = new(ELeave) CSmiley(isSmiling);
+	iSmiley1 = new (ELeave) CSmiley(isSmiling);
 	iSmiley1->SetContainerWindowL(*this);
 
-	iSmiley2 = new(ELeave) CSmiley(isSmiling);
+	iSmiley2 = new (ELeave) CSmiley(isSmiling);
 	iSmiley2->SetContainerWindowL(*this);
 
 	iSmiley1->SetFocus(ETrue);
@@ -174,7 +173,7 @@ void CSmileyContainer::ConstructFromResourceL(TResourceReader& aReader)
 
 	SetSize(containerSize);
 
-	ActivateL();	
+	ActivateL();
 	}
 
 // The following two functions have to be implemented for all compound controls.
@@ -185,7 +184,7 @@ TInt CSmileyContainer::CountComponentControls() const
 
 CCoeControl* CSmileyContainer::ComponentControl(TInt aIndex) const
 	{
-	if (aIndex==0)
+	if (aIndex == 0)
 		return iSmiley1;
 	else
 		return iSmiley2;
@@ -195,30 +194,31 @@ CCoeControl* CSmileyContainer::ComponentControl(TInt aIndex) const
 // As this is a compound control, this function calculates and sets the size and  
 // position for its components, based on its own size.
 void CSmileyContainer::SizeChanged()
-    {
-	TInt containerWidth=Size().iWidth;
-	TInt containerHeight=Size().iHeight;
+	{
+	TInt containerWidth = Size().iWidth;
+	TInt containerHeight = Size().iHeight;
 	// Find half of the greater - width or height
-	TInt length=containerHeight>containerWidth ? containerWidth/4 : containerHeight/4; 
-	TSize smileySize(length,length);
+	TInt length = containerHeight > containerWidth ? containerWidth / 4
+			: containerHeight / 4;
+	TSize smileySize(length, length);
 
 	// Do some preliminary calculations so that Draw() is as short
 	// as possible.
-	TInt xOffset=smileySize.iWidth/4; // x offset from the center
-	TInt yOffset=(containerHeight - smileySize.iHeight) / 2;
-	iSmiley1->SetPosition(Position() +
-		TPoint(containerWidth/2 - smileySize.iWidth - xOffset, yOffset));
-	iSmiley2->SetPosition(Position() + 
-		TPoint(containerWidth/2 + xOffset, yOffset));
+	TInt xOffset = smileySize.iWidth / 4; // x offset from the center
+	TInt yOffset = (containerHeight - smileySize.iHeight) / 2;
+	iSmiley1->SetPosition(Position() + TPoint(containerWidth / 2
+			- smileySize.iWidth - xOffset, yOffset));
+	iSmiley2->SetPosition(Position() + TPoint(containerWidth / 2 + xOffset,
+			yOffset));
 	// Calling SetSizeL() causes the components' SizeChanged() to be called.
 	iSmiley1->SetSize(smileySize);
 	iSmiley2->SetSize(smileySize);
 	}
-	
+
 void CSmileyContainer::Draw(const TRect& aRect) const
 	{
 	// Just draw a rectangle round the edge of the control.
-	CWindowGc& gc=SystemGc();
+	CWindowGc& gc = SystemGc();
 	gc.Clear(aRect);
 	gc.SetClippingRect(aRect);
 	gc.DrawRect(Rect());
@@ -231,7 +231,7 @@ void CSmileyContainer::Draw(const TRect& aRect) const
 // sending an event of type EEventRequestFocus, whenever an EButton1Down event
 // occurs in the CSmiley that doesn't currently have focus.
 void CSmileyContainer::HandleControlEventL(CCoeControl* aControl,
-										TCoeEvent aEventType)
+		TCoeEvent aEventType)
 	{
 	switch (aEventType)
 		{
@@ -252,7 +252,7 @@ void CSmileyContainer::HandleControlEventL(CCoeControl* aControl,
 // this example, there's a "rule" that both the CSmileys in the container can't
 // be miserable! If they are, the function leaves. The framework issues the message 
 // we give it, and doesn't move focus away from the CSmileyContainer.
-void CSmileyContainer::PrepareForFocusLossL()	
+void CSmileyContainer::PrepareForFocusLossL()
 	{
 	if (!iSmiley1->IsSmiling() && !iSmiley2->IsSmiling())
 		{
@@ -271,19 +271,18 @@ void CSmileyContainer::FocusChanged(TDrawNow aDrawNow)
 		}
 	else
 		{
-			if (iSmiley1->IsFocused())
+		if (iSmiley1->IsFocused())
 			iSmiley1->SetFocus(EFalse, EDrawNow);
-			else
+		else
 			iSmiley2->SetFocus(EFalse, EDrawNow);
 		}
 	if (aDrawNow)
 		DrawNow();
 	}
 
-
 void CSmileyContainer::SwapFocus(CCoeControl* aControl)
 	{
-	if (aControl==iSmiley1)
+	if (aControl == iSmiley1)
 		{
 		iSmiley2->SetFocus(EFalse, EDrawNow);
 		iSmiley1->SetFocus(ETrue, EDrawNow);
@@ -295,7 +294,8 @@ void CSmileyContainer::SwapFocus(CCoeControl* aControl)
 		}
 	}
 
-TKeyResponse CSmileyContainer::OfferKeyEventL(const TKeyEvent& aKeyEvent,TEventCode aType)
+TKeyResponse CSmileyContainer::OfferKeyEventL(const TKeyEvent& aKeyEvent,
+		TEventCode aType)
 	{
 	// Use the arrow keys to move focus between the two CSmileys.
 	switch (aKeyEvent.iScanCode)
@@ -324,9 +324,6 @@ TKeyResponse CSmileyContainer::OfferKeyEventL(const TKeyEvent& aKeyEvent,TEventC
 	return EKeyWasNotConsumed;
 	}
 
-
-
-
 //////////////////////////////////////////////////////////////////////////////
 //
 // -----> CSmiley (implementation)
@@ -335,7 +332,8 @@ TKeyResponse CSmileyContainer::OfferKeyEventL(const TKeyEvent& aKeyEvent,TEventC
 
 // CSmiley doesn't need a ConstructL() because it's a simple control.
 
-CSmiley::CSmiley(TBool aSmiling) : iSmiling(aSmiling)
+CSmiley::CSmiley(TBool aSmiling) :
+	iSmiling(aSmiling)
 	{
 	}
 
@@ -350,7 +348,7 @@ TBool CSmiley::IsSmiling()
 
 void CSmiley::Draw(const TRect& aRect) const
 	{
-	CWindowGc& gc=SystemGc();
+	CWindowGc& gc = SystemGc();
 	if (IsFocused())
 		{
 		gc.SetPenColor(KRgbBlack);
@@ -370,41 +368,53 @@ void CSmiley::Draw(const TRect& aRect) const
 	// Draw a circle for the face
 	gc.DrawEllipse(iSmileyRect);
 	// Draw the eyes
-	TPoint leftEye(iSmileyWidth/3, iSmileyHeight/3);
-	TPoint rightEye(iSmileyWidth*2/3, iSmileyHeight/3);
-	gc.SetPenSize(TSize(5,5));
-	gc.Plot(iSmileyRect.iTl+leftEye);
-	gc.Plot(iSmileyRect.iTl+rightEye);
+	TPoint leftEye(iSmileyWidth / 3, iSmileyHeight / 3);
+	TPoint rightEye(iSmileyWidth * 2 / 3, iSmileyHeight / 3);
+	gc.SetPenSize(TSize(5, 5));
+	gc.Plot(iSmileyRect.iTl + leftEye);
+	gc.Plot(iSmileyRect.iTl + rightEye);
 	//Draw the mouth, smiling or looking sad.
-	gc.SetPenSize(TSize(1,1));
+	gc.SetPenSize(TSize(1, 1));
 	gc.SetPenColor(KRgbWhite);
 	if (iSmiling)
-		gc.DrawArc(iFrownRect, iFrownRect.iTl+TPoint(iSmileyWidth/2,iFrownRect.Height()/2), 
-							  iFrownRect.iTl+TPoint(0,iFrownRect.Height()/2));
+		{
+		gc.DrawArc(iFrownRect, iFrownRect.iTl + TPoint(iSmileyWidth / 2,
+				iFrownRect.Height() / 2), iFrownRect.iTl + TPoint(0,
+				iFrownRect.Height() / 2));
+		}
 	else
-		gc.DrawArc(iSmileRect, iSmileRect.iTl+TPoint(0,iSmileRect.Height()/2), 
-							  iSmileRect.iTl+TPoint(iSmileyWidth/2,iSmileRect.Height()/2));
+		{
+		gc.DrawArc(iSmileRect, iSmileRect.iTl + TPoint(0, iSmileRect.Height()
+				/ 2), iSmileRect.iTl + TPoint(iSmileyWidth / 2,
+				iSmileRect.Height() / 2));
+		}
 	gc.SetPenColor(KRgbBlack);
 	if (iSmiling)
-		gc.DrawArc(iSmileRect, iSmileRect.iTl+TPoint(0,iSmileRect.Height()/2), 
-							  iSmileRect.iTl+TPoint(iSmileyWidth/2,iSmileRect.Height()/2));
+		{
+		gc.DrawArc(iSmileRect, iSmileRect.iTl + TPoint(0, iSmileRect.Height()
+				/ 2), iSmileRect.iTl + TPoint(iSmileyWidth / 2,
+				iSmileRect.Height() / 2));
+		}
 	else
-		gc.DrawArc(iFrownRect, iFrownRect.iTl+TPoint(iSmileyWidth/2,iFrownRect.Height()/2), 
-							  iFrownRect.iTl+TPoint(0,iFrownRect.Height()/2));
+		{
+		gc.DrawArc(iFrownRect, iFrownRect.iTl + TPoint(iSmileyWidth / 2,
+				iFrownRect.Height() / 2), iFrownRect.iTl + TPoint(0,
+				iFrownRect.Height() / 2));
+		}
 	}
 
 void CSmiley::SizeChanged()
 	{
 	// Calculate sizes of rectangles for drawing face and mouth
-	iSmileyRect=Rect();
+	iSmileyRect = Rect();
 	// Allow room for the focus rectangle round the outside
-	iSmileyRect.Shrink(3,3);
-	iSmileyWidth=iSmileyRect.Width();
-	iSmileyHeight=iSmileyRect.Height();
-	iSmileRect.SetRect(iSmileyRect.iTl+TPoint(iSmileyWidth/4, iSmileyHeight/2),
-					TSize(iSmileyWidth/2, iSmileyHeight/3));
-	iFrownRect.SetRect(iSmileyRect.iTl+TPoint(iSmileyWidth/4, iSmileyHeight*2/3),
-					TSize(iSmileyWidth/2, iSmileyHeight/3));
+	iSmileyRect.Shrink(3, 3);
+	iSmileyWidth = iSmileyRect.Width();
+	iSmileyHeight = iSmileyRect.Height();
+	iSmileRect.SetRect(iSmileyRect.iTl + TPoint(iSmileyWidth / 4, iSmileyHeight
+			/ 2), TSize(iSmileyWidth / 2, iSmileyHeight / 3));
+	iFrownRect.SetRect(iSmileyRect.iTl + TPoint(iSmileyWidth / 4, iSmileyHeight
+			* 2 / 3), TSize(iSmileyWidth / 2, iSmileyHeight / 3));
 	}
 
 void CSmiley::FocusChanged(TDrawNow aDrawNow)
@@ -415,17 +425,18 @@ void CSmiley::FocusChanged(TDrawNow aDrawNow)
 
 void CSmiley::HandlePointerEventL(const TPointerEvent& aPointerEvent)
 	{
-	if (aPointerEvent.iType==TPointerEvent::EButton1Down)
+	if (aPointerEvent.iType == TPointerEvent::EButton1Down)
 		{
 		iSmiling = !iSmiling;
 		DrawNow();
 		}
 	}
 
-TKeyResponse CSmiley::OfferKeyEventL(const TKeyEvent& aKeyEvent,TEventCode aType)
+TKeyResponse CSmiley::OfferKeyEventL(const TKeyEvent& aKeyEvent,
+		TEventCode aType)
 	{
 	// The space bar changes the "mood" of the CSmiley.
-	if (aType==EEventKey && aKeyEvent.iScanCode==EStdKeySpace)
+	if (aType == EEventKey && aKeyEvent.iScanCode == EStdKeySpace)
 		{
 		iSmiling = !iSmiling;
 		DrawNow();
@@ -457,15 +468,15 @@ SEikControlInfo CSmileyDialog::CreateCustomControlL(TInt aControlType)
 	controlInfo.iTrailerTextId = 0;
 	controlInfo.iFlags = 0;
 
-    switch (aControlType)
-        {
-    case ESmileyControl:
-		controlInfo.iControl = new(ELeave) CSmileyContainer;
-		break;
-	default:
-		break;
+	switch (aControlType)
+		{
+		case ESmileyControl:
+			controlInfo.iControl = new (ELeave) CSmileyContainer;
+			break;
+		default:
+			break;
 		}
-    return controlInfo;
+	return controlInfo;
 	}
 
 //////////////////////////////////////////////////////////////////////////////
@@ -475,41 +486,40 @@ SEikControlInfo CSmileyDialog::CreateCustomControlL(TInt aControlType)
 //////////////////////////////////////////////////////////////////////////////
 void CExampleAppUi::ConstructL()
 	{
-	  // Allow base class (CEikAppUi) to perform necessary construction
+	// Allow base class (CEikAppUi) to perform necessary construction
 	BaseConstructL();
 	// Construct the CMainWinControl which forms the main view
 	// for this application.
-	iMainWinControl=new(ELeave) CMainWinControl;
+	iMainWinControl = new (ELeave) CMainWinControl;
 	iMainWinControl->ConstructL(ClientRect());
 	// The main window is added to the control stack (for key event
 	// handling).	
 	AddToStackL(iMainWinControl);
 	}
-	
 
 CExampleAppUi::~CExampleAppUi()
 	{
 	RemoveFromStack(iMainWinControl);
-	  // Delete the main window
+	// Delete the main window
 	delete iMainWinControl;
 	}
 
 void CExampleAppUi::HandleCommandL(TInt aCommand)
 	{
-	  // Handle the command generated by:
-	  //   1. menu item selection
-	  //   2. short-cut key press
+	// Handle the command generated by:
+	//   1. menu item selection
+	//   2. short-cut key press
 	switch (aCommand)
 		{
-	// EXIT comand
-	case EEikCmdExit:
-		OnCmdExit();
-		break;
-	case ECreateSmileyDialog:
-		CSmileyDialog::RunDlgLD();
-		break;
-	default :
-		break;
+		// EXIT comand
+		case EEikCmdExit:
+			OnCmdExit();
+			break;
+		case ECreateSmileyDialog:
+			CSmileyDialog::RunDlgLD();
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -528,9 +538,10 @@ void CExampleAppUi::HandleModelChangeL()
 //
 /////////////////////////////////////////////////////////////////////////////
 
-CExampleDocument::CExampleDocument(CEikApplication& aApp)
-	 : CEikDocument(aApp)
-	{}
+CExampleDocument::CExampleDocument(CEikApplication& aApp) :
+	CEikDocument(aApp)
+	{
+	}
 
 CExampleDocument::~CExampleDocument()
 	{
@@ -538,7 +549,7 @@ CExampleDocument::~CExampleDocument()
 
 CExampleDocument* CExampleDocument::NewL(CEikApplication& aApp)
 	{
-	CExampleDocument* self=new(ELeave) CExampleDocument(aApp);
+	CExampleDocument* self = new (ELeave) CExampleDocument(aApp);
 	CleanupStack::PushL(self);
 	self->CreateModelL();
 	CleanupStack::Pop();
@@ -556,7 +567,7 @@ void CExampleDocument::CreateModelL()
 
 CEikAppUi* CExampleDocument::CreateAppUiL()
 	{
-    return(new(ELeave) CExampleAppUi);
+	return (new (ELeave) CExampleAppUi);
 	}
 
 void CExampleDocument::NewDocumentL()
@@ -564,14 +575,14 @@ void CExampleDocument::NewDocumentL()
 	ResetModelL();
 	}
 
-void CExampleDocument::StoreL(CStreamStore& /*aStore*/,CStreamDictionary& /*aStreamDic*/) const
+void CExampleDocument::StoreL(CStreamStore& /*aStore*/, CStreamDictionary& /*aStreamDic*/) const
 	{
 	}
 
-void CExampleDocument::RestoreL(const CStreamStore& /*aStore*/,const CStreamDictionary& /*aStreamDic*/)
+void CExampleDocument::RestoreL(const CStreamStore& /*aStore*/,
+		const CStreamDictionary& /*aStreamDic*/)
 	{
 	}
-
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -580,15 +591,13 @@ void CExampleDocument::RestoreL(const CStreamStore& /*aStore*/,const CStreamDict
 //////////////////////////////////////////////////////////////////////////////
 TUid CExampleApplication::AppDllUid() const
 	{
-	return(KUidExampleApp);
+	return (KUidExampleApp);
 	}
-
 
 CApaDocument* CExampleApplication::CreateDocumentL()
 	{
 	return CExampleDocument::NewL(*this);
 	}
-
 
 //
 // EXPORTed functions
@@ -599,7 +608,7 @@ LOCAL_C CApaApplication* NewApplication()
 	{
 	return new CExampleApplication;
 	}
-	
+
 GLDEF_C TInt E32Main()
 	{
 	return EikStart::RunApplication(NewApplication);
@@ -615,6 +624,4 @@ EXPORT_C TInt WinsMain(TDesC* aCmdLine)
 	return EikStart::RunApplication(NewApplication, aCmdLine);
 	}
 #endif
-
-
 
