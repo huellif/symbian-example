@@ -341,9 +341,17 @@ CSmiley::~CSmiley()
 	{
 	}
 
-TBool CSmiley::IsSmiling()
+TBool CSmiley::IsSmiling() const
 	{
 	return iSmiling;
+	}
+
+void CSmiley::SetSmiling(TBool aIsSmiling)
+	{
+	if (aIsSmiling != iSmiling)
+		{
+		iSmiling = aIsSmiling;
+		}
 	}
 
 void CSmiley::Draw(const TRect& aRect) const
@@ -363,15 +371,10 @@ void CSmiley::Draw(const TRect& aRect) const
 
 	gc.SetClippingRect(aRect);
 
-	// Draw the smiley face, smiling or looking sad
-	gc.SetPenColor(KRgbBlack);
-	// Draw a circle for the face
-	gc.DrawEllipse(iSmileyRect);
+	DrawFace(gc);
 	DrawEyes(gc);
-	//Draw the mouth, smiling or looking sad.
-	gc.SetPenSize(TSize(1, 1));
-	DrawEyebrow(gc, iSmiling);
-	DrawMouth(gc, iSmiling);
+	DrawEyebrow(gc, IsSmiling());
+	DrawMouth(gc, IsSmiling());
 	}
 
 void CSmiley::SizeChanged()
@@ -390,6 +393,8 @@ void CSmiley::SizeChanged()
 
 void CSmiley::DrawEyebrow(CWindowGc & aGc, TBool bSmiling) const
 	{
+	//Draw the mouth, smiling or looking sad.
+	aGc.SetPenSize(TSize(1, 1));
 	aGc.SetPenColor(KRgbWhite);
 	if (bSmiling)
 		{
@@ -403,7 +408,6 @@ void CSmiley::DrawEyebrow(CWindowGc & aGc, TBool bSmiling) const
 				/ 2), iSmileRect.iTl + TPoint(iSmileyWidth / 2,
 				iSmileRect.Height() / 2));
 		}
-
 	}
 
 void CSmiley::FocusChanged(TDrawNow aDrawNow)
@@ -418,7 +422,7 @@ void CSmiley::HandlePointerEventL(const TPointerEvent& aPointerEvent)
 	{
 	if (aPointerEvent.iType == TPointerEvent::EButton1Down)
 		{
-		iSmiling = !iSmiling;
+		SetSmiling(!IsSmiling());
 		DrawNow();
 		}
 	}
@@ -429,7 +433,7 @@ TKeyResponse CSmiley::OfferKeyEventL(const TKeyEvent& aKeyEvent,
 	// The space bar changes the "mood" of the CSmiley.
 	if (aType == EEventKey && aKeyEvent.iScanCode == EStdKeySpace)
 		{
-		iSmiling = !iSmiling;
+		SetSmiling(!IsSmiling());
 		DrawNow();
 		return EKeyWasConsumed;
 		}
@@ -452,7 +456,7 @@ void CSmiley::DrawEyes(CWindowGc &aGc) const
 void CSmiley::DrawMouth(CWindowGc& aGc, TBool bSmiling) const
 	{
 	aGc.SetPenColor(KRgbBlack);
-	if (iSmiling)
+	if (bSmiling)
 		{
 		aGc.DrawArc(iSmileRect, iSmileRect.iTl + TPoint(0, iSmileRect.Height() / 2),
 				iSmileRect.iTl + TPoint(iSmileyWidth / 2, iSmileRect.Height() / 2));
@@ -462,6 +466,14 @@ void CSmiley::DrawMouth(CWindowGc& aGc, TBool bSmiling) const
 		aGc.DrawArc(iFrownRect, iFrownRect.iTl + TPoint(iSmileyWidth / 2, iFrownRect.Height() / 2),
 				iFrownRect.iTl + TPoint(0, iFrownRect.Height() / 2));
 		}
+	}
+
+void CSmiley::DrawFace(CWindowGc &aGc) const
+	{
+	// Draw the smiley face, smiling or looking sad
+	aGc.SetPenColor(KRgbBlack);
+	// Draw a circle for the face
+	aGc.DrawEllipse(iSmileyRect);
 	}
 
 //////////////////////////////////////////////////////////////////////////////

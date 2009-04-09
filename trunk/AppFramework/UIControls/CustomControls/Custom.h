@@ -71,13 +71,14 @@ public:
 	~CSmiley();
 public:
 	TKeyResponse OfferKeyEventL(const TKeyEvent& aKeyEvent,TEventCode aType);
-	TBool IsSmiling();
+	TBool IsSmiling() const;
+	void SetSmiling(TBool aIsSmiling);
 private:
-	void Draw(const TRect& aRect) const;
+	virtual void Draw(const TRect& aRect) const;
+	virtual void SizeChanged();
 	
-	void SizeChanged();
-	
-	void DrawEyes(CWindowGc &gc) const;
+	void DrawFace(CWindowGc &aGc) const;
+	void DrawEyes(CWindowGc &aGc) const;
 	void DrawEyebrow(CWindowGc& aGc, TBool bSmiling) const;
 	void DrawMouth(CWindowGc& aGc, TBool bSmiling) const;
 	
