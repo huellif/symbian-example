@@ -121,16 +121,12 @@ CSmileyContainer::~CSmileyContainer()
 // ConstructFromResourceL() for when it's created inside a dialog.
 void CSmileyContainer::ConstructL(const TRect& aRect)
 	{
-	TBool isSmiling = ETrue;
-
 	// Create the two CSmileys. Their size and position is 
 	// set in CSmileyContainer::SizeChangedL().
-	iSmiley1 = new (ELeave) CSmiley(isSmiling);
+	iSmiley1 = new (ELeave) CSmiley(ETrue);
 	iSmiley1->SetContainerWindowL(*this);
 
-	isSmiling = EFalse;
-
-	iSmiley2 = new (ELeave) CSmiley(isSmiling);
+	iSmiley2 = new (ELeave) CSmiley(EFalse);
 	iSmiley2->SetContainerWindowL(*this);
 
 	iSmiley1->SetFocus(ETrue);
@@ -185,9 +181,13 @@ TInt CSmileyContainer::CountComponentControls() const
 CCoeControl* CSmileyContainer::ComponentControl(TInt aIndex) const
 	{
 	if (aIndex == 0)
+		{
 		return iSmiley1;
+		}
 	else
+		{
 		return iSmiley2;
+		}
 	}
 
 // This function gets called whenever one of the size-setting functions is called.
@@ -206,10 +206,11 @@ void CSmileyContainer::SizeChanged()
 	// as possible.
 	TInt xOffset = smileySize.iWidth / 4; // x offset from the center
 	TInt yOffset = (containerHeight - smileySize.iHeight) / 2;
-	iSmiley1->SetPosition(Position() + TPoint(containerWidth / 2
-			- smileySize.iWidth - xOffset, yOffset));
-	iSmiley2->SetPosition(Position() + TPoint(containerWidth / 2 + xOffset,
-			yOffset));
+	iSmiley1->SetPosition(Position()
+			+ TPoint(containerWidth / 2 - smileySize.iWidth - xOffset, yOffset));
+	iSmiley2->SetPosition(Position()
+			+ TPoint(containerWidth / 2 + xOffset, yOffset));
+	
 	// Calling SetSizeL() causes the components' SizeChanged() to be called.
 	iSmiley1->SetSize(smileySize);
 	iSmiley2->SetSize(smileySize);
@@ -238,7 +239,9 @@ void CSmileyContainer::HandleControlEventL(CCoeControl* aControl,
 		case EEventRequestFocus:
 			{
 			if (aControl->IsFocused())
+				{
 				return;
+				}
 			SwapFocus(aControl);
 			}
 			break;
@@ -277,7 +280,9 @@ void CSmileyContainer::FocusChanged(TDrawNow aDrawNow)
 			iSmiley2->SetFocus(EFalse, EDrawNow);
 		}
 	if (aDrawNow)
+		{
 		DrawNow();
+		}
 	}
 
 void CSmileyContainer::SwapFocus(CCoeControl* aControl)
@@ -302,18 +307,26 @@ TKeyResponse CSmileyContainer::OfferKeyEventL(const TKeyEvent& aKeyEvent,
 		{
 		case EStdKeySpace:
 			if (iSmiley1->IsFocused())
+				{
 				return iSmiley1->OfferKeyEventL(aKeyEvent, aType);
+				}
 			else if (iSmiley2->IsFocused())
+				{
 				return iSmiley2->OfferKeyEventL(aKeyEvent, aType);
+				}
 			break;
 		case EStdKeyRightArrow:
 			if (iSmiley1->IsFocused())
+				{
 				SwapFocus(iSmiley2);
+				}
 			return EKeyWasConsumed;
 			break;
 		case EStdKeyLeftArrow:
 			if (iSmiley2->IsFocused())
+				{
 				SwapFocus(iSmiley1);
+				}
 			return EKeyWasConsumed;
 			break;
 		default:
@@ -385,10 +398,10 @@ void CSmiley::SizeChanged()
 	iSmileyRect.Shrink(3, 3);
 	iSmileyWidth = iSmileyRect.Width();
 	iSmileyHeight = iSmileyRect.Height();
-	iSmileRect.SetRect(iSmileyRect.iTl + TPoint(iSmileyWidth / 4, iSmileyHeight
-			/ 2), TSize(iSmileyWidth / 2, iSmileyHeight / 3));
-	iFrownRect.SetRect(iSmileyRect.iTl + TPoint(iSmileyWidth / 4, iSmileyHeight
-			* 2 / 3), TSize(iSmileyWidth / 2, iSmileyHeight / 3));
+	iSmileRect.SetRect(iSmileyRect.iTl + TPoint(iSmileyWidth / 4, iSmileyHeight / 2),
+			TSize(iSmileyWidth / 2, iSmileyHeight / 3));
+	iFrownRect.SetRect(iSmileyRect.iTl + TPoint(iSmileyWidth / 4, iSmileyHeight * 2 / 3),
+			TSize(iSmileyWidth / 2, iSmileyHeight / 3));
 	}
 
 void CSmiley::DrawEyebrow(CWindowGc & aGc, TBool bSmiling) const
@@ -398,15 +411,15 @@ void CSmiley::DrawEyebrow(CWindowGc & aGc, TBool bSmiling) const
 	aGc.SetPenColor(KRgbWhite);
 	if (bSmiling)
 		{
-		aGc.DrawArc(iFrownRect, iFrownRect.iTl + TPoint(iSmileyWidth / 2,
-				iFrownRect.Height() / 2), iFrownRect.iTl + TPoint(0,
-				iFrownRect.Height() / 2));
+		aGc.DrawArc(iFrownRect,
+				iFrownRect.iTl + TPoint(iSmileyWidth / 2, iFrownRect.Height() / 2),
+				iFrownRect.iTl + TPoint(0, iFrownRect.Height() / 2));
 		}
 	else
 		{
-		aGc.DrawArc(iSmileRect, iSmileRect.iTl + TPoint(0, iSmileRect.Height()
-				/ 2), iSmileRect.iTl + TPoint(iSmileyWidth / 2,
-				iSmileRect.Height() / 2));
+		aGc.DrawArc(iSmileRect,
+				iSmileRect.iTl + TPoint(0, iSmileRect.Height() / 2),
+				iSmileRect.iTl + TPoint(iSmileyWidth / 2, iSmileRect.Height() / 2));
 		}
 	}
 
@@ -458,12 +471,14 @@ void CSmiley::DrawMouth(CWindowGc& aGc, TBool bSmiling) const
 	aGc.SetPenColor(KRgbBlack);
 	if (bSmiling)
 		{
-		aGc.DrawArc(iSmileRect, iSmileRect.iTl + TPoint(0, iSmileRect.Height() / 2),
+		aGc.DrawArc(iSmileRect,
+				iSmileRect.iTl + TPoint(0, iSmileRect.Height() / 2),
 				iSmileRect.iTl + TPoint(iSmileyWidth / 2, iSmileRect.Height() / 2));
 		}
 	else
 		{
-		aGc.DrawArc(iFrownRect, iFrownRect.iTl + TPoint(iSmileyWidth / 2, iFrownRect.Height() / 2),
+		aGc.DrawArc(iFrownRect,
+				iFrownRect.iTl + TPoint(iSmileyWidth / 2, iFrownRect.Height() / 2),
 				iFrownRect.iTl + TPoint(0, iFrownRect.Height() / 2));
 		}
 	}
@@ -499,7 +514,9 @@ SEikControlInfo CSmileyDialog::CreateCustomControlL(TInt aControlType)
 	switch (aControlType)
 		{
 		case ESmileyControl:
+			{
 			controlInfo.iControl = new (ELeave) CSmileyContainer;
+			}
 			break;
 		default:
 			break;
@@ -541,10 +558,14 @@ void CExampleAppUi::HandleCommandL(TInt aCommand)
 		{
 		// EXIT comand
 		case EEikCmdExit:
+			{
 			OnCmdExit();
+			}
 			break;
 		case ECreateSmileyDialog:
+			{
 			CSmileyDialog::RunDlgLD();
+			}
 			break;
 		default:
 			break;
