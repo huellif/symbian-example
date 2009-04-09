@@ -367,15 +367,10 @@ void CSmiley::Draw(const TRect& aRect) const
 	gc.SetPenColor(KRgbBlack);
 	// Draw a circle for the face
 	gc.DrawEllipse(iSmileyRect);
-	// Draw the eyes
-	TPoint leftEye(iSmileyWidth / 3, iSmileyHeight / 3);
-	TPoint rightEye(iSmileyWidth * 2 / 3, iSmileyHeight / 3);
-	gc.SetPenSize(TSize(5, 5));
-	gc.Plot(iSmileyRect.iTl + leftEye);
-	gc.Plot(iSmileyRect.iTl + rightEye);
+	DrawEyes(gc);
 	//Draw the mouth, smiling or looking sad.
 	gc.SetPenSize(TSize(1, 1));
-	DrawFrown(gc, iSmiling);
+	DrawEyebrow(gc, iSmiling);
 	
 	gc.SetPenColor(KRgbBlack);
 	if (iSmiling)
@@ -406,7 +401,7 @@ void CSmiley::SizeChanged()
 			* 2 / 3), TSize(iSmileyWidth / 2, iSmileyHeight / 3));
 	}
 
-void CSmiley::DrawFrown(CWindowGc & aGc, TBool bSmiling) const
+void CSmiley::DrawEyebrow(CWindowGc & aGc, TBool bSmiling) const
 	{
 	aGc.SetPenColor(KRgbWhite);
 	if (bSmiling)
@@ -455,6 +450,16 @@ TKeyResponse CSmiley::OfferKeyEventL(const TKeyEvent& aKeyEvent,
 		{
 		return EKeyWasNotConsumed;
 		}
+	}
+
+void CSmiley::DrawEyes(CWindowGc &aGc) const
+	{
+		// Draw the eyes
+	TPoint leftEye(iSmileyWidth / 3, iSmileyHeight / 3);
+	TPoint rightEye(iSmileyWidth * 2 / 3, iSmileyHeight / 3);
+	aGc.SetPenSize(TSize(5, 5));
+	aGc.Plot(iSmileyRect.iTl + leftEye);
+	aGc.Plot(iSmileyRect.iTl + rightEye);
 	}
 
 //////////////////////////////////////////////////////////////////////////////
