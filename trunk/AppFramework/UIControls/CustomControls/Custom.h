@@ -74,9 +74,11 @@ public:
 	TBool IsSmiling();
 private:
 	void Draw(const TRect& aRect) const;
+	
 	void SizeChanged();
 	
-	void DrawFrown(CWindowGc& aGc, TBool bSmiling) const;
+	void DrawEyes(CWindowGc &gc) const;
+	void DrawEyebrow(CWindowGc& aGc, TBool bSmiling) const;
 	void DrawMouth(CWindowGc& aGc, TBool bSmiling) const;
 	
 protected:
