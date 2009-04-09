@@ -75,6 +75,10 @@ public:
 private:
 	void Draw(const TRect& aRect) const;
 	void SizeChanged();
+	
+	void DrawFrown(CWindowGc& aGc, TBool bSmiling) const;
+	void DrawMouth(CWindowGc& aGc, TBool bSmiling) const;
+	
 protected:
 	void HandlePointerEventL(const TPointerEvent& aPointerEvent);
 	void FocusChanged(TDrawNow aDrawNow);
