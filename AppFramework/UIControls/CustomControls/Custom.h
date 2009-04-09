@@ -135,6 +135,8 @@ private:
 	  // this class (its containees do not report events).
 	void         HandleControlEventL(CCoeControl* aControl,
 		                             TCoeEvent aEventType);
+protected:
+	virtual void HandlePointerEventL(const TPointerEvent &aPointerEvent);
 private:
 	  // Member functions defined and used by this class
 	void		SwapFocus(CCoeControl* aControl);
@@ -161,6 +163,7 @@ public:
 	CCoeControl* ComponentControl(TInt aIndex) const;
 	TKeyResponse OfferKeyEventL(const TKeyEvent& aKeyEvent, TEventCode aType);
 private:
+	virtual void HandlePointerEventL(const TPointerEvent &aPointerEvent);
 	void Draw(const TRect& aRect) const;
 private:
 	CSmileyContainer*	iContainer;

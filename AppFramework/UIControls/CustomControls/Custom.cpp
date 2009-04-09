@@ -65,6 +65,7 @@ void CMainWinControl::ConstructL(const TRect& rect)
 	iContainer = new (ELeave) CSmileyContainer;
 	iContainer->SetContainerWindowL(*this);
 	TRect containerRect = Rect();
+	containerRect.Shrink(10, 10);
 	iContainer->ConstructL(containerRect);
 	// Activate the main window control - this will also activate the 
 	// CSmileyContainer and its components.
@@ -89,6 +90,10 @@ void CMainWinControl::Draw(const TRect& /*aRect*/) const
 	CWindowGc& gc = SystemGc();
 	gc.SetBrushColor(KRgbWhite);
 	gc.Clear(Rect());
+
+	TRect drawRect(Rect());
+	drawRect.Shrink(2, 2);
+	gc.DrawRect(drawRect);
 	}
 
 // CSmileyContainer can't be put on the control stack, because it's a component of this 
@@ -98,6 +103,12 @@ TKeyResponse CMainWinControl::OfferKeyEventL(const TKeyEvent& aKeyEvent,
 		TEventCode aType)
 	{
 	return (iContainer->OfferKeyEventL(aKeyEvent, aType));
+	}
+
+void CMainWinControl::HandlePointerEventL(const TPointerEvent &aPointerEvent)
+	{
+	RDebug::Print(_L("=>CMainWinControl::HandlePointerEventL(const TPointerEvent &aPointerEvent)"));
+	CCoeControl::HandlePointerEventL(aPointerEvent);
 	}
 
 //////////////////////////////////////////////////////////////////////////////
@@ -337,6 +348,12 @@ TKeyResponse CSmileyContainer::OfferKeyEventL(const TKeyEvent& aKeyEvent,
 	return EKeyWasNotConsumed;
 	}
 
+void CSmileyContainer::HandlePointerEventL(const TPointerEvent &aPointerEvent)
+	{
+	RDebug::Print(_L("=>CSmileyContainer::HandlePointerEventL(const TPointerEvent &aPointerEvent)"));
+	CCoeControl::HandlePointerEventL(aPointerEvent);
+	}
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // -----> CSmiley (implementation)
@@ -433,6 +450,7 @@ void CSmiley::FocusChanged(TDrawNow aDrawNow)
 
 void CSmiley::HandlePointerEventL(const TPointerEvent& aPointerEvent)
 	{
+	RDebug::Print(_L("=>CSmiley::HandlePointerEventL(const TPointerEvent& aPointerEvent)"));
 	if (aPointerEvent.iType == TPointerEvent::EButton1Down)
 		{
 		SetSmiling(!IsSmiling());
