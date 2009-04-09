@@ -371,20 +371,7 @@ void CSmiley::Draw(const TRect& aRect) const
 	//Draw the mouth, smiling or looking sad.
 	gc.SetPenSize(TSize(1, 1));
 	DrawEyebrow(gc, iSmiling);
-	
-	gc.SetPenColor(KRgbBlack);
-	if (iSmiling)
-		{
-		gc.DrawArc(iSmileRect, iSmileRect.iTl + TPoint(0, iSmileRect.Height()
-				/ 2), iSmileRect.iTl + TPoint(iSmileyWidth / 2,
-				iSmileRect.Height() / 2));
-		}
-	else
-		{
-		gc.DrawArc(iFrownRect, iFrownRect.iTl + TPoint(iSmileyWidth / 2,
-				iFrownRect.Height() / 2), iFrownRect.iTl + TPoint(0,
-				iFrownRect.Height() / 2));
-		}
+	DrawMouth(gc, iSmiling);
 	}
 
 void CSmiley::SizeChanged()
@@ -460,6 +447,21 @@ void CSmiley::DrawEyes(CWindowGc &aGc) const
 	aGc.SetPenSize(TSize(5, 5));
 	aGc.Plot(iSmileyRect.iTl + leftEye);
 	aGc.Plot(iSmileyRect.iTl + rightEye);
+	}
+
+void CSmiley::DrawMouth(CWindowGc& aGc, TBool bSmiling) const
+	{
+	aGc.SetPenColor(KRgbBlack);
+	if (iSmiling)
+		{
+		aGc.DrawArc(iSmileRect, iSmileRect.iTl + TPoint(0, iSmileRect.Height() / 2),
+				iSmileRect.iTl + TPoint(iSmileyWidth / 2, iSmileRect.Height() / 2));
+		}
+	else
+		{
+		aGc.DrawArc(iFrownRect, iFrownRect.iTl + TPoint(iSmileyWidth / 2, iFrownRect.Height() / 2),
+				iFrownRect.iTl + TPoint(0, iFrownRect.Height() / 2));
+		}
 	}
 
 //////////////////////////////////////////////////////////////////////////////
