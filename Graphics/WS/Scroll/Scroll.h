@@ -27,11 +27,18 @@ public:
 	void HandlePointerMoveBufferReady()
 		{
 		}
+protected:
+	// window height to calculate vertical text offset
+	TInt WinHeight();
+	TInt WinWidth();
+	TInt BaselineOffset();
+	TRect TextBox();
+
 private:
 	static TInt iCount;
 	TInt iNumber; // Number displayed in window
 	TPoint iOldPos; // Position is required for drag and drop
-	TPoint iOffset; // Used for scrolling
+	TPoint iOffsetPoint; // Used for scrolling
 	TRect iRepeatRect; // Boundary for pointer repeat events
 	EScrollDir iScrollDir; // Scroll direction for pointer repeat events
 	};
@@ -63,7 +70,7 @@ private:
 	void HandleKeyEventL(TKeyEvent& aKeyEvent);
 private:
 	CMainWindow* iMainWindow;
-	CNumberedWindow* iWindow1;
+	CNumberedWindow* iNumWin;
 	const TRect& iRect;
 	};
 
