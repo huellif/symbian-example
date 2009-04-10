@@ -15,7 +15,10 @@
 
 #include <eikon.hrh>
 
-const TUid KUidAppholder = { 0xE8000056 };
+const TUid KUidAppholder =
+	{
+	0xE8000056
+	};
 
 class CWsClient;
 
@@ -28,12 +31,12 @@ class CAppholderAppUi : public CEikAppUi
 public:
 	void ConstructL();
 	~CAppholderAppUi();
-private: // from CEikAppUi
+private:
+	// from CEikAppUi
 	void HandleCommandL(TInt aCommand);
 private:
 	CWsClient* iClient;
 	};
-
 
 //
 // CAppholderDocument
@@ -45,10 +48,10 @@ public:
 	// construct/destruct
 	CAppholderDocument(CEikApplication& aApp);
 	~CAppholderDocument();
-private: // from CEikDocument
+private:
+	// from CEikDocument
 	CEikAppUi* CreateAppUiL();
 	};
-
 
 //
 // CAppholderApplication
@@ -56,7 +59,8 @@ private: // from CEikDocument
 
 class CAppholderApplication : public CEikApplication
 	{
-private: // from CApaApplication
+private:
+	// from CApaApplication
 	CApaDocument* CreateDocumentL();
 	TUid AppDllUid() const;
 	};

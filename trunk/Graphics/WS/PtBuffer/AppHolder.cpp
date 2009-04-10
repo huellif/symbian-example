@@ -19,12 +19,12 @@ EXPORT_C CApaApplication* NewApplication()
 //	The below section is added to make the code compatible with v9.1
 //	This is because only exe files are compatible with v9.1
 #if (defined __WINS__ && !defined EKA2)		//	E32Dll used only when WINS defined and EKA2 not defined
-GLDEF_C TInt E32Dll(enum TDllReason)		
+GLDEF_C TInt E32Dll(enum TDllReason)
 	{
 	return KErrNone;
 	}
 #else										//	else E32Main is used
-GLDEF_C TInt E32Main()		
+GLDEF_C TInt E32Main()
 	{
 	return EikStart::RunApplication(NewApplication);
 	}
@@ -49,7 +49,6 @@ CApaDocument* CAppholderApplication::CreateDocumentL()
 	return new (ELeave) CAppholderDocument(*this);
 	}
 
-
 ////////////////////////////////////////////////////////////////
 //
 // Document class, CAppholderDocument
@@ -57,14 +56,14 @@ CApaDocument* CAppholderApplication::CreateDocumentL()
 ////////////////////////////////////////////////////////////////
 
 // C++ constructor
-CAppholderDocument::CAppholderDocument(CEikApplication& aApp)
-		: CEikDocument(aApp)
+CAppholderDocument::CAppholderDocument(CEikApplication& aApp) :
+	CEikDocument(aApp)
 	{
 	}
 
 CEikAppUi* CAppholderDocument::CreateAppUiL()
 	{
-    return new(ELeave) CAppholderAppUi;
+	return new (ELeave) CAppholderAppUi;
 	}
 
 CAppholderDocument::~CAppholderDocument()
@@ -78,10 +77,10 @@ CAppholderDocument::~CAppholderDocument()
 ////////////////////////////////////////////////////////////////
 
 void CAppholderAppUi::ConstructL()
-    {
-    BaseConstructL();
-	iClient=CExampleWsClient::NewL(ClientRect());
-    }
+	{
+	BaseConstructL();
+	iClient = CExampleWsClient::NewL(ClientRect());
+	}
 
 CAppholderAppUi::~CAppholderAppUi()
 	{
@@ -92,8 +91,8 @@ void CAppholderAppUi::HandleCommandL(TInt aCommand)
 	{
 	switch (aCommand)
 		{
-	case EEikCmdExit: 
-		Exit();
-		break;
+		case EEikCmdExit:
+			Exit();
+			break;
 		}
 	}

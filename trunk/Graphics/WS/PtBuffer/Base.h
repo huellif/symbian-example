@@ -11,7 +11,6 @@
 class CWsRedrawer;
 class CWindow;
 
-
 /////////////////////////////////////////////////////////////////////////
 //						Declaration of CWsClient
 /////////////////////////////////////////////////////////////////////////
@@ -30,7 +29,7 @@ public:
 	void IssueRequest(); // request an event
 	void DoCancel(); // cancel the request
 	virtual void RunL() = 0; // handle completed request
-	virtual void HandleKeyEventL (TKeyEvent& aKeyEvent) = 0;
+	virtual void HandleKeyEventL(TKeyEvent& aKeyEvent) = 0;
 protected:
 	//construct
 	CWsClient();
@@ -44,8 +43,6 @@ private:
 	friend class CWsRedrawer; // needs to get at session
 	friend class CWindow; // needs to get at session
 	};
-
-
 
 ////////////////////////////////////////////////////////////////////////////
 //						CWsRedrawer declaration
@@ -63,9 +60,8 @@ public:
 	void DoCancel();
 	void RunL();
 protected:
-		CWsClient* iClient;
+	CWsClient* iClient;
 	};
-
 
 //////////////////////////////////////////////////////////////////////////////
 //							CWindow declaration
@@ -77,9 +73,13 @@ protected:
 	RWindow iWindow; // window server window
 	TRect iRect; // window's extent
 public:
-	enum {KPointerMoveBufferSize=32};
+	enum
+		{
+		KPointerMoveBufferSize = 32
+		};
 	CWindow(CWsClient* aClient);
-	void ConstructL (const TRect& aRect, const TRgb& aColor, CWindow* aParent=0);
+	void ConstructL(const TRect& aRect, const TRgb& aColor, CWindow* aParent =
+			0);
 	~CWindow();
 	// access
 	RWindow& Window(); // our own window
@@ -87,11 +87,10 @@ public:
 	CWsScreenDevice* Screen();
 	// drawing
 	virtual void Draw(const TRect& aRect) = 0;
-	virtual void HandlePointerEvent (TPointerEvent& aPointerEvent) = 0;
-	virtual void HandlePointerMoveBufferReady () = 0;
+	virtual void HandlePointerEvent(TPointerEvent& aPointerEvent) = 0;
+	virtual void HandlePointerMoveBufferReady() = 0;
 private:
 	CWsClient* iClient; // client including session and group
 	};
-
 
 #endif
