@@ -11,7 +11,6 @@
 class CWsRedrawer;
 class CWindow;
 
-
 /////////////////////////////////////////////////////////////////////////
 //						Declaration of CWsClient
 /////////////////////////////////////////////////////////////////////////
@@ -30,7 +29,7 @@ public:
 	void IssueRequest(); // request an event
 	void DoCancel(); // cancel the request
 	virtual void RunL() = 0; // handle completed request
-	virtual void HandleKeyEventL (TKeyEvent& aKeyEvent) = 0;
+	virtual void HandleKeyEventL(TKeyEvent& aKeyEvent) = 0;
 protected:
 	//construct
 	CWsClient();
@@ -44,8 +43,6 @@ private:
 	friend class CWsRedrawer; // needs to get at session
 	friend class CWindow; // needs to get at session
 	};
-
-
 
 ////////////////////////////////////////////////////////////////////////////
 //						CWsRedrawer declaration
@@ -66,7 +63,6 @@ protected:
 	CWsClient* iClient;
 	};
 
-
 //////////////////////////////////////////////////////////////////////////////
 //							CWindow declaration
 //////////////////////////////////////////////////////////////////////////////
@@ -74,9 +70,12 @@ protected:
 class CWindow : public CBase
 	{
 public:
-	enum {KPointerMoveBufferSize=32};
+	enum
+		{
+		KPointerMoveBufferSize = 32
+		};
 	CWindow(CWsClient* aClient);
-	void ConstructL (const TRect& aRect, const TRgb& aColor, CWindow* aParent=0);
+	void ConstructL(const TRect& aRect, const TRgb& aColor, CWindow* aParent = 0);
 	~CWindow();
 	// access
 	RWindow& Window(); // our own window
@@ -85,14 +84,13 @@ public:
 	CFont* Font();
 	// drawing
 	virtual void Draw(const TRect& aRect) = 0;
-	virtual void HandlePointerEvent (TPointerEvent& aPointerEvent) = 0;
+	virtual void HandlePointerEvent(TPointerEvent& aPointerEvent) = 0;
 protected:
 	RWindow iWindow; // window server window
 	TRect iRect; // window's extent
 private:
 	CWsClient* iClient; // client including session and group
-	CFont*	iFont;
+	CFont* iFont;
 	};
-
 
 #endif

@@ -79,8 +79,7 @@ void CNumberedWindow::HandlePointerEvent(TPointerEvent& aPointerEvent)
 			iRepeatRect.iTl = aPointerEvent.iPosition - TPoint(10, 10);
 			iRepeatRect.iBr = aPointerEvent.iPosition + TPoint(10, 10);
 			iScrollDir = Up;
-			Window().RequestPointerRepeatEvent(TTimeIntervalMicroSeconds32(
-					20000), iRepeatRect);
+			Window().RequestPointerRepeatEvent(TTimeIntervalMicroSeconds32(20000), iRepeatRect);
 			break;
 			}
 		case TPointerEvent::EButtonRepeat:
