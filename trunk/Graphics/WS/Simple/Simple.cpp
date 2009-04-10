@@ -183,7 +183,7 @@ void CExampleWsClient::ConstructMainWindowL()
 	iMainWindow=new (ELeave) CMainWindow(this);
 	iMainWindow->ConstructL(iRect);
 	iSmallWindow  = new (ELeave) CSmallWindow (this);
-	iSmallWindow->ConstructL (TRect (TPoint (100, 75), TSize (50, 50)), iMainWindow);
+	iSmallWindow->ConstructL (TRect (TPoint (300, 0), TSize (50, 50)), iMainWindow);
 		}
 
 
@@ -197,9 +197,10 @@ void CExampleWsClient::ConstructMainWindowL()
 \****************************************************************************/
 void CExampleWsClient::RunL()
 	{
+	TWsEvent wsEvent;
 	// get the event
-	iWs.GetEvent(iWsEvent);
-	TInt eventType=iWsEvent.Type();
+	iWs.GetEvent(wsEvent);
+	TInt eventType=wsEvent.Type();
 	// take action on it
 	switch (eventType)
 		{
@@ -208,7 +209,7 @@ void CExampleWsClient::RunL()
 		break;
 	case EEventKey:
 		{
-		TKeyEvent& keyEvent=*iWsEvent.Key(); // get key event
+		TKeyEvent& keyEvent=*wsEvent.Key(); // get key event
 		HandleKeyEventL (keyEvent);
 		break;
 		}
@@ -225,8 +226,8 @@ void CExampleWsClient::RunL()
 	// window related events
 	case EEventPointer:
 		{
-		CWindow* window=(CWindow*)(iWsEvent.Handle()); // get window
-		TPointerEvent& pointerEvent=*iWsEvent.Pointer();
+		CWindow* window=(CWindow*)(wsEvent.Handle()); // get window
+		TPointerEvent& pointerEvent=*wsEvent.Pointer();
 		window->HandlePointerEvent (pointerEvent);
 
 		break;
