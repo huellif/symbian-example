@@ -53,9 +53,8 @@ void CMainWindow::HandlePointerMoveBufferReady()
 	TPoint pnts[KPointerMoveBufferSize];
 	TPtr8 ptr((TUint8 *) &pnts, sizeof(pnts));
 	TInt numPnts = Window().RetrievePointerMoveBuffer(ptr);
-	TSize size = Window().Size();
-	TPoint position = Window().Position();
-	TRect redrawRect(position, size);
+	TRect redrawRect(Window().Position(), Window().Size());
+
 	CWindowGc* gc = SystemGc();
 	gc->Activate(Window());
 	Window().Invalidate();
@@ -143,7 +142,7 @@ void CExampleWsClient::ConstructMainWindowL()
 	{
 	// Resources allocated in this function are freed in the CExampleWsClient destructor		
 	iMainWindow = new (ELeave) CMainWindow(this);
-	iMainWindow->ConstructL(iRect, TRgb(255, 255, 255));
+	iMainWindow->ConstructL(iRect, TRgb(0xc0, 0xc0, 0xc0));
 	}
 
 /****************************************************************************\
