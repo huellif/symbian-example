@@ -23,7 +23,7 @@ CNumberedWindow::CNumberedWindow(CWsClient* aClient, TInt aNum) :
 	CWindow(aClient),
 	iNumber(aNum),
 	iOldPos(0, 0),
-	iOffset(0, 0),
+	iOffsetPoint(0, 0),
 	iRepeatRect(0, 0, 0, 0)
 	{
 	}
@@ -49,17 +49,24 @@ void CNumberedWindow::Draw(const TRect& aRect)
 	CWindowGc* gc = SystemGc(); // get a graphics context
 	gc->SetClippingRect(aRect); // clip outside the redraw area
 	gc->Clear(aRect); // clear the redraw area
-	TSize size = iWindow.Size();
-	TInt height = size.iHeight; // Need window height to calculate vertical text offset
-	TInt ascent = Font()->AscentInPixels();
-	TInt descent = Font()->DescentInPixels();
-	TInt offset = (height + (ascent + descent)) / 2; // Calculate vertical text offset
+
 	gc->SetPenColor(TRgb(0, 0, 0)); // Set pen to black
 	gc->UseFont(Font());
-	gc->DrawText(strings[iNumber], TRect(TPoint(0, 0) + iOffset, size), offset,
+	gc->DrawText(strings[iNumber], TextBox(), BaselineOffset(),
 			CGraphicsContext::ECenter);
-	gc->DrawLine(TPoint(0, 0) + iOffset, TPoint(size.iWidth, height) + iOffset);
+	gc->DrawLine(TPoint(0, 0) + iOffsetPoint, TPoint(WinWidth(), WinHeight()) + iOffsetPoint);
 	gc->DiscardFont();
+	}
+
+TInt CNumberedWindow::BaselineOffset()
+	{
+	// Calculate vertical text offset
+	return (WinHeight() + (Font()->AscentInPixels() + Font()->DescentInPixels())) / 2;
+	}
+
+TRect CNumberedWindow::TextBox()
+	{
+	return TRect(TPoint(0, 0) + iOffsetPoint, iWindow.Size());
 	}
 
 /****************************************************************************\
@@ -75,7 +82,7 @@ void CNumberedWindow::HandlePointerEvent(TPointerEvent& aPointerEvent)
 		case TPointerEvent::EButton1Down:
 			{
 			Window().Scroll(TPoint(0, -2));
-			iOffset += TPoint(0, -2);
+			iOffsetPoint += TPoint(0, -2);
 			iRepeatRect.iTl = aPointerEvent.iPosition - TPoint(10, 10);
 			iRepeatRect.iBr = aPointerEvent.iPosition + TPoint(10, 10);
 			iScrollDir = Up;
@@ -87,12 +94,12 @@ void CNumberedWindow::HandlePointerEvent(TPointerEvent& aPointerEvent)
 			if (iScrollDir == Up)
 				{
 				Window().Scroll(TPoint(0, -2));
-				iOffset += TPoint(0, -2);
+				iOffsetPoint += TPoint(0, -2);
 				}
 			else
 				{
 				Window().Scroll(TPoint(0, 2));
-				iOffset += TPoint(0, 2);
+				iOffsetPoint += TPoint(0, 2);
 				}
 			Window().RequestPointerRepeatEvent(TTimeIntervalMicroSeconds32(20000), iRepeatRect);
 			break;
@@ -100,7 +107,7 @@ void CNumberedWindow::HandlePointerEvent(TPointerEvent& aPointerEvent)
 		case TPointerEvent::EButton3Down:
 			{
 			Window().Scroll(TPoint(0, 2));
-			iOffset += TPoint(0, 2);
+			iOffsetPoint += TPoint(0, 2);
 			iRepeatRect.iTl = aPointerEvent.iPosition - TPoint(10, 10);
 			iRepeatRect.iBr = aPointerEvent.iPosition + TPoint(10, 10);
 			iScrollDir = Down;
@@ -111,6 +118,17 @@ void CNumberedWindow::HandlePointerEvent(TPointerEvent& aPointerEvent)
 			break;
 		}
 	}
+
+TInt CNumberedWindow::WinHeight()
+	{
+	return iWindow.Size().iHeight;
+	}
+
+TInt CNumberedWindow::WinWidth()
+	{
+	return iWindow.Size().iWidth;
+	}
+
 
 //////////////////////////////////////////////////////////////////////////////
 //					 CMainWindow implementation
@@ -193,7 +211,7 @@ CExampleWsClient::CExampleWsClient(const TRect& aRect) :
 CExampleWsClient::~CExampleWsClient()
 	{
 	delete iMainWindow;
-	delete iWindow1;
+	delete iNumWin;
 	}
 
 /****************************************************************************\
@@ -207,10 +225,10 @@ void CExampleWsClient::ConstructMainWindowL()
 	{
 	iMainWindow = new (ELeave) CMainWindow(this);
 	iMainWindow->ConstructL(iRect, TRgb(255, 255, 255));
-	iWindow1 = new (ELeave) CNumberedWindow(this, 1);
+	iNumWin = new (ELeave) CNumberedWindow(this, 1);
 	TRect rec(iRect);
 	rec.Resize(-50, -50);
-	iWindow1->ConstructL(rec, TRgb(200, 200, 200), iMainWindow);
+	iNumWin->ConstructL(rec, TRgb(200, 200, 200), iMainWindow);
 	}
 
 /****************************************************************************\
