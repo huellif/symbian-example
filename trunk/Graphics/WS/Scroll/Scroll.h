@@ -16,19 +16,24 @@
 class CNumberedWindow : public CWindow
 	{
 public:
-	enum EScrollDir {Up, Down};
-	CNumberedWindow (CWsClient* aClient, TInt aNum);
-	~CNumberedWindow ();
-	void Draw (const TRect& aRect);
-	void HandlePointerEvent (TPointerEvent& aPointerEvent);
-	void HandlePointerMoveBufferReady () {}
+	enum EScrollDir
+		{
+		Up, Down
+		};
+	CNumberedWindow(CWsClient* aClient, TInt aNum);
+	~CNumberedWindow();
+	void Draw(const TRect& aRect);
+	void HandlePointerEvent(TPointerEvent& aPointerEvent);
+	void HandlePointerMoveBufferReady()
+		{
+		}
 private:
 	static TInt iCount;
-	TInt	iNumber;	// Number displayed in window
-	TPoint	iOldPos;	// Position is required for drag and drop
-	TPoint	iOffset;	// Used for scrolling
-	TRect	iRepeatRect;	// Boundary for pointer repeat events
-	EScrollDir	iScrollDir;	// Scroll direction for pointer repeat events
+	TInt iNumber; // Number displayed in window
+	TPoint iOldPos; // Position is required for drag and drop
+	TPoint iOffset; // Used for scrolling
+	TRect iRepeatRect; // Boundary for pointer repeat events
+	EScrollDir iScrollDir; // Scroll direction for pointer repeat events
 	};
 
 // CMainWindow is a plain window that just acts as a container for the
@@ -36,10 +41,10 @@ private:
 class CMainWindow : public CWindow
 	{
 public:
-	CMainWindow (CWsClient* aClient);
-	~CMainWindow ();
-	void Draw (const TRect& aRect);
-	void HandlePointerEvent (TPointerEvent& aPointerEvent);
+	CMainWindow(CWsClient* aClient);
+	~CMainWindow();
+	void Draw(const TRect& aRect);
+	void HandlePointerEvent(TPointerEvent& aPointerEvent);
 	};
 
 //////////////////////////////////////////////////////////////////////////
@@ -51,16 +56,15 @@ class CExampleWsClient : public CWsClient
 public:
 	static CExampleWsClient* NewL(const TRect& aRect);
 private:
-	CExampleWsClient (const TRect& aRect);
+	CExampleWsClient(const TRect& aRect);
 	void ConstructMainWindowL();
-	~CExampleWsClient ();
-	void RunL ();
-	void HandleKeyEventL (TKeyEvent& aKeyEvent);
+	~CExampleWsClient();
+	void RunL();
+	void HandleKeyEventL(TKeyEvent& aKeyEvent);
 private:
-	CMainWindow*	iMainWindow;
+	CMainWindow* iMainWindow;
 	CNumberedWindow* iWindow1;
 	const TRect& iRect;
 	};
-
 
 #endif
