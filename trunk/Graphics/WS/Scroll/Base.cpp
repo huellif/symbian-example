@@ -10,29 +10,31 @@
 //							CWindow implementation
 ///////////////////////////////////////////////////////////////////////////////
 
-CWindow::CWindow(CWsClient* aClient)
-	: iClient(aClient)
+CWindow::CWindow(CWsClient* aClient) :
+	iClient(aClient)
 	{
 	}
 
-void CWindow::ConstructL (const TRect& aRect, const TRgb& aColor, CWindow* aParent)
+void CWindow::ConstructL(const TRect& aRect, const TRgb& aColor,
+		CWindow* aParent)
 	{
-	_LIT(KFontName,"Swiss");
+	_LIT(KFontName, "Swiss");
 	// If a parent window was specified, use it; if not, use the window group
 	// (aParent defaults to 0).
-	RWindowTreeNode* parent= aParent ? (RWindowTreeNode*) &(aParent->Window()) : &(iClient->iGroup);
+	RWindowTreeNode* parent = aParent ? (RWindowTreeNode*) &(aParent->Window())
+			: &(iClient->iGroup);
 	// Allocate and construct the window
-	iWindow=RWindow(iClient->iWs);
-	User::LeaveIfError(iWindow.Construct(*parent,(TUint32)this));
+	iWindow = RWindow(iClient->iWs);
+	User::LeaveIfError(iWindow.Construct(*parent, (TUint32) this));
 	// Store the window's extent
 	iRect = aRect;
 	// Set up the new window's extent
 	iWindow.SetExtent(iRect.iTl, iRect.Size());
 	// Set its background color
-	iWindow.SetBackgroundColor (aColor);
+	iWindow.SetBackgroundColor(aColor);
 	// Set up font for displaying text
-	TFontSpec fontSpec(KFontName,200);
-	User::LeaveIfError(iClient->iScreen->GetNearestFontInTwips(iFont,fontSpec));
+	TFontSpec fontSpec(KFontName, 200);
+	User::LeaveIfError(iClient->iScreen->GetNearestFontInTwips(iFont, fontSpec));
 	// Activate the window
 	iWindow.Activate();
 	}
@@ -63,19 +65,18 @@ CFont* CWindow::Font()
 	return iFont;
 	}
 
-
 ///////////////////////////////////////////////////////////////////////////////
 //							CWsRedrawer implementation
 ///////////////////////////////////////////////////////////////////////////////
 
-CWsRedrawer::CWsRedrawer()
-	: CActive(CActive::EPriorityLow)
+CWsRedrawer::CWsRedrawer() :
+	CActive(CActive::EPriorityLow)
 	{
 	}
 
 void CWsRedrawer::ConstructL(CWsClient* aClient)
 	{
-	iClient=aClient; // remember WsClient that owns us
+	iClient = aClient; // remember WsClient that owns us
 	CActiveScheduler::Add(this); // add ourselves to the scheduler
 	IssueRequest(); // issue request to draw
 	}
@@ -97,14 +98,14 @@ void CWsRedrawer::DoCancel()
 	}
 
 void CWsRedrawer::RunL()
-	{	
+	{
 	// find out what needs to be done in response to the event
 	TWsRedrawEvent redrawEvent;
-    iClient->iWs.GetRedraw(redrawEvent); // get event
-	CWindow* window=(CWindow*)(redrawEvent.Handle()); // get window
+	iClient->iWs.GetRedraw(redrawEvent); // get event
+	CWindow* window = (CWindow*) (redrawEvent.Handle()); // get window
 	if (window)
 		{
-		TRect rect=redrawEvent.Rect(); // and rectangle that needs redrawing
+		TRect rect = redrawEvent.Rect(); // and rectangle that needs redrawing
 		// now do drawing
 		iClient->iGc->Activate(window->Window());
 		window->Window().BeginRedraw();
@@ -116,12 +117,11 @@ void CWsRedrawer::RunL()
 	IssueRequest();
 	}
 
-
 /////////////////////////////////////////////////////////////////////////////////////
 //								CWsClient implementation
 /////////////////////////////////////////////////////////////////////////////////////
-CWsClient::CWsClient()
-	: CActive(CActive::EPriorityStandard)
+CWsClient::CWsClient() :
+	CActive(CActive::EPriorityStandard)
 	{
 	}
 
@@ -132,14 +132,14 @@ void CWsClient::ConstructL()
 	// get a session going
 	User::LeaveIfError(iWs.Connect());
 	// construct our one and only window group
-	iGroup=RWindowGroup(iWs);
-	User::LeaveIfError(iGroup.Construct(2,ETrue)); // '2' is a meaningless handle
+	iGroup = RWindowGroup(iWs);
+	User::LeaveIfError(iGroup.Construct(2, ETrue)); // '2' is a meaningless handle
 	// construct screen device and graphics context
-	iScreen=new (ELeave) CWsScreenDevice(iWs); // make device for this session
+	iScreen = new (ELeave) CWsScreenDevice(iWs); // make device for this session
 	User::LeaveIfError(iScreen->Construct()); // and complete its construction
 	User::LeaveIfError(iScreen->CreateContext(iGc)); // create graphics context
 	// construct redrawer
-	iRedrawer=new (ELeave) CWsRedrawer;
+	iRedrawer = new (ELeave) CWsRedrawer;
 	iRedrawer->ConstructL(this);
 	// construct main window
 	ConstructMainWindowL();
