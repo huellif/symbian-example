@@ -69,7 +69,7 @@ private:
 	void RunL();
 	void HandleKeyEventL(TKeyEvent& aKeyEvent);
 private:
-	CMainWindow* iMainWindow;
+	CMainWindow* iMainWin;
 	CNumberedWindow* iNumWin;
 	const TRect& iRect;
 	};

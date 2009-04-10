@@ -54,14 +54,14 @@ void CNumberedWindow::Draw(const TRect& aRect)
 	gc->UseFont(Font());
 	gc->DrawText(strings[iNumber], TextBox(), BaselineOffset(),
 			CGraphicsContext::ECenter);
-	gc->DrawLine(TPoint(0, 0) + iOffsetPoint, TPoint(WinWidth(), WinHeight()) + iOffsetPoint);
+	gc->DrawLine(TextBox().iTl, TextBox().iBr);
 	gc->DiscardFont();
 	}
 
 TInt CNumberedWindow::BaselineOffset()
 	{
 	// Calculate vertical text offset
-	return (WinHeight() + (Font()->AscentInPixels() + Font()->DescentInPixels())) / 2;
+	return (WinHeight() + Font()->HeightInPixels()) / 2;
 	}
 
 TRect CNumberedWindow::TextBox()
@@ -210,7 +210,7 @@ CExampleWsClient::CExampleWsClient(const TRect& aRect) :
 
 CExampleWsClient::~CExampleWsClient()
 	{
-	delete iMainWindow;
+	delete iMainWin;
 	delete iNumWin;
 	}
 
@@ -223,12 +223,12 @@ CExampleWsClient::~CExampleWsClient()
 
 void CExampleWsClient::ConstructMainWindowL()
 	{
-	iMainWindow = new (ELeave) CMainWindow(this);
-	iMainWindow->ConstructL(iRect, TRgb(255, 255, 255));
+	iMainWin = new (ELeave) CMainWindow(this);
+	iMainWin->ConstructL(iRect, TRgb(255, 255, 255));
 	iNumWin = new (ELeave) CNumberedWindow(this, 1);
-	TRect rec(iRect);
-	rec.Resize(-50, -50);
-	iNumWin->ConstructL(rec, TRgb(200, 200, 200), iMainWindow);
+	TRect numWinRect(iRect);
+	numWinRect.Resize(-50, -50);
+	iNumWin->ConstructL(numWinRect, TRgb(200, 200, 200), iMainWin);
 	}
 
 /****************************************************************************\
