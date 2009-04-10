@@ -16,7 +16,10 @@
 
 // UID of app
 
-const TUid KUidExampleShellApp={ 0xE800004F };
+const TUid KUidExampleShellApp =
+	{
+	0xE800004F
+	};
 
 //
 // TExampleShellModel
@@ -38,29 +41,34 @@ public:
 class CExampleShellContainer : public CCoeControl,
 		public MCoeControlBrushContext,
 		public MGraphicsExampleObserver
-    {
+	{
 public:
-    void ConstructL(const TRect& aRect, TExampleShellModel* aModel);
-    ~CExampleShellContainer();
+	void ConstructL(const TRect& aRect, TExampleShellModel* aModel);
+	~CExampleShellContainer();
 	// changing view
 	void ResetExampleL(CGraphicExampleControl* aExample);
-private: // from CCoeControl
+private:
+	// from CCoeControl
 	void Draw(const TRect& /*aRect*/) const;
-	TKeyResponse OfferKeyEventL(const TKeyEvent& aKeyEvent,TEventCode aType);
-    TInt CountComponentControls() const;
-    CCoeControl* ComponentControl(TInt aIndex) const;
-private: // from MGraphicsExampleObserver
+	TKeyResponse OfferKeyEventL(const TKeyEvent& aKeyEvent, TEventCode aType);
+	TInt CountComponentControls() const;
+	CCoeControl* ComponentControl(TInt aIndex) const;
+private:
+	// from MGraphicsExampleObserver
 	void NotifyGraphicExampleFinished();
-public: // also from MGraphicsExampleObserver
+public:
+	// also from MGraphicsExampleObserver
 	void NotifyStatus(const TDesC& aMessage);
-private: // new function
+private:
+	// new function
 	void CreateLabelL();
-private: // data
+private:
+	// data
 	CGraphicExampleControl* iExampleControl; // example control
 	CEikLabel* iLabel; // label for status messages
 	// irrelevant
 	TExampleShellModel* iModel;
-    };
+	};
 
 //
 // CExampleShellDocument
@@ -69,9 +77,16 @@ private: // data
 class CExampleShellDocument : public CEikDocument
 	{
 public:
-	CExampleShellDocument(CEikApplication& aApp): CEikDocument(aApp) { }
-	TExampleShellModel* Model() { return(&iModel); }
-private: // from CEikDocument
+	CExampleShellDocument(CEikApplication& aApp) :
+		CEikDocument(aApp)
+		{
+		}
+	TExampleShellModel* Model()
+		{
+		return (&iModel);
+		}
+private:
+	// from CEikDocument
 	CEikAppUi* CreateAppUiL();
 private:
 	TExampleShellModel iModel;
@@ -82,18 +97,20 @@ private:
 //
 
 class CExampleShellAppUi : public CEikAppUi
-    {
+	{
 public:
-    void ConstructL();
+	void ConstructL();
 	~CExampleShellAppUi();
-private: // from CEikAppUi
-	void HandleCommandL(TInt aCommand);
-private: // internal use
-//	void PrepareToolbarButtons();
 private:
-    CExampleShellContainer* iContainer;
+	// from CEikAppUi
+	void HandleCommandL(TInt aCommand);
+private:
+	// internal use
+	//	void PrepareToolbarButtons();
+private:
+	CExampleShellContainer* iContainer;
 	TExampleShellModel* iModel;
-    };
+	};
 
 //
 // CExampleShellApplication
@@ -101,7 +118,8 @@ private:
 
 class CExampleShellApplication : public CEikApplication
 	{
-private: // from CApaApplication
+private:
+	// from CApaApplication
 	CApaDocument* CreateDocumentL();
 	TUid AppDllUid() const;
 	};
