@@ -16,11 +16,11 @@
 class CMainWindow : public CWindow
 	{
 public:
-	CMainWindow (CWsClient* aClient);
-	~CMainWindow ();
-	void Draw (const TRect& aRect);
-	void HandlePointerEvent (TPointerEvent& aPointerEvent);
-	void HandlePointerMoveBufferReady ();
+	CMainWindow(CWsClient* aClient);
+	~CMainWindow();
+	void Draw(const TRect& aRect);
+	void HandlePointerEvent(TPointerEvent& aPointerEvent);
+	void HandlePointerMoveBufferReady();
 	};
 
 //////////////////////////////////////////////////////////////////////////
@@ -31,14 +31,14 @@ class CExampleWsClient : public CWsClient
 	{
 public:
 	static CExampleWsClient* NewL(const TRect& aRect);
-	~CExampleWsClient ();
+	~CExampleWsClient();
 private:
-	CExampleWsClient (const TRect& aRect);
+	CExampleWsClient(const TRect& aRect);
 	void ConstructMainWindowL();
-	void RunL ();
-	void HandleKeyEventL (TKeyEvent& aKeyEvent);
+	void RunL();
+	void HandleKeyEventL(TKeyEvent& aKeyEvent);
 private:
-	CMainWindow*	iMainWindow;
+	CMainWindow* iMainWindow;
 	const TRect& iRect;
 	};
 
