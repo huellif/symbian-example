@@ -57,6 +57,8 @@ void CMainWindow::HandlePointerMoveBufferReady()
 
 	CWindowGc* gc = SystemGc();
 	gc->Activate(Window());
+	gc->SetPenColor(KRgbBlue);
+	gc->SetPenSize(TSize(2, 2));
 	Window().Invalidate();
 	Window().BeginRedraw(redrawRect); // N.B. Redrawer::RunL() gets called with this 
 	// rectangle - must give it a non-zero value
