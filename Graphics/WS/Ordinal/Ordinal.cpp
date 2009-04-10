@@ -283,7 +283,7 @@ void CExampleWsClient::ConstructMainWindowL()
 	iMainWindow=new (ELeave) CMainWindow(this);
 	iMainWindow->ConstructL(iRect, TRgb (255,255,255));
 	TInt count=0;
-	TRect rect(0,0,40,40);
+	TRect rect(TPoint(100, 0), TSize(100, 100));
 	iWindow1  = new (ELeave) CNumberedWindow (this, count++);
 	iWindow1->ConstructL (rect, TRgb (50, 50, 50),iMainWindow);
 	iWindow2  = new (ELeave) CNumberedWindow (this, count++);
