@@ -34,7 +34,7 @@ _LIT(KTxtCase6, "masks: the problem of drawing a bitmap on different backgrounds
 _LIT(KTxtCase7, "masks: using a mask to give a bitmap a transparent background");
 // The name of the multi-bitmap file containing the bitmap
 // and bitmap mask files.
-_LIT(KTxtMBMname,"\\resource\\apps\\grbmap.mbm");
+_LIT(KTxtMBMname, "\\resource\\apps\\grbmap.mbm");
 
 void CBitmapControl::UpdateModelL()
 	{
@@ -105,7 +105,8 @@ void CBitmapControl::Draw(const TRect& /* aRect */) const
 	CWindowGc& gc = SystemGc(); // graphics context we draw to
 	gc.UseFont(iMessageFont); // use the system message font
 	gc.Clear(); // clear the area to be drawn to
-	SystemGc().DrawRect(Rect()); // surrounding rectangle to draw into
+	gc.DrawRect(Rect()); // surrounding rectangle to draw into
+
 	TRect rect = Rect(); // a centered rectangle of the default size
 	TRect bmpPieceRect = Rect(); // a rectangle to define a piece of bitmap
 	TInt xDelta = 0; // for x coordinates
@@ -262,8 +263,8 @@ void CBitmapControl::Draw(const TRect& /* aRect */) const
 			pos2 += rightRect.iTl; // bitmap piece top left corner position
 			gc.BitBltMasked(pos2, iBitmap, bmpPieceRect, iMaskBitmap, EFalse); // CWindowGc member function
 
-			_LIT(KTxtTheBitmap,"The bitmap:");
-			_LIT(KTxtBitmapMask,"The bitmap's mask:");
+			_LIT(KTxtTheBitmap, "The bitmap:");
+			_LIT(KTxtBitmapMask, "The bitmap's mask:");
 
 			gc.DrawText(KTxtTheBitmap, TPoint(5, 20));
 			gc.BitBlt(TPoint(130, 0), iBitmap);
