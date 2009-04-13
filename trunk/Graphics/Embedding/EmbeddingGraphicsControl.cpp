@@ -1,23 +1,21 @@
 // EmbeddingGraphicsControl.cpp
 //
 // Copyright (c) 2000 Symbian Ltd.  All rights reserved.
-
 #include "EmbeddingGraphicsControl.h"
-
 #include <coemain.h>
 #include <coeaui.h>
-
 _LIT(KtxtSwiss,"Swiss");
 
-void CGraphicExampleControl::ConstructL(const TRect& aRect, MGraphicsExampleObserver* aGraphObserver, const CCoeControl& aParent)
+void CGraphicExampleControl::ConstructL(const TRect& aRect,
+		MGraphicsExampleObserver* aGraphObserver, const CCoeControl& aParent)
 	{
 	// remember the graphics observer
-	iGraphObserver=aGraphObserver;
+	iGraphObserver = aGraphObserver;
 	// create window
 	CreateWindowL(&aParent);
 	// construct font for messages
-    TFontSpec spec(KtxtSwiss,213);
-    iMessageFont=iCoeEnv->CreateScreenFontL(spec);
+	TFontSpec spec(KtxtSwiss, 213);
+	iMessageFont = iCoeEnv->CreateScreenFontL(spec);
 	// set rectangle to prescription
 	SetRect(aRect);
 	// go for it
@@ -38,7 +36,9 @@ void CGraphicExampleControl::Quit()
 void CGraphicExampleControl::NextPhaseL()
 	{
 	if (++iPhase >= iMaxPhases)
+		{
 		Quit();
+		}
 	else
 		{
 		UpdateModelL();
@@ -46,25 +46,33 @@ void CGraphicExampleControl::NextPhaseL()
 		}
 	}
 
-void CGraphicExampleControl::HandlePointerEventL(const TPointerEvent& aPointerEvent)
+void CGraphicExampleControl::HandlePointerEventL(
+		const TPointerEvent& aPointerEvent)
 	{
-	if (aPointerEvent.iType==TPointerEvent::EButton1Down) NextPhaseL();
+	if (aPointerEvent.iType == TPointerEvent::EButton1Down)
+		{
+		NextPhaseL();
+		}
 	}
 
-TKeyResponse CGraphicExampleControl::OfferKeyEventL(
-			const TKeyEvent& aKeyEvent,TEventCode aType
-			)
+TKeyResponse CGraphicExampleControl::OfferKeyEventL(const TKeyEvent& aKeyEvent,
+		TEventCode aType)
 	{
-	if (aType!=EEventKey) return EKeyWasNotConsumed;
-	TInt code=aKeyEvent.iCode;
+	if (aType != EEventKey)
+		return EKeyWasNotConsumed;
+	TInt code = aKeyEvent.iCode;
 	switch (code)
 		{
 		case ' ':
+			{
 			NextPhaseL();
+			}
 			break;
+			
 		default:
 			return EKeyWasNotConsumed;
 		}
+	
 	return EKeyWasConsumed;
 	}
 
