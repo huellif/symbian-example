@@ -69,8 +69,8 @@ private:
 	void StoreHeaderComponentsL(CStoreMap& aMap,CStreamStore& aStore) const;
 	void RestoreHeaderL(CStreamStore& aStore, TStreamId aId);
 
-	TZoomFactor testZf;
-	MGraphicsDeviceMap* testMap;
+	TZoomFactor iTestZf;
+	MGraphicsDeviceMap* iTestMap;
 
 	TDocStatus iValidDocument; // if false, then Draw() draws gray screen
 	CSmileyPicture* iPicture; // if there, then draw
