@@ -250,11 +250,11 @@ _LIT(KTxtUpdateModelCase6, "restore picture from file");
 void CPictureControl::UpdateModelL()
 	{
 	// set up zoom factor object
-	testZf.SetGraphicsDeviceMap(iCoeEnv->ScreenDevice());
+	iTestZf.SetGraphicsDeviceMap(iCoeEnv->ScreenDevice());
 	// set the zoom factor of the object
-	testZf.SetZoomFactor(TZoomFactor::EZoomOneToOne);
+	iTestZf.SetZoomFactor(TZoomFactor::EZoomOneToOne);
 	// use graphics device maps for drawing and getting fonts
-	testMap = &testZf;
+	iTestMap = &iTestZf;
 
 	// the file session used in the example
 	RFs fsSession;
@@ -424,7 +424,7 @@ void CPictureControl::Draw(const TRect& /* aRect */) const
 		case CPictureControl::EPicture:
 			{
 			// if picture in is memory then draw it
-			iPicture->Draw(gc, iOffset, rect, testMap);
+			iPicture->Draw(gc, iOffset, rect, iTestMap);
 			}
 			break;
 
