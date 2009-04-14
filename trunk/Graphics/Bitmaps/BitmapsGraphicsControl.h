@@ -27,14 +27,14 @@ public:
 	void Draw(const TRect& aRect) const;
 	
 protected:
-	void CaseBitBlt(CWindowGc &aGc) const;
-    void CaseBitBltPiece(CWindowGc & gc) const;
-    void CaseDrawBitmapTopLeft(CWindowGc & gc) const;
-    void CaseDrawBitmapRect(CWindowGc & gc) const;
-    void CaseBrushPattern(CWindowGc & gc) const;
-    void CaseBrushPatternOrigin(CWindowGc & gc) const;
-    void CaseDiffBackground(CWindowGc & gc) const;
-    void CaseDiffBackgroundDetailed(CWindowGc & gc) const;
+	void CaseBitBlt(CWindowGc& aGc) const;
+    void CaseBitBltPiece(CWindowGc& aGc) const;
+    void CaseDrawBitmapTopLeft(CWindowGc& aGc) const;
+    void CaseDrawBitmapRect(CWindowGc& aGc) const;
+    void CaseBrushPattern(CWindowGc& aGc) const;
+    void CaseBrushPatternOrigin(CWindowGc& aGc) const;
+    void CaseDiffBackground(CWindowGc& aGc) const;
+    void CaseDiffBackgroundDetailed(CWindowGc& aGc) const;
 
 protected:
 	TPoint DeltaPos(TSize aBmpSize, TSize aCtrlSize) const;
