@@ -236,19 +236,12 @@ CPictureControl::CPictureControl()
 	iValidDocument = CPictureControl::EPicture;
 	iOffset = TPoint(50, 50);
 	}
-// The file name
-_LIT(KFileName,"C:\\grpict.dat");
-// Literal text
-_LIT(KTxtUpdateModelCase0, "draw happy face at (50,50)");
-_LIT(KTxtUpdateModelCase1, "draw sad face at (50,50)");
-_LIT(KTxtUpdateModelCase2, "draw neutral face at (50,50)");
-_LIT(KTxtUpdateModelCase3, "store picture in file");
-_LIT(KTxtUpdateModelCase4, "delete picture from memory");
-_LIT(KTxtUpdateModelCase5, "restore picture header from file");
-_LIT(KTxtUpdateModelCase6, "restore picture from file");
 
 void CPictureControl::UpdateModelL()
 	{
+	// The file name
+	_LIT(KFileName, "C:\\grpict.dat");
+
 	// set up zoom factor object
 	iTestZf.SetGraphicsDeviceMap(iCoeEnv->ScreenDevice());
 	// set the zoom factor of the object
@@ -264,30 +257,34 @@ void CPictureControl::UpdateModelL()
 		{
 		case 0:
 			{
+			_LIT(KTxtUpdateModelCase0, "draw happy face at (50, 50)");
 			iGraphObserver->NotifyStatus(KTxtUpdateModelCase0);
 			iPicture = CSmileyPicture::NewL(CSmileyPicture::EHappy,
 					CSmileyPicture::ESmall);
 			}
 			break;
-			
+
 		case 1:
 			{
+			_LIT(KTxtUpdateModelCase1, "draw sad face at (50, 50)");
 			iGraphObserver->NotifyStatus(KTxtUpdateModelCase1);
 			iPicture->SetMood(CSmileyPicture::ESad);
 			iPicture->SetSize(CSmileyPicture::EMedium);
 			}
 			break;
-			
+
 		case 2:
 			{
+			_LIT(KTxtUpdateModelCase2, "draw neutral face at (50, 50)");
 			iGraphObserver->NotifyStatus(KTxtUpdateModelCase2);
 			iPicture->SetMood(CSmileyPicture::ENeutral);
 			iPicture->SetSize(CSmileyPicture::ELarge);
 			}
 			break;
-		
+
 		case 3:
 			{
+			_LIT(KTxtUpdateModelCase3, "store picture in file");
 			iGraphObserver->NotifyStatus(KTxtUpdateModelCase3);
 			// set up the permament direct file store for the picture
 			fsSession.Connect();
@@ -315,9 +312,10 @@ void CPictureControl::UpdateModelL()
 			fsSession.Close();
 			}
 			break;
-			
+
 		case 4:
 			{
+			_LIT(KTxtUpdateModelCase4, "delete picture from memory");
 			iGraphObserver->NotifyStatus(KTxtUpdateModelCase4);
 			delete iPicture;
 			iPicture = NULL;
@@ -327,6 +325,7 @@ void CPictureControl::UpdateModelL()
 
 		case 5:
 			{
+			_LIT(KTxtUpdateModelCase5, "restore picture header from file");
 			iGraphObserver->NotifyStatus(KTxtUpdateModelCase5);
 			// set up the permament direct file store for the picture
 			fsSession.Connect();
@@ -346,6 +345,7 @@ void CPictureControl::UpdateModelL()
 
 		case 6:
 			{
+			_LIT(KTxtUpdateModelCase6, "restore picture from file");
 			iGraphObserver->NotifyStatus(KTxtUpdateModelCase6);
 
 			fsSession.Connect();
@@ -431,9 +431,10 @@ void CPictureControl::Draw(const TRect& /* aRect */) const
 		case CPictureControl::EHeader:
 			{
 			// if no iPicture, draw picture outline to specified size at iOffset
-			TInt bottomRightX = iOffset.iX + iHeader.iSize.iWidth;
-			TInt bottomRightY = iOffset.iY + iHeader.iSize.iHeight;
-			TRect outlineBox(iOffset, TPoint(bottomRightX, bottomRightY));
+// 			TInt bottomRightX = iOffset.iX + iHeader.iSize.iWidth;
+// 			TInt bottomRightY = iOffset.iY + iHeader.iSize.iHeight;
+// 			TRect outlineBox(iOffset, TPoint(bottomRightX, bottomRightY));
+			TRect outlineBox(iOffset, iHeader.iSize);
 
 			gc.SetPenStyle(CGraphicsContext::EDottedPen);
 			gc.DrawRect(outlineBox);
