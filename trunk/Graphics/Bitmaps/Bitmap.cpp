@@ -265,7 +265,7 @@ void CBitmapControl::CaseDiffBackgroundDetailed(CWindowGc& aGc) const
 	biSize.iHeight = Size().iHeight;
 	
 	TRect leftRect((Position() + TPoint(0, 50)), biSize);
-	TRect rightRect((Position() + TPoint(0, 50)) + TPoint(biSize.iWidth, 0), biSize);
+	TRect rightRect(leftRect.iTl + TPoint(biSize.iWidth, 0), biSize);
 	
 	aGc.SetBrushColor(KRgbDarkGray);
 	aGc.Clear(leftRect);
