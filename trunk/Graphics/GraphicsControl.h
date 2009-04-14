@@ -15,7 +15,11 @@
 class CDrawControl : public CGraphicExampleControl
 	{
 public:
-	CDrawControl() { SetMaxPhases(26); };
+	CDrawControl()
+		{
+		SetMaxPhases(26);
+		}
+	;
 	void UpdateModelL();
 	void Draw(const TRect& aRect) const;
 	};
@@ -23,14 +27,23 @@ public:
 class CZoomControl : public CGraphicExampleControl
 	{
 public:
-	CZoomControl() { SetMaxPhases(5); };
-	~CZoomControl() { delete(iBitmap); };
+	CZoomControl()
+		{
+		SetMaxPhases(5);
+		}
+	;
+	~CZoomControl()
+		{
+		delete (iBitmap);
+		}
+	;
 	void UpdateModelL();
 	void Draw(const TRect& aRect) const;
-	void DrawLeft(TRect screenRect,CWindowGc& gc) const;
-	void DrawRight(TRect screenRect,CWindowGc& gc) const;
+	void DrawLeft(TRect screenRect, CWindowGc& gc) const;
+	void DrawRight(TRect screenRect, CWindowGc& gc) const;
 private:
-	void LoadBitmapL(CFbsBitmap* aBitMap,const TDesC& aPathAndFile,TInt aId,TBool aShareIfLoaded);
+	void LoadBitmapL(CFbsBitmap* aBitMap, const TDesC& aPathAndFile, TInt aId,
+			TBool aShareIfLoaded);
 private:
 	TZoomFactor iLeftZf;
 	TZoomFactor iRightZf;
@@ -38,6 +51,5 @@ private:
 	MGraphicsDeviceMap* iRightMap;
 	CFbsBitmap* iBitmap;
 	};
-
 
 #endif

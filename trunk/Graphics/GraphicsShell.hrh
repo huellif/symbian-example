@@ -4,6 +4,6 @@
 
 enum TExampleMenuCommands
 	{
-	EExampleShellSelectDraw=400,
+	EExampleShellSelectDraw = 400,
 	EExampleShellSelectZoom
 	};

@@ -102,7 +102,8 @@ void CExampleShellContainer::ResetExampleL(CGraphicExampleControl* aExample)
 	rect.Shrink(2, 2); // shrink it a bit
 	iExampleControl->ConstructL(rect, this, *this); // construct, giving rect and observer
 	}
-_LIT(KTxtFinished,"example finished");
+
+_LIT(KTxtFinished, "example finished");
 void CExampleShellContainer::NotifyGraphicExampleFinished()
 	{
 	NotifyStatus(KTxtFinished);
@@ -112,7 +113,9 @@ void CExampleShellContainer::NotifyStatus(const TDesC& aMessage)
 	{
 	iLabel->SetTextL(aMessage);
 	if (IsActivated())
+		{
 		iLabel->DrawNow();
+		}
 	}
 
 TKeyResponse CExampleShellContainer::OfferKeyEventL(const TKeyEvent& aKeyEvent,
@@ -138,7 +141,7 @@ void CExampleShellContainer::Draw(const TRect& /*aRect*/) const
 //
 // CExampleShellAppUi
 //
-_LIT(KTxtInitialized,"initialized");
+_LIT(KTxtInitialized, "initialized");
 void CExampleShellAppUi::ConstructL()
 	{
 	BaseConstructL();
