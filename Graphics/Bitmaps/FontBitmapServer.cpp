@@ -6,7 +6,7 @@
 #include <grbmap.mbg>
 // The name of the multi-bitmap file containing the bitmap
 // and bitmap mask files.
-_LIT(KTxtMBMname,"\\resource\\apps\\grbmap.mbm");
+_LIT(KMbmName,"\\resource\\apps\\grbmap.mbm");
 
 CFbsControl::~CFbsControl()
 	{
@@ -63,7 +63,7 @@ void CFbsControl::UpdateModelL()
 			// load bitmap1 from .mbm file
 			{
 			iBitmap1 = new (ELeave) CFbsBitmap();
-			LoadBitmapL(iBitmap1, KTxtMBMname, EMbmGrbmapSmiley, shareIfLoaded);
+			LoadBitmapL(iBitmap1, KMbmName, EMbmGrbmapSmiley, shareIfLoaded);
 			iGraphObserver->NotifyStatus(KTxtUpdateModelCase1);
 			}
 			break;
@@ -123,7 +123,7 @@ void CFbsControl::UpdateModelL()
 			// reload bitmap 1 from .mbm file
 			{
 			iBitmap1 = new (ELeave) CFbsBitmap();
-			LoadBitmapL(iBitmap1, KTxtMBMname, EMbmGrbmapSmiley, shareIfLoaded);
+			LoadBitmapL(iBitmap1, KMbmName, EMbmGrbmapSmiley, shareIfLoaded);
 			iGraphObserver->NotifyStatus(KTxtUpdateModelCase7);
 			}
 			break;
@@ -271,7 +271,7 @@ void CFbsControl::DrawL(CWindowGc& aGc)
 	iBitmap1 = new (ELeave) CFbsBitmap();
 
 	// Load the bitmap
-	LoadBitmapL(iBitmap1, KTxtMBMname, EMbmGrbmapSmiley, shareIfLoaded);
+	LoadBitmapL(iBitmap1, KMbmName, EMbmGrbmapSmiley, shareIfLoaded);
 
 	// calculate position for top left of bitmap so it is centered
 	DrawSingleBitmap(iBitmap1, aGc);
