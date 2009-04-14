@@ -25,6 +25,20 @@ public:
 	;
 	void UpdateModelL();
 	void Draw(const TRect& aRect) const;
+	
+protected:
+	void CaseBitBlt(CWindowGc &aGc) const;
+    void CaseBitBltPiece(CWindowGc & gc) const;
+    void CaseDrawBitmapTopLeft(CWindowGc & gc) const;
+    void CaseDrawBitmapRect(CWindowGc & gc) const;
+    void CaseBrushPattern(CWindowGc & gc) const;
+    void CaseBrushPatternOrigin(CWindowGc & gc) const;
+    void CaseDiffBackground(CWindowGc & gc) const;
+    void CaseDiffBackgroundDetailed(CWindowGc & gc) const;
+
+protected:
+	TPoint DeltaPos(TSize aBmpSize, TSize aCtrlSize) const;
+	
 private:
 	void LoadBitmapL(CFbsBitmap* aBitMap, const TDesC& aPathAndFile, TInt aId,
 			TBool aShareIfLoaded);
