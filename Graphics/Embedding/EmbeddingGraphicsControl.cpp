@@ -68,11 +68,11 @@ TKeyResponse CGraphicExampleControl::OfferKeyEventL(const TKeyEvent& aKeyEvent,
 			NextPhaseL();
 			}
 			break;
-			
+
 		default:
 			return EKeyWasNotConsumed;
 		}
-	
+
 	return EKeyWasConsumed;
 	}
 
