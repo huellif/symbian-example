@@ -180,7 +180,7 @@ void CBitmapControl::CaseBitBlt(CWindowGc &aGc) const
 	aGc.BitBlt(pos, iBitmap);
 	}
 
-void CBitmapControl::CaseBitBltPiece(CWindowGc & gc) const
+void CBitmapControl::CaseBitBltPiece(CWindowGc& aGc) const
 	{
 	// draw a rectangular piece of a bitmap, centered on the screen,
 	// using bitmap block transfer
@@ -188,132 +188,106 @@ void CBitmapControl::CaseBitBltPiece(CWindowGc & gc) const
 	TSize bmpSize = iBitmap->SizeInPixels();
 	TSize bmpPieceSize(bmpSize.iWidth * 2 / 3, bmpSize.iHeight * 2 / 3);
 
-	TPoint bmpPieceTopLeft(0, 0);
-	TRect bmpPieceRect;
-	bmpPieceRect.SetRect(bmpPieceTopLeft, bmpPieceSize);
-
 	TPoint pos = Position() + DeltaPos(bmpPieceSize, Size());
-	gc.BitBlt(pos, iBitmap, bmpPieceRect); // using bitmap piece
+	TRect bmpPieceRect(TPoint(0, 0), bmpPieceSize);
+
+	aGc.BitBlt(pos, iBitmap, bmpPieceRect); // using bitmap piece
 	}
 
-void CBitmapControl::CaseDrawBitmapTopLeft(CWindowGc & gc) const
+void CBitmapControl::CaseDrawBitmapTopLeft(CWindowGc& aGc) const
 	{
 	// draw a bitmap to a defined size in twips
 	// in the top left corner the rectangle,
 	// using the GDI DrawBitmap() function
 	TSize bmpSizeInTwips(600, 600); // must set twips size, default (0,0)
 	iBitmap->SetSizeInTwips(bmpSizeInTwips);
-	TRect rect = Rect();
-	gc.DrawBitmap(rect.iTl, iBitmap);
+	aGc.DrawBitmap(Position(), iBitmap);
 	}
 
-void CBitmapControl::CaseDrawBitmapRect(CWindowGc & gc) const
+void CBitmapControl::CaseDrawBitmapRect(CWindowGc& aGc) const
 	{
 	// draw a stretched bitmap inside the rectangle,
 	// using the GDI DrawBitmap() function
-	TRect rect = Rect();
-	gc.DrawBitmap(rect, iBitmap);
+	aGc.DrawBitmap(Rect(), iBitmap);
 	}
 
-void CBitmapControl::CaseBrushPattern(CWindowGc & gc) const
+void CBitmapControl::CaseBrushPattern(CWindowGc& aGc) const
 	{
 	// use bitmap as brush pattern, tiling from top left of rectangle
 	// set brush pattern and style to use the bitmap
-	gc.UseBrushPattern(iBitmap);
-	gc.SetBrushStyle(CGraphicsContext::EPatternedBrush);
-	TRect rect = Rect();
-	gc.DrawRect(rect);
-	gc.DiscardBrushPattern();
+	aGc.UseBrushPattern(iBitmap);
+	aGc.SetBrushStyle(CGraphicsContext::EPatternedBrush);
+	aGc.DrawRect(Rect());
+	aGc.DiscardBrushPattern();
 	}
 
-void CBitmapControl::CaseBrushPatternOrigin(CWindowGc & gc) const
+void CBitmapControl::CaseBrushPatternOrigin(CWindowGc& aGc) const
 	{
 	// use bitmap as brush pattern, tiling around center of screen
 	// set brush pattern and style to use the bitmap'
-	TPoint screenCenterPoint = Rect().Center();
-	gc.SetBrushOrigin(screenCenterPoint);
-	gc.UseBrushPattern(iBitmap);
-	gc.SetBrushStyle(CGraphicsContext::EPatternedBrush);
-	TRect rect = Rect();
-	gc.DrawRect(rect);
-	gc.DiscardBrushPattern();
+	aGc.SetBrushOrigin(Rect().Center());
+	aGc.UseBrushPattern(iBitmap);
+	aGc.SetBrushStyle(CGraphicsContext::EPatternedBrush);
+	aGc.DrawRect(Rect());
+	aGc.DiscardBrushPattern();
 	}
 
-void CBitmapControl::CaseDiffBackground(CWindowGc & gc) const
+void CBitmapControl::CaseDiffBackground(CWindowGc& aGc) const
 	{
-	// bisect screen into two different coloured rects
-	TRect screenRect = Rect();
-	TInt bisect = (screenRect.iBr.iX - screenRect.iTl.iX) / 2
-			+ screenRect.iTl.iX;
-	TRect leftRect(screenRect.iTl, TPoint(bisect, screenRect.iBr.iY));
-	TRect rightRect(TPoint(bisect, screenRect.iTl.iY), screenRect.iBr);
-	TRgb darkGray(85, 85, 85);
-	gc.SetBrushColor(darkGray);
-	gc.Clear(leftRect);
-	TRgb black(0, 0, 0);
-	gc.SetBrushColor(black);
-	gc.Clear(rightRect);
-	TSize bmpSizeInPixels = iBitmap->SizeInPixels();
-	TSize bmpPieceSize(bmpSizeInPixels.iWidth, bmpSizeInPixels.iHeight);
-	TPoint bmpPieceTopLeft(0, 0);
-	TRect bmpPieceRect;
-	bmpPieceRect.SetRect(bmpPieceTopLeft, bmpPieceSize);
+	// bisect screen into two different colourred recsts
+	TSize biSize;
+	biSize.iWidth = Size().iWidth / 2;
+	biSize.iHeight = Size().iHeight;
+
+	TRect leftRect(Position(), biSize);
+	TRect rightRect((Position() + TPoint(biSize.iWidth, 0)), biSize);
+	
+	aGc.SetBrushColor(KRgbDarkGray);
+	aGc.Clear(leftRect);
+
+	aGc.SetBrushColor(KRgbBlack);
+	aGc.Clear(rightRect);
+	
 	// center bitmap on left
-	TInt xDelta = (leftRect.Width() - bmpPieceRect.Width()) / 2;
-	TInt yDelta = (leftRect.Height() - bmpPieceRect.Height()) / 2;
-	TPoint pos = TPoint(xDelta, yDelta); // displacement vector
-	pos += leftRect.iTl; // bitmap piece top left corner position
-	gc.BitBlt(pos, iBitmap);
+	TPoint pos1 = leftRect.iTl + DeltaPos(iBitmap->SizeInPixels(), leftRect.Size());
+	aGc.BitBlt(pos1, iBitmap);
+
 	// center bitmap on right
-	xDelta = (rightRect.Width() - bmpPieceRect.Width()) / 2;
-	yDelta = (rightRect.Height() - bmpPieceRect.Height()) / 2;
-	TPoint pos2 = TPoint(xDelta, yDelta); // displacement vector
-	pos2 += rightRect.iTl; // bitmap piece top left corner position
-	gc.BitBlt(pos2, iBitmap);
+	TPoint pos2 = rightRect.iTl + DeltaPos(iBitmap->SizeInPixels(), rightRect.Size());
+	aGc.BitBlt(pos2, iBitmap);
 	}
 
-void CBitmapControl::CaseDiffBackgroundDetailed(CWindowGc & gc) const
+void CBitmapControl::CaseDiffBackgroundDetailed(CWindowGc& aGc) const
 	{
-
-	// bisect screen into two different coloured rects
-	TRect screenRect = Rect();
-	TInt bisect = (screenRect.iBr.iX - screenRect.iTl.iX) / 2
-			+ screenRect.iTl.iX;
-	TRect leftRect(TPoint(screenRect.iTl.iX, screenRect.iTl.iY + 50), TPoint(
-			bisect, screenRect.iBr.iY));
-	TRect rightRect(TPoint(bisect, screenRect.iTl.iY + 50), screenRect.iBr);
-	TRgb darkGray(85, 85, 85);
-	gc.SetBrushColor(darkGray);
-	gc.Clear(leftRect);
-	TRgb black(0, 0, 0);
-	gc.SetBrushColor(black);
-	gc.Clear(rightRect);
-
-	TSize bmpSizeInPixels = iBitmap->SizeInPixels();
-	TSize bmpPieceSize(bmpSizeInPixels.iWidth, bmpSizeInPixels.iHeight);
-	TPoint bmpPieceTopLeft(0, 0);
-	TRect bmpPieceRect;
-	bmpPieceRect.SetRect(bmpPieceTopLeft, bmpPieceSize);
+	// bisect screen into two different colourred recsts
+	TSize biSize;
+	biSize.iWidth = Size().iWidth / 2;
+	biSize.iHeight = Size().iHeight;
+	
+	TRect leftRect((Position() + TPoint(0, 50)), biSize);
+	TRect rightRect((Position() + TPoint(0, 50)) + TPoint(biSize.iWidth, 0), biSize);
+	
+	aGc.SetBrushColor(KRgbDarkGray);
+	aGc.Clear(leftRect);
+	
+	aGc.SetBrushColor(KRgbBlack);
+	aGc.Clear(rightRect);
+	
+	TRect bmpRect(TPoint(0, 0), iBitmap->SizeInPixels());
 
 	// center bitmap on left
-	TInt xDelta = (leftRect.Width() - bmpPieceRect.Width()) / 2;
-	TInt yDelta = (leftRect.Height() - bmpPieceRect.Height()) / 2;
-	TPoint pos = TPoint(xDelta, yDelta); // displacement vector
-	pos += leftRect.iTl; // bitmap piece top left corner position
-	gc.BitBltMasked(pos, iBitmap, bmpPieceRect, iMaskBitmap, EFalse); // CWindowGc member function
-
+	TPoint pos1 = leftRect.iTl + DeltaPos(iBitmap->SizeInPixels(), leftRect.Size());
+	aGc.BitBltMasked(pos1, iBitmap, bmpRect, iMaskBitmap, EFalse);
+	
 	// center bitmap on right
-	xDelta = (rightRect.Width() - bmpPieceRect.Width()) / 2;
-	yDelta = (rightRect.Height() - bmpPieceRect.Height()) / 2;
-	TPoint pos2 = TPoint(xDelta, yDelta); // displacement vector
-	pos2 += rightRect.iTl; // bitmap piece top left corner position
-	gc.BitBltMasked(pos2, iBitmap, bmpPieceRect, iMaskBitmap, EFalse); // CWindowGc member function
+	TPoint pos2 = rightRect.iTl + DeltaPos(iBitmap->SizeInPixels(), rightRect.Size());
+	aGc.BitBltMasked(pos2, iBitmap, bmpRect, iMaskBitmap, EFalse);
 
 	_LIT(KTxtTheBitmap, "The bitmap:");
 	_LIT(KTxtBitmapMask, "The bitmap's mask:");
 
-	gc.DrawText(KTxtTheBitmap, TPoint(5, 20));
-	gc.BitBlt(TPoint(130, 0), iBitmap);
-	gc.DrawText(KTxtBitmapMask, TPoint(197, 20));
-	gc.BitBlt(TPoint(400, 0), iMaskBitmap);
+	aGc.DrawText(KTxtTheBitmap, TPoint(5, 20));
+	aGc.BitBlt(TPoint(130, 0), iBitmap);
+	aGc.DrawText(KTxtBitmapMask, TPoint(197, 20));
+	aGc.BitBlt(TPoint(400, 0), iMaskBitmap);
 	}
