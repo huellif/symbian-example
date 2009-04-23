@@ -1,0 +1,24 @@
+/*
+ ============================================================================
+ Name		: hellosis.hrh
+ Author	  : 
+ Copyright   : Your copyright notice
+ Description : This file contains declarations for constants of hellosis.
+ The file can be included in C++ or resource file.
+ ============================================================================
+ */
+#ifndef __HELLOSIS_HRH__
+#define __HELLOSIS_HRH__
+
+#define _UID3 0xE2047FAE
+
+// hellosis enumerate command codes
+enum ThellosisIds
+	{
+	ECommand1 = 0x6001, // start value must not be 0
+	ECommand2,
+	EHelp,
+	EAbout
+	};
+
+#endif // __HELLOSIS_HRH__

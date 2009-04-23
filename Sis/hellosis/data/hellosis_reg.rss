@@ -1,0 +1,27 @@
+/*
+============================================================================
+ Name		: hellosis.rss
+ Author	  : 
+ Copyright   : Your copyright notice
+ Description : This file contains the application registration resource.
+============================================================================
+*/
+
+#include "hellosis.hrh"
+#include "hellosis.rls"
+#include <appinfo.rh>
+#include <hellosis_0xE2047FAE.rsg>
+
+UID2 KUidAppRegistrationResourceFile
+UID3 _UID3
+
+RESOURCE APP_REGISTRATION_INFO
+	{
+	app_file="hellosis_0xE2047FAE";
+	localisable_resource_file =  qtn_loc_resource_file_1;
+	localisable_resource_id = R_LOCALISABLE_APP_INFO;
+
+	embeddability=KAppNotEmbeddable;
+	newfile=KAppDoesNotSupportNewFile;
+	}
+
