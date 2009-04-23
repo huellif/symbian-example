@@ -1,0 +1,37 @@
+; Installation file for hellosis application
+;
+; This is an auto-generated PKG file by Carbide.
+; This file uses variables specific to Carbide builds that will not work
+; on command-line builds. If you want to use this generated PKG file from the
+; command-line tools you will need to modify the variables with the appropriate
+; values: $(EPOCROOT), $(PLATFORM), $(TARGET)
+;
+;Language - standard language definitions
+&EN
+
+; standard SIS file header
+#{"hellosis"},(0xE2047FAE),1,0,0
+
+;Localised Vendor name
+%{"Vendor-EN"}
+
+;Unique Vendor name
+:"Vendor"
+
+;Supports Series 60 v 3.0
+[0x101F7961], 0, 0, 0, {"Series60ProductID"}
+
+;Files to install
+;You should change the source paths to match that of your environment
+;<source> <destination>
+"$(EPOCROOT)Epoc32\release\$(PLATFORM)\$(TARGET)\hellosis_0xE2047FAE.exe"		-"!:\sys\bin\hellosis_0xE2047FAE.exe"
+"$(EPOCROOT)Epoc32\data\z\resource\apps\hellosis_0xE2047FAE.rsc"		-"!:\resource\apps\hellosis_0xE2047FAE.rsc"
+"$(EPOCROOT)Epoc32\data\z\private\10003a3f\apps\hellosis_0xE2047FAE_reg.rsc"	-"!:\private\10003a3f\import\apps\hellosis_0xE2047FAE_reg.rsc"
+"$(EPOCROOT)Epoc32\data\z\resource\apps\hellosis_0xE2047FAE.mif" -"!:\resource\apps\hellosis_0xE2047FAE.mif"
+"..\help\hellosis_0xE2047FAE.hlp"							 -"!:\resource\help\hellosis_0xE2047FAE.hlp"
+
+; Add any installation notes if applicable
+;"hellosis.txt"		-"!:\private\E2047FAE\hellosis.txt"
+
+;required for application to be covered by backup/restore facility 
+"..\sis\backup_registration.xml"		-"!:\private\E2047FAE\backup_registration.xml"
