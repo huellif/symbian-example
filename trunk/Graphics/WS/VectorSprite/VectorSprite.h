@@ -12,14 +12,14 @@
 // CMainWindow is a plain window that just acts as a container for the
 // other windows
 class CMainWindow : public CWindow
-	{
+    {
 public:
-	CMainWindow(CWsClient* aClient);
-	~CMainWindow();
-	void Draw(const TRect& aRect);
-	void HandlePointerEvent(TPointerEvent& aPointerEvent);
-	void HandlePointerMoveBufferReady();
-	};
+    CMainWindow(CWsClient* aClient);
+    ~CMainWindow();
+    void Draw(const TRect& aRect);
+    void HandlePointerEvent(TPointerEvent& aPointerEvent);
+    void HandlePointerMoveBufferReady();
+    };
 
 //////////////////////////////////////////////////////////////////////////
 //						Derived client class
@@ -28,32 +28,32 @@ public:
 class CSprite;
 
 class CExampleWsClient : public CWsClient
-	{
+    {
 public:
-	static CExampleWsClient* NewL(const TRect& aRect);
+    static CExampleWsClient* NewL(const TRect& aRect);
 private:
-	CExampleWsClient(const TRect& aRect);
-	void ConstructMainWindowL();
-	~CExampleWsClient();
-	void RunL();
-	void HandleKeyEventL(TKeyEvent& aKeyEvent);
+    CExampleWsClient(const TRect& aRect);
+    void ConstructMainWindowL();
+    ~CExampleWsClient();
+    void RunL();
+    void HandleKeyEventL(TKeyEvent& aKeyEvent);
 private:
-	CMainWindow* iMainWindow;
-	CSprite* iSprite;
-	const TRect& iRect;
-	};
+    CMainWindow* iMainWindow;
+    CSprite* iSprite;
+    const TRect& iRect;
+    };
 
 class CSprite : public CBase
-	{
+    {
 public:
-	CSprite(CWsClient* aClient);
-	~CSprite();
-	void ConstructL(CWindow* aWindow);
-	void CreateBitmap(CFbsBitmap* &aBitmap, TInt aSpriteNum, TBool aDoMask);
+    CSprite(CWsClient* aClient);
+    ~CSprite();
+    void ConstructL(CWindow* aWindow);
+    void CreateBitmap(CFbsBitmap* &aBitmap, TInt aSpriteNum, TBool aDoMask);
 private:
-	CWsClient* iClient;
-	RWsSprite iSprite;
-	TSpriteMember iSpriteMember[4];
-	};
+    CWsClient* iClient;
+    RWsSprite iSprite;
+    TSpriteMember iSpriteMember[4];
+    };
 
 #endif
