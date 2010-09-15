@@ -50,56 +50,56 @@
 #include <BitmapSprite.mbg>
 
 CSprite::CSprite(CWsClient *aClient) :
-	iClient(aClient), iSpritePos(80, 75)
-	{
-	}
+    iClient(aClient), iSpritePos(80, 75)
+    {
+    }
 
 CSprite::~CSprite()
-	{
-	for (TInt i = 0; i < 8; i++)
-		{
-		delete iSpriteMember[i].iBitmap;
-		delete iSpriteMember[i].iMaskBitmap;
-		}
-	iSprite.Close();
-	}
+    {
+    for (TInt i = 0; i < 8; i++)
+        {
+        delete iSpriteMember[i].iBitmap;
+        delete iSpriteMember[i].iMaskBitmap;
+        }
+    iSprite.Close();
+    }
 
 void CSprite::UpdatePos(TPoint aAdjust)
-	{
-	iSpritePos += aAdjust;
-	iSprite.SetPosition(iSpritePos);
-	}
+    {
+    iSpritePos += aAdjust;
+    iSprite.SetPosition(iSpritePos);
+    }
 
 void CSprite::ConstructL(CWindow* aWindow)
-	{
-	CEikonEnv* eikenv = CEikonEnv::Static();
-	iSprite = RWsSprite(iClient->iWs);
-	User::LeaveIfError(iSprite.Construct(aWindow->Window(), iSpritePos, 0));
-	// Initialize sprite members
-	_LIT(KStar, "*");
-	// "*" means "the <app-name>.mbm file in the app directory"
-	for (TInt i = 0; i < 8; i++)
-		{
-		iSpriteMember[i].iInvertMask = EFalse;
-		iSpriteMember[i].iOffset = TPoint(0, 0);
-		iSpriteMember[i].iInterval = TTimeIntervalMicroSeconds32(200000);
-		iSpriteMember[i].iBitmap = eikenv->CreateBitmapL(KStar, i);
-		if (i % 2 == 0)
-			{
-			iSpriteMember[i].iMaskBitmap = eikenv->CreateBitmapL(KStar,
-					EMbmBitmapspriteMil1mask);
-			}
-		else
-			{
-			iSpriteMember[i].iMaskBitmap = eikenv->CreateBitmapL(KStar,
-					EMbmBitmapspriteMil2mask);
-			}
-		User::LeaveIfError(iSprite.AppendMember(iSpriteMember[i]));
-		}
+    {
+    CEikonEnv* eikenv = CEikonEnv::Static();
+    iSprite = RWsSprite(iClient->iWs);
+    User::LeaveIfError(iSprite.Construct(aWindow->Window(), iSpritePos, 0));
+    // Initialize sprite members
+    _LIT(KStar, "*");
+    // "*" means "the <app-name>.mbm file in the app directory"
+    for (TInt i = 0; i < 8; i++)
+        {
+        iSpriteMember[i].iInvertMask = EFalse;
+        iSpriteMember[i].iOffset = TPoint(0, 0);
+        iSpriteMember[i].iInterval = TTimeIntervalMicroSeconds32(200000);
+        iSpriteMember[i].iBitmap = eikenv->CreateBitmapL(KStar, i);
+        if (i % 2 == 0)
+            {
+            iSpriteMember[i].iMaskBitmap = eikenv->CreateBitmapL(KStar,
+                    EMbmBitmapspriteMil1mask);
+            }
+        else
+            {
+            iSpriteMember[i].iMaskBitmap = eikenv->CreateBitmapL(KStar,
+                    EMbmBitmapspriteMil2mask);
+            }
+        User::LeaveIfError(iSprite.AppendMember(iSpriteMember[i]));
+        }
 
-	// Activate the sprite
-	User::LeaveIfError(iSprite.Activate());
-	}
+    // Activate the sprite
+    User::LeaveIfError(iSprite.Activate());
+    }
 
 //////////////////////////////////////////////////////////////////////////////
 //					 CMainWindow implementation
@@ -111,14 +111,14 @@ void CSprite::ConstructL(CWindow* aWindow)
  |	Input:		aClient		Client application that owns the window
  \****************************************************************************/
 CMainWindow::CMainWindow(CWsClient* aClient) :
-	CWindow(aClient)
-	{
-	}
+    CWindow(aClient)
+    {
+    }
 
 CMainWindow::~CMainWindow()
-	{
-	iWindow.Close();
-	}
+    {
+    iWindow.Close();
+    }
 
 /****************************************************************************\
 |	Function:	CMainWindow::Draw
@@ -129,28 +129,30 @@ CMainWindow::~CMainWindow()
  \****************************************************************************/
 
 void CMainWindow::Draw(const TRect& aRect)
-	{
-	// Draw a hatched pattern to illustrate that sprite is drawn only 
-	// where its bitmap mask is 0
-	CWindowGc* gc = SystemGc(); // get a gc
-	gc->SetClippingRect(aRect); // clip outside this rect
-	gc->Clear(aRect); // clear
-	gc->SetPenStyle(CGraphicsContext::ESolidPen);
-	gc->SetPenColor(TRgb::Gray4(2));
-	TSize size = Window().Size();
-	TInt width = size.iWidth;
-	TInt height = size.iHeight;
-	TInt numHoriz = height / 5;
-	TInt numVert = width / 10;
-	for (TInt i = numHoriz; i > 0; i--)
-		{
-		gc->DrawLine(TPoint(0, height / numHoriz * i), TPoint(width, height / numHoriz * i));
-		}
-	for (TInt j = numVert; j > 0; j--)
-		{
-		gc->DrawLine(TPoint(width / numVert * j, 0), TPoint(width / numVert * j, height));
-		}
-	}
+    {
+    // Draw a hatched pattern to illustrate that sprite is drawn only 
+    // where its bitmap mask is 0
+    CWindowGc* gc = SystemGc(); // get a gc
+    gc->SetClippingRect(aRect); // clip outside this rect
+    gc->Clear(aRect); // clear
+    gc->SetPenStyle(CGraphicsContext::ESolidPen);
+    gc->SetPenColor(TRgb::Gray4(2));
+    TSize size = Window().Size();
+    TInt width = size.iWidth;
+    TInt height = size.iHeight;
+    TInt numHoriz = height / 5;
+    TInt numVert = width / 10;
+    for (TInt i = numHoriz; i > 0; i--)
+        {
+        gc->DrawLine(TPoint(0, height / numHoriz * i), TPoint(width, height
+                / numHoriz * i));
+        }
+    for (TInt j = numVert; j > 0; j--)
+        {
+        gc->DrawLine(TPoint(width / numVert * j, 0), TPoint(width / numVert
+                * j, height));
+        }
+    }
 
 /****************************************************************************\
 |	Function:	CMainWindow::HandlePointerEvent
@@ -160,22 +162,22 @@ void CMainWindow::Draw(const TRect& aRect)
  \****************************************************************************/
 
 void CMainWindow::HandlePointerEvent(TPointerEvent& /*aPointerEvent*/)
-	{
-	}
+    {
+    }
 
 //////////////////////////////////////////////////////////////////////////////
 //					 CExampleWsClient implementation
 //////////////////////////////////////////////////////////////////////////////
 
 CExampleWsClient* CExampleWsClient::NewL(const TRect& aRect)
-	{
-	// make new client
-	CExampleWsClient* client = new (ELeave) CExampleWsClient(aRect);
-	CleanupStack::PushL(client); // push, just in case
-	client->ConstructL(); // construct and run
-	CleanupStack::Pop();
-	return client;
-	}
+    {
+    // make new client
+    CExampleWsClient* client = new (ELeave) CExampleWsClient(aRect);
+    CleanupStack::PushL(client); // push, just in case
+    client->ConstructL(); // construct and run
+    CleanupStack::Pop();
+    return client;
+    }
 
 /****************************************************************************\
 |	Function:	Constructor/Destructor for CExampleWsClient
@@ -184,15 +186,15 @@ CExampleWsClient* CExampleWsClient::NewL(const TRect& aRect)
  \****************************************************************************/
 
 CExampleWsClient::CExampleWsClient(const TRect& aRect) :
-	iRect(aRect)
-	{
-	}
+    iRect(aRect)
+    {
+    }
 
 CExampleWsClient::~CExampleWsClient()
-	{
-	delete iMainWindow;
-	delete iSprite;
-	}
+    {
+    delete iMainWindow;
+    delete iSprite;
+    }
 
 /****************************************************************************\
 |	Function:	CExampleWsClient::ConstructMainWindowL()
@@ -202,12 +204,12 @@ CExampleWsClient::~CExampleWsClient()
  \****************************************************************************/
 
 void CExampleWsClient::ConstructMainWindowL()
-	{
-	iMainWindow = new (ELeave) CMainWindow(this);
-	iMainWindow->ConstructL(iRect, TRgb(255, 255, 255));
-	iSprite = new (ELeave) CSprite(this);
-	iSprite->ConstructL(iMainWindow);
-	}
+    {
+    iMainWindow = new (ELeave) CMainWindow(this);
+    iMainWindow->ConstructL(iRect, TRgb(255, 255, 255));
+    iSprite = new (ELeave) CSprite(this);
+    iSprite->ConstructL(iMainWindow);
+    }
 
 /****************************************************************************\
 |	Function:	CExampleWsClient::RunL()
@@ -218,56 +220,56 @@ void CExampleWsClient::ConstructMainWindowL()
  |                                  event occurred in.
  \****************************************************************************/
 void CExampleWsClient::RunL()
-	{
-	TWsEvent wsEvent;
-	// get the event
-	iWs.GetEvent(wsEvent);
-	TInt eventType = wsEvent.Type();
-	// take action on it
-	switch (eventType)
-		{
-		// events global within window group
-		case EEventNull:
-			break;
-		case EEventKey:
-			{
-			TKeyEvent& keyEvent = *wsEvent.Key(); // get key event
-			HandleKeyEventL(keyEvent);
-			break;
-			}
-		case EEventModifiersChanged:
-			break;
-		case EEventKeyUp:
-		case EEventKeyDown:
-		case EEventFocusLost:
-		case EEventFocusGained:
-		case EEventSwitchOn:
-		case EEventPassword:
-		case EEventWindowGroupsChanged:
-		case EEventErrorMessage:
-			break;
-			// events local to specific windows
-		case EEventPointer:
-			{
-			CWindow* window = (CWindow*) (wsEvent.Handle()); // get window
-			TPointerEvent& pointerEvent = *wsEvent.Pointer();
-			window->HandlePointerEvent(pointerEvent);
-			break;
-			}
-		case EEventPointerExit:
-		case EEventPointerEnter:
-			break;
-		case EEventPointerBufferReady:
-			{
-			break;
-			}
-		case EEventDragDrop:
-			break;
-		default:
-			break;
-		}
-	IssueRequest(); // maintain outstanding request
-	}
+    {
+    TWsEvent wsEvent;
+    // get the event
+    iWs.GetEvent(wsEvent);
+    TInt eventType = wsEvent.Type();
+    // take action on it
+    switch (eventType)
+        {
+        // events global within window group
+        case EEventNull:
+            break;
+        case EEventKey:
+            {
+            TKeyEvent& keyEvent = *wsEvent.Key(); // get key event
+            HandleKeyEventL(keyEvent);
+            break;
+            }
+        case EEventModifiersChanged:
+            break;
+        case EEventKeyUp:
+        case EEventKeyDown:
+        case EEventFocusLost:
+        case EEventFocusGained:
+        case EEventSwitchOn:
+        case EEventPassword:
+        case EEventWindowGroupsChanged:
+        case EEventErrorMessage:
+            break;
+            // events local to specific windows
+        case EEventPointer:
+            {
+            CWindow* window = (CWindow*) (wsEvent.Handle()); // get window
+            TPointerEvent& pointerEvent = *wsEvent.Pointer();
+            window->HandlePointerEvent(pointerEvent);
+            break;
+            }
+        case EEventPointerExit:
+        case EEventPointerEnter:
+            break;
+        case EEventPointerBufferReady:
+            {
+            break;
+            }
+        case EEventDragDrop:
+            break;
+        default:
+            break;
+        }
+    IssueRequest(); // maintain outstanding request
+    }
 
 /****************************************************************************\
 |	Function:	CExampleWsClient::HandleKeyEventL()
@@ -275,22 +277,22 @@ void CExampleWsClient::RunL()
  |				Gets the key code from the key event.  Exits on 'Escape'
  \****************************************************************************/
 void CExampleWsClient::HandleKeyEventL(TKeyEvent& aKeyEvent)
-	{
-	TUint code = aKeyEvent.iCode;
-	switch (code)
-		{
-		case EKeyLeftArrow:
-			iSprite->UpdatePos(TPoint(-2, 0));
-			break;
-		case EKeyRightArrow:
-			iSprite->UpdatePos(TPoint(2, 0));
-			break;
-		case EKeyUpArrow:
-			iSprite->UpdatePos(TPoint(0, -2));
-			break;
-		case EKeyDownArrow:
-			iSprite->UpdatePos(TPoint(0, 2));
-			break;
-		}
-	}
+    {
+    TUint code = aKeyEvent.iCode;
+    switch (code)
+        {
+        case EKeyLeftArrow:
+            iSprite->UpdatePos(TPoint(-2, 0));
+            break;
+        case EKeyRightArrow:
+            iSprite->UpdatePos(TPoint(2, 0));
+            break;
+        case EKeyUpArrow:
+            iSprite->UpdatePos(TPoint(0, -2));
+            break;
+        case EKeyDownArrow:
+            iSprite->UpdatePos(TPoint(0, 2));
+            break;
+        }
+    }
 
