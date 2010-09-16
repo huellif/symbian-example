@@ -12,44 +12,44 @@
 
 // Displays a running Game of Life using DSA API
 class CDirectDisplayLife : public CTimer, public MDirectScreenAccess // Call backs from DSA
-	{
+    {
 public:
-	// Construction & destruction
-	CDirectDisplayLife(RWsSession& aClient, RWindow& aWindow,
-			CLifeEngine& aLifeEngine);
-	~CDirectDisplayLife();
-	void ConstructL();
+    // Construction & destruction
+    CDirectDisplayLife(RWsSession& aClient, RWindow& aWindow,
+            CLifeEngine& aLifeEngine);
+    ~CDirectDisplayLife();
+    void ConstructL();
 
-	// Start game display
-	void StartL();
+    // Start game display
+    void StartL();
 
-	// Implement MDirectScreenAccess
-	void Restart(RDirectScreenAccess::TTerminationReasons aReason);
-	void AbortNow(RDirectScreenAccess::TTerminationReasons aReason);
-
-private:
-	// Implement CTimer
-	void RunL();
-	void DoCancel();
+    // Implement MDirectScreenAccess
+    void Restart(RDirectScreenAccess::TTerminationReasons aReason);
+    void AbortNow(RDirectScreenAccess::TTerminationReasons aReason);
 
 private:
-	// Window server handling
-	RWsSession& iClient;
-	RWindow& iWindow;
+    // Implement CTimer
+    void RunL();
+    void DoCancel();
 
-	// DSA objects
-	CDirectScreenAccess* iDirectScreenAccess;
-	CFbsBitGc* iGc;
-	RRegion* iRegion;
+private:
+    // Window server handling
+    RWsSession& iClient;
+    RWindow& iWindow;
 
-	// Drawing constants
-	static const TInt KBlockSize;
-	static const TInt KGenerationInterval;
-	static const TInt iXOrigin;
-	static const TInt iYOrigin;
+    // DSA objects
+    CDirectScreenAccess* iDirectScreenAccess;
+    CFbsBitGc* iGc;
+    RRegion* iRegion;
 
-	// Life game engine
-	CLifeEngine& iLifeEngine;
-	};
+    // Drawing constants
+    static const TInt KBlockSize;
+    static const TInt KGenerationInterval;
+    static const TInt iXOrigin;
+    static const TInt iYOrigin;
+
+    // Life game engine
+    CLifeEngine& iLifeEngine;
+    };
 
 #endif //__DIRECT_H__
