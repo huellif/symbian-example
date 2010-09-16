@@ -1,0 +1,26 @@
+/*
+ ============================================================================
+ Name		: Direct.hrh
+ Author	  : 
+ Copyright   : Your copyright notice
+ Description : This file contains declarations for constants of Direct.
+ The file can be included in C++ or resource file.
+ ============================================================================
+ */
+#ifndef __DIRECT_HRH__
+#define __DIRECT_HRH__
+
+#define _UID3 0xE4698408
+
+// Direct enumerate command codes
+enum TDirectIds
+	{
+	ECommand1 = 0x6001, // start value must not be 0
+	ECommand2,
+	EHelp,
+	EAbout,
+	EStart,
+	ETestOverlay
+	};
+
+#endif // __DIRECT_HRH__

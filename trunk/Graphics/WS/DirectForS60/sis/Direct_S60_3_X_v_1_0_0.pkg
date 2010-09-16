@@ -1,0 +1,37 @@
+; Installation file for Direct application
+;
+; This is an auto-generated PKG file by Carbide.
+; This file uses variables specific to Carbide builds that will not work
+; on command-line builds. If you want to use this generated PKG file from the
+; command-line tools you will need to modify the variables with the appropriate
+; values: $(EPOCROOT), $(PLATFORM), $(TARGET)
+;
+;Language - standard language definitions
+&EN
+
+; standard SIS file header
+#{"Direct"},(0xE4698408),1,0,0
+
+;Localised Vendor name
+%{"Vendor-EN"}
+
+;Unique Vendor name
+:"Vendor"
+
+;Supports Series 60 v 3.0
+[0x101F7961], 0, 0, 0, {"Series60ProductID"}
+
+;Files to install
+;You should change the source paths to match that of your environment
+;<source> <destination>
+"$(EPOCROOT)Epoc32\release\$(PLATFORM)\$(TARGET)\Direct_0xE4698408.exe"		-"!:\sys\bin\Direct_0xE4698408.exe"
+"$(EPOCROOT)Epoc32\data\z\resource\apps\Direct_0xE4698408.rsc"		-"!:\resource\apps\Direct_0xE4698408.rsc"
+"$(EPOCROOT)Epoc32\data\z\private\10003a3f\apps\Direct_0xE4698408_reg.rsc"	-"!:\private\10003a3f\import\apps\Direct_0xE4698408_reg.rsc"
+"$(EPOCROOT)Epoc32\data\z\resource\apps\Direct_0xE4698408.mif" -"!:\resource\apps\Direct_0xE4698408.mif"
+"..\help\Direct_0xE4698408.hlp"							 -"!:\resource\help\Direct_0xE4698408.hlp"
+
+; Add any installation notes if applicable
+;"Direct.txt"		-"!:\private\E4698408\Direct.txt"
+
+;required for application to be covered by backup/restore facility 
+"..\sis\backup_registration.xml"		-"!:\private\E4698408\backup_registration.xml"
