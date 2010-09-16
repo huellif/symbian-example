@@ -10,7 +10,7 @@
 
 // Cell array dimensions
 const TInt ROWS_NUM = 16;
-const TInt COLS_NUM = 8;
+const TInt COLS_NUM = 20;
 
 // Cell array type
 typedef TBool TCellArray[ROWS_NUM][COLS_NUM];

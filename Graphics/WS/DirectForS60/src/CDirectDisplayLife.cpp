@@ -15,8 +15,8 @@ const TInt CDirectDisplayLife::KBlockSize = 20;
 const TInt CDirectDisplayLife::KGenerationInterval = 1000 * 1000;
 
 // X & Y origins of upper left of cell display
-const TInt CDirectDisplayLife::iXOrigin = 50;
-const TInt CDirectDisplayLife::iYOrigin = 30;
+const TInt CDirectDisplayLife::iXOrigin = 18;
+const TInt CDirectDisplayLife::iYOrigin = 32;
 
 CDirectDisplayLife::CDirectDisplayLife(RWsSession& aClient, RWindow& aWindow,
         CLifeEngine& aLifeEngine) :
