@@ -9,8 +9,8 @@
 #include <e32base.h>
 
 // Cell array dimensions
-const TInt ROWS_NUM = 16;
-const TInt COLS_NUM = 20;
+const TInt ROWS_NUM = 7;
+const TInt COLS_NUM = 10;
 
 // Cell array type
 typedef TBool TCellArray[ROWS_NUM][COLS_NUM];

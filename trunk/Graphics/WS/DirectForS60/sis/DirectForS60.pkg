@@ -24,9 +24,9 @@
 ;Files to install
 ;You should change the source paths to match that of your environment
 ;<source> <destination>
-"$(EPOCROOT)Epoc32\release\$(PLATFORM)\$(TARGET)\Direct_0xE4698408.exe"		-"!:\sys\bin\Direct_0xE4698408.exe"
-"$(EPOCROOT)Epoc32\data\z\resource\apps\Direct_0xE4698408.rsc"		-"!:\resource\apps\Direct_0xE4698408.rsc"
-"$(EPOCROOT)Epoc32\data\z\private\10003a3f\apps\Direct_0xE4698408_reg.rsc"	-"!:\private\10003a3f\import\apps\Direct_0xE4698408_reg.rsc"
+"$(EPOCROOT)Epoc32\release\$(PLATFORM)\$(TARGET)\Direct.exe"		-"!:\sys\bin\Direct.exe"
+"$(EPOCROOT)Epoc32\data\z\resource\apps\Direct.rsc"		-"!:\resource\apps\Direct.rsc"
+"$(EPOCROOT)Epoc32\data\z\private\10003a3f\apps\Direct_reg.rsc"	-"!:\private\10003a3f\import\apps\Direct_reg.rsc"
 "$(EPOCROOT)Epoc32\data\z\resource\apps\Direct_0xE4698408.mif" -"!:\resource\apps\Direct_0xE4698408.mif"
 "..\help\Direct_0xE4698408.hlp"							 -"!:\resource\help\Direct_0xE4698408.hlp"
 

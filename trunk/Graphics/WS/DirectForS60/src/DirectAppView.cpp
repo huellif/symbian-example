@@ -25,11 +25,28 @@
 //
 void CDirectAppView::ConstructL(const TRect& aRect)
 	{
+	RWindowGroup TopWindowGroup;
+	RWsSession& session = CCoeEnv::Static()->WsSession();
+
+	//Creates an initialised window group handle within a our session
+	TopWindowGroup = RWindowGroup(session);
+
+	//Completes construction of a window group
+	TInt res = TopWindowGroup.Construct((TUint32) &TopWindowGroup, EFalse);
+	if (res != KErrNone)
+		{
+		}
+	//Sets the ordinal position of a window.
+	TopWindowGroup.SetOrdinalPosition(0, /*ECoeWinPriorityAlwaysAtFront*/0x80000000);
+	iTopWindowGroup = TopWindowGroup;
+	
 	// Create a window for this application view
-	CreateWindowL();
+	CreateWindowL(TopWindowGroup);
 
 	// Set the windows size
-	SetRect(aRect);
+	TRect clientRect(aRect);
+	clientRect.Shrink(aRect.Width() / 4, aRect.Height() / 4);
+	SetRect(clientRect);
 
     // Set up direct displayer for life engine
     iDirectDisplayLife = new (ELeave) CDirectDisplayLife(
@@ -60,6 +77,7 @@ CDirectAppView::CDirectAppView(CLifeEngine& aLifeEngine) :
 CDirectAppView::~CDirectAppView()
 	{
     delete iDirectDisplayLife;
+    iTopWindowGroup.Close();
 	}
 
 // Start using the DSA
