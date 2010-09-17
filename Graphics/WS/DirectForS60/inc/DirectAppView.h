@@ -93,6 +93,8 @@ public:
 	 * @param aPointerEvent the information about this event
 	 */
 	virtual void HandlePointerEventL(const TPointerEvent& aPointerEvent);
+private:
+	RWindowGroup iTopWindowGroup;
 	};
 
 #endif // __DIRECTAPPVIEW_h__
