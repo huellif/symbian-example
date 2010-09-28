@@ -11,8 +11,10 @@ TARGETTYPE    exe
 UID           0xE800000C
 VENDORID 0x70000001
 
-SOURCEPATH    .
-SOURCE        Buffer.cpp
+SOURCEPATH    	.
+SOURCE        	Buffer.cpp
+SOURCE			tbufc.cpp
+SOURCE			tbuf.cpp
 
 USERINCLUDE   .
 USERINCLUDE   ..\..\..\CommonFramework
