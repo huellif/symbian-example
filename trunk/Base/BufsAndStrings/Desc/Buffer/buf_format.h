@@ -29,4 +29,6 @@ _LIT(KMaxLenFormat, "\nMaxLength()=%d\n");
 _LIT(KLenSizeFormat, "Length()=%d; Size()=%d;\n");
 _LIT(KMaxLenFormat2, "MaxLength()=%d\n");
 
+void prompt_case(TDesC& aDesC);
+
 #endif /* BUF_FORMAT_H_ */

@@ -76,6 +76,9 @@ void show_tbuf_content_desandcontent_address_len_size_maxlen(TBuf<16> &aBuf)
 
 void example_tbufc_init_with_cstr()
     {
+    _LIT(casename, "example_tbufc_init_with_cstr");
+    TBufC<128> buf(casename);
+    prompt_case(buf);
     // Set up an area and initialize to a 
     // C style string (including the NULL).
     TText cstr[13] =
@@ -94,6 +97,9 @@ void example_tbufc_init_with_cstr()
 
 void example_tbufc_replace_with_lit_normal(TBufC<16> &aBufC)
     {
+    _LIT(casename, "example_tbufc_replace_with_lit_normal");
+    TBufC<128> buf(casename);
+    prompt_case(buf);
     // Cannot modify existing data but can replace
     // it entirely using assignment operator. 
     // The replacement text must not have a length 
@@ -104,6 +110,9 @@ void example_tbufc_replace_with_lit_normal(TBufC<16> &aBufC)
 
 void example_tbufc_replace_with_lit_panic(TBufC<16> &/*aBufC*/)
     {
+    _LIT(casename, "example_tbufc_replace_with_lit_panic");
+    TBufC<128> buf(casename);
+    prompt_case(buf);
     // Replacing text which has a length > 16
     // causes panic !!
     // 
@@ -124,6 +133,9 @@ void example_tbufc_replace_with_lit_panic(TBufC<16> &/*aBufC*/)
 
 void example_tbufc_modify_with_tptr(TBufC<16> &aBufC)
     {
+    _LIT(casename, "example_tbufc_modify_with_tptr");
+    TBufC<128> buf(casename);
+    prompt_case(buf);
     aBufC = KTxtHelloWorld;
     show_tbufc_contentaddress_len_size(aBufC);
 
