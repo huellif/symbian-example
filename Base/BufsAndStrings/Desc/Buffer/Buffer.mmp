@@ -15,6 +15,7 @@ SOURCEPATH    	.
 SOURCE        	Buffer.cpp
 SOURCE			tbufc.cpp
 SOURCE			tbuf.cpp
+SOURCE			buf_format.cpp
 
 USERINCLUDE   .
 USERINCLUDE   ..\..\..\CommonFramework
