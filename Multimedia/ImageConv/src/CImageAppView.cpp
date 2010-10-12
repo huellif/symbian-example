@@ -8,60 +8,60 @@
 // Construct empty window
 void CImageAppView::ConstructL(const TRect& /*aRect*/)
     {
-	CreateWindowL();
+    CreateWindowL();
 #if defined(__WINS__)
-	Window().SetRequiredDisplayMode(EColor256);
+    Window().SetRequiredDisplayMode(EColor256);
 #endif
-	Window().SetBackgroundColor(KRgbDarkBlue);
+    Window().SetBackgroundColor(KRgbDarkBlue);
     SetExtentToWholeScreen();
-	ActivateL();
-	}
+    ActivateL();
+    }
 
 // Get display mode
 TDisplayMode CImageAppView::DisplayMode() const
-	{
-	return Window().DisplayMode();
-	}
+    {
+    return Window().DisplayMode();
+    }
 
 // Draw view
 void CImageAppView::Draw(const TRect& /*aRect*/) const
-	{
-	CWindowGc& gc = SystemGc();
+    {
+    CWindowGc& gc = SystemGc();
 
-	if (iBitmap && iBitmap->Handle())
-		{
-		TSize bitmapSize(iBitmap->SizeInPixels());
-		TPoint pt;
-		pt.iX = (Rect().Width() - bitmapSize.iWidth) / 2;
-		pt.iY = (Rect().Height() - bitmapSize.iHeight) / 2;
-		gc.BitBlt(pt,iBitmap);
-		}
-	else
-		gc.Clear();
-	}
+    if (iBitmap && iBitmap->Handle())
+        {
+        TSize bitmapSize(iBitmap->SizeInPixels());
+        TPoint pt;
+        pt.iX = (Rect().Width() - bitmapSize.iWidth) / 2;
+        pt.iY = (Rect().Height() - bitmapSize.iHeight) / 2;
+        gc.BitBlt(pt, iBitmap);
+        }
+    else
+        gc.Clear();
+    }
 
 // Draw view on demand
 void CImageAppView::DrawBitmapNow()
-	{
-	CWindowGc& gc = SystemGc();
-	gc.Activate(Window());
-	Draw(Rect());
-	gc.Deactivate();
-	ControlEnv()->WsSession().Flush();
-	}
+    {
+    CWindowGc& gc = SystemGc();
+    gc.Activate(Window());
+    Draw(Rect());
+    gc.Deactivate();
+    ControlEnv()->WsSession().Flush();
+    }
 
 // Clear view
 void CImageAppView::Clear()
-	{
-	CWindowGc& gc = SystemGc();
-	gc.Activate(Window());
-	gc.Clear();
-	gc.Deactivate();
-	ControlEnv()->WsSession().Flush();
-	}
+    {
+    CWindowGc& gc = SystemGc();
+    gc.Activate(Window());
+    gc.Clear();
+    gc.Deactivate();
+    ControlEnv()->WsSession().Flush();
+    }
 
 // Set bitmap to draw
 void CImageAppView::SetBitmap(CFbsBitmap* aBitmap)
-	{
-	iBitmap = aBitmap;
-	}
+    {
+    iBitmap = aBitmap;
+    }

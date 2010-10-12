@@ -16,22 +16,22 @@ class CImageAppView : public CCoeControl, public MCoeControlBrushContext
     {
 public:
     void ConstructL(const TRect& aRect);
-	
-	// Get display mode
-	TDisplayMode DisplayMode() const;
-	// Draw view
-	void DrawBitmapNow();
-	// Clear view
-	void Clear();
-	// Set bitmap to draw
-	void SetBitmap(CFbsBitmap* aBitmap);
+
+    // Get display mode
+    TDisplayMode DisplayMode() const;
+    // Draw view
+    void DrawBitmapNow();
+    // Clear view
+    void Clear();
+    // Set bitmap to draw
+    void SetBitmap(CFbsBitmap* aBitmap);
 
 private:
-	// from CCoeControl
-	void Draw(const TRect& /*aRect*/) const;
+    // from CCoeControl
+    void Draw(const TRect& /*aRect*/) const;
 
 private:
-	CFbsBitmap* iBitmap;
+    CFbsBitmap* iBitmap;
     };
 
 #endif
