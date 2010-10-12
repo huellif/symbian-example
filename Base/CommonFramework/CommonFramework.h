@@ -16,7 +16,7 @@ _LIT(KTxtOK,"ok");
 _LIT(KTxtPressAnyKey," [press any key]");
 
 // public
-LOCAL_D CConsoleBase* console; // write all your messages to this
+GLDEF_C CConsoleBase* console; // write all your messages to this
 LOCAL_C void doExampleL(); // code this function for the real example
 
 // private
