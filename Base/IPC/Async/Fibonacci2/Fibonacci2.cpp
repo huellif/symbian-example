@@ -126,6 +126,8 @@ public:
     ~CFibonacciThreadHandler();
 
     void CalculateFibonacci(TInt aIterations);
+private:
+    TThreadId iThreadId;
 
 private:
     void DoCancel();
@@ -371,7 +373,17 @@ void CFibonacciThreadHandler::DoCancel()
         }
     else
         {
-        iConsole->Printf(_L("CFibonacciThreadHandler::DoCancel() = %d"), err);
+        iConsole->Printf(_L("CFibonacciThreadHandler::DoCancel() err = %d"), err);
+        TInt err2 = thread.Open(iThreadId);
+        if (err2 == KErrNone)
+            {
+            thread.Kill(KErrCancel);
+            thread.Close();
+            }
+        else
+            {
+            iConsole->Printf(_L("CFibonacciThreadHandler::DoCancel() err2 = %d"), err2);
+            }
         }
     }
 
@@ -402,6 +414,7 @@ void CFibonacciThreadHandler::CalculateFibonacci(TInt aIterations)
             (TThreadFunction) FibonacciThread, KDefaultStackSize,
             KMinHeapSize, KHeapSize, &iFibonacciParameters, EOwnerThread);
     User::LeaveIfError(result);
+    iThreadId = thread.Id();
 
     // log on to thread -	sets iStatus to KRequestPending 
     //						requests notification of thread completion
