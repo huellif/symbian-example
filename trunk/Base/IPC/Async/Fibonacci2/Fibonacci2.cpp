@@ -1,8 +1,7 @@
- // Fibonacci2.cpp
+// Fibonacci2.cpp
 //
 // Copyright (c) 2000 Symbian Ltd.  All rights reserved.
 // Copyright (C) Symbian Software Ltd 2000-2005.  All rights reserved.
-
 // Example wraps a console in an active object and performs the 
 // Fibonacci calculation in a separate thread.
 //
@@ -10,20 +9,14 @@
 // Fibonacci3 example which performs the calculation as
 // a background active object.
 //
-
-
 #include <e32std.h>
 #include <e32cons.h>
 #include <e32base.h>
-
 //
 // Common literals
 //
-_LIT(KTxtFibThread,"FibThread");
-
-
+_LIT(KTxtFibThread, "FibThread");
 LOCAL_D CConsoleBase* console;
-
 _LIT(KTxtMainInstructions,"\n\nPress 'F' to start\n      'ESC' to exit\n      'C' to cancel, anytime\n");
 
 //////////////////////////////////////////////////////////////////////////////
@@ -34,37 +27,36 @@ _LIT(KTxtMainInstructions,"\n\nPress 'F' to start\n      'ESC' to exit\n      'C
 //
 //////////////////////////////////////////////////////////////////////////////
 class CActiveConsole : public CActive
-	{
+    {
 public:
-	  // Construction
-	CActiveConsole(CConsoleBase* aConsole);
-	void ConstructL();
+    // Construction
+    CActiveConsole(CConsoleBase* aConsole);
+    void ConstructL();
 
-	  // Destruction
-	~CActiveConsole();
+    // Destruction
+    ~CActiveConsole();
 
-	  // Issue request
-	void RequestCharacter();
-	
-	  // Cancel request.
-	  // Defined as pure virtual by CActive;
-	  // implementation provided by this class.
-	void DoCancel();
+    // Issue request
+    void RequestCharacter();
 
-	  // Service completed request.
-	  // Defined as pure virtual by CActive;
-	  // implementation provided by this class,
-	void RunL();
+    // Cancel request.
+    // Defined as pure virtual by CActive;
+    // implementation provided by this class.
+    void DoCancel();
 
-	  // Called from RunL() - an implementation must be provided
-	  // by derived classes to handle the completed request
-	virtual void ProcessKeyPress(TChar aChar) = 0; 
-	  
+    // Service completed request.
+    // Defined as pure virtual by CActive;
+    // implementation provided by this class,
+    void RunL();
+
+    // Called from RunL() - an implementation must be provided
+    // by derived classes to handle the completed request
+    virtual void ProcessKeyPress(TChar aChar) = 0;
+
 protected:
-	  // Data members defined by this class
-	CConsoleBase* iConsole; // A console for reading from
-	};
-
+    // Data members defined by this class
+    CConsoleBase* iConsole; // A console for reading from
+    };
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -73,16 +65,15 @@ protected:
 //////////////////////////////////////////////////////////////////////////////
 
 class CExampleScheduler : public CActiveScheduler
-	{
+    {
 public:
-	void Error (TInt aError) const;
-	void WaitForAnyRequest();
-	void SetActiveObject(CActiveConsole* aActiveConsole);
+    void Error(TInt aError) const;
+    void WaitForAnyRequest();
+    void SetActiveObject(CActiveConsole* aActiveConsole);
 private:
-	  // data members defined for this class
-	CActiveConsole* iActiveConsole;
-	};
-
+    // data members defined for this class
+    CActiveConsole* iActiveConsole;
+    };
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -93,13 +84,12 @@ private:
 //////////////////////////////////////////////////////////////////////////////
 
 class CFibonacciEngine : public CBase
-	{
+    {
 public:
-	void Calculate (TInt aTerms) ;
+    void Calculate(TInt aTerms);
 
-	TUint iResult ;
-	} ;
-
+    TUint iResult;
+    };
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -110,13 +100,12 @@ public:
 //////////////////////////////////////////////////////////////////////////////
 
 class TFibonacciParameters
-	{
+    {
 public:
-	TInt iVar1 ;
-	TAny* iVar2 ;
-	TUint iResult ;
-	} ;
-
+    TInt iVar1;
+    TAny* iVar2;
+    TUint iResult;
+    };
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -127,24 +116,24 @@ public:
 //////////////////////////////////////////////////////////////////////////////
 
 class CFibonacciThreadHandler : public CActive
-	{
+    {
 public:
-	CFibonacciThreadHandler(CConsoleBase* aConsole, CFibonacciEngine* aFibonacciEngine) ;
-	~CFibonacciThreadHandler() ;
+    CFibonacciThreadHandler(CConsoleBase* aConsole,
+            CFibonacciEngine* aFibonacciEngine);
+    ~CFibonacciThreadHandler();
 
-	void CalculateFibonacci(TInt aIterations) ;
-
-private:
-	void DoCancel() ;
-	void RunL() ;
-	static TInt FibonacciThread(TAny* aParameters) ;
+    void CalculateFibonacci(TInt aIterations);
 
 private:
-	CConsoleBase* iConsole ;
-	TFibonacciParameters iFibonacciParameters ;
-	CFibonacciEngine* iFibonacciEngine ;
-	};
+    void DoCancel();
+    void RunL();
+    static TInt FibonacciThread(TAny* aParameters);
 
+private:
+    CConsoleBase* iConsole;
+    TFibonacciParameters iFibonacciParameters;
+    CFibonacciEngine* iFibonacciEngine;
+    };
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -155,69 +144,114 @@ private:
 //////////////////////////////////////////////////////////////////////////////
 
 class CFibonacciKeyHandler : public CActiveConsole
-	{
+    {
 public:
-	CFibonacciKeyHandler(	CConsoleBase* aConsole, 
-							CFibonacciThreadHandler* iThreadHandler) ;
-	void ConstructL();
+    CFibonacciKeyHandler(CConsoleBase* aConsole,
+            CFibonacciThreadHandler* iThreadHandler);
+    void ConstructL();
 
-	  // Static construction
-	static CFibonacciKeyHandler* NewLC(CConsoleBase* aConsole, CFibonacciThreadHandler* aHandler) ;
+    // Static construction
+    static CFibonacciKeyHandler* NewLC(CConsoleBase* aConsole,
+            CFibonacciThreadHandler* aHandler);
 
-	  // service request
-	void ProcessKeyPress(TChar aChar) ;
+    // service request
+    void ProcessKeyPress(TChar aChar);
 
+    void CancelFibonacci();
+
+    void DoFibonacci();
 private:
-	CConsoleBase* iConsole ;
-	CFibonacciThreadHandler* iThreadHandler ;
-	};
+    CConsoleBase* iConsole;
+    CFibonacciThreadHandler* iThreadHandler;
+    };
 
+/////////////////////////////////////////////////////////////////////////////////
+// CFibonacciKeyHandler support routine
+//   uses up arrow & down arrow to change number, Enter to select
+/////////////////////////////////////////////////////////////////////////////////
 
+TInt GetValueFromKeyboard(TInt aInitial, TInt aStep, TInt lowerLimit,
+        TInt upperLimit, const TDesC& aPrompt, CConsoleBase* aConsole)
+    {
+    TChar input;
+    TInt value = aInitial;
 
+    aConsole->Printf(aPrompt);
+    do
+        {
+        aConsole->SetPos(0);
+        _LIT(KFormat1,"%d  ");
+        aConsole->Printf(KFormat1, value);
+        input = aConsole->Getch();
+        if (input == EKeyUpArrow && value < upperLimit)
+            value = value + aStep;
+        if (input == EKeyDownArrow && value > lowerLimit)
+            value = value - aStep;
+        }
+    while (input != EKeyEnter);
 
+    return value;
+    }
+
+void CFibonacciKeyHandler::DoFibonacci()
+    {
+    _LIT(KTxtStartingFibonacci,"\nStarting Fibonacci....  \n");
+    iConsole->Printf(KTxtStartingFibonacci);
+    _LIT(KTxtReturnTermNumber,"\nENTER selects num\nUP    arrow increases num\nDOWN  arrow decreases num\n\n");
+    TInt iterations = GetValueFromKeyboard(5, 1, 2, 46, KTxtReturnTermNumber,
+            iConsole);
+    iThreadHandler->CalculateFibonacci(iterations);
+    }
+
+void CFibonacciKeyHandler::CancelFibonacci()
+    {
+    _LIT(KTxtCancelFibonacci,"\nCancelling Fibonacci....  \n");
+    iConsole->Printf(KTxtCancelFibonacci);
+    iThreadHandler->Cancel();
+    iConsole->Printf(KTxtMainInstructions);
+    }
 //////////////////////////////////////////////////////////////////////////////
 //
 // -----> CActiveConsole (implementation)
 //
 //////////////////////////////////////////////////////////////////////////////
-CActiveConsole::CActiveConsole( CConsoleBase* aConsole) 
-	: CActive(CActive::EPriorityUserInput)
-	  // Construct high-priority active object
-	{
-	iConsole = aConsole;
-	}
+CActiveConsole::CActiveConsole(CConsoleBase* aConsole) :
+    CActive(CActive::EPriorityUserInput)
+// Construct high-priority active object
+    {
+    iConsole = aConsole;
+    }
 
 void CActiveConsole::ConstructL()
-	{
-	  // Add to active scheduler
-	CActiveScheduler::Add(this);
-	}
+    {
+    // Add to active scheduler
+    CActiveScheduler::Add(this);
+    }
 
 CActiveConsole::~CActiveConsole()
-	{
-	// Make sure we're cancelled
-	Cancel();
-	}
+    {
+    // Make sure we're cancelled
+    Cancel();
+    }
 
-void  CActiveConsole::DoCancel()
-	{
-	iConsole->ReadCancel();
-	}
+void CActiveConsole::DoCancel()
+    {
+    iConsole->ReadCancel();
+    }
 
-void  CActiveConsole::RunL()
-	{
-	  // Handle completed request
-	ProcessKeyPress(TChar(iConsole->KeyCode()));
-	}
+void CActiveConsole::RunL()
+    {
+    // Handle completed request
+    ProcessKeyPress(TChar(iConsole->KeyCode()));
+    }
 
 void CActiveConsole::RequestCharacter()
-	{
-	  // A request is issued to the CConsoleBase to accept a
-	  // character from the keyboard.
-	iConsole->Read(iStatus); 
-	SetActive();
-	}
-
+    {
+    // A request is issued to the CConsoleBase to accept a
+    // character from the keyboard.
+    iConsole->Read(iStatus);
+    SetActive();
+    }
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -225,53 +259,22 @@ void CActiveConsole::RequestCharacter()
 //
 //////////////////////////////////////////////////////////////////////////////
 void CExampleScheduler::Error(TInt aError) const
-	{
-	_LIT(KTxtSchedulerError,"CExampleScheduler - error");
-	User::Panic(KTxtSchedulerError,aError);
-	}
-
+    {
+    _LIT(KTxtSchedulerError,"CExampleScheduler - error");
+    User::Panic(KTxtSchedulerError, aError);
+    }
 
 void CExampleScheduler::WaitForAnyRequest()
-	{
-	if (!(iActiveConsole->IsActive()))
-		iActiveConsole->RequestCharacter();	
-	CActiveScheduler::WaitForAnyRequest();
-	}
+    {
+    if (!(iActiveConsole->IsActive()))
+        iActiveConsole->RequestCharacter();
+    CActiveScheduler::WaitForAnyRequest();
+    }
 
 void CExampleScheduler::SetActiveObject(CActiveConsole* aActiveConsole)
-	{
-	iActiveConsole = aActiveConsole;
-	}
-
-
-
-
-
-/////////////////////////////////////////////////////////////////////////////////
-// CFibonacciKeyHandler support routine
-//   uses up arrow & down arrow to change number, Enter to select
-/////////////////////////////////////////////////////////////////////////////////
-
-TInt GetValueFromKeyboard (TInt aInitial, TInt aStep, TInt lowerLimit, TInt upperLimit, const TDesC& aPrompt, CConsoleBase* aConsole)
-	{
-	TChar input ;
-	TInt value = aInitial ;
-
-	aConsole->Printf(aPrompt) ;
-	do
-		{
-		aConsole->SetPos(0);
-		_LIT(KFormat1,"%d  ");
-		aConsole->Printf(KFormat1, value);
-		input = aConsole->Getch() ;
-		if (input == EKeyUpArrow && value < upperLimit) value = value + aStep ;
-		if (input == EKeyDownArrow && value > lowerLimit) value = value - aStep ;
-		}
-	while (input != EKeyEnter) ;
-
-	return value ;
-	}
-
+    {
+    iActiveConsole = aActiveConsole;
+    }
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -280,59 +283,52 @@ TInt GetValueFromKeyboard (TInt aInitial, TInt aStep, TInt lowerLimit, TInt uppe
 //////////////////////////////////////////////////////////////////////////////
 
 
-CFibonacciKeyHandler::CFibonacciKeyHandler(CConsoleBase* aConsole, CFibonacciThreadHandler* aThreadHandler )
-	: CActiveConsole(aConsole)
-	  // construct zero-priority active object
-	{
-	iConsole = aConsole ;
-	iThreadHandler = aThreadHandler ;
-	  // Add to active scheduler
-	CActiveScheduler::Add(this);
-	  // Make this the active object
-	((CExampleScheduler*)(CActiveScheduler::Current()))->SetActiveObject(this);
-	} 
-
+CFibonacciKeyHandler::CFibonacciKeyHandler(CConsoleBase* aConsole,
+        CFibonacciThreadHandler* aThreadHandler) :
+    CActiveConsole(aConsole)
+// construct zero-priority active object
+    {
+    iConsole = aConsole;
+    iThreadHandler = aThreadHandler;
+    // Add to active scheduler
+    CActiveScheduler::Add(this);
+    // Make this the active object
+    ((CExampleScheduler*) (CActiveScheduler::Current()))->SetActiveObject(
+            this);
+    }
 
 void CFibonacciKeyHandler::ProcessKeyPress(TChar aChar)
-	{
-	  // if key is ESC 
-	  //   cancel any outstanding request
-	  //   stop the scheduler
-	if (aChar == EKeyEscape)
-		{
-		CActiveScheduler::Stop();
-		return;
-		}
+    {
+    // if key is ESC 
+    //   cancel any outstanding request
+    //   stop the scheduler
+    if (aChar == EKeyEscape)
+        {
+        CActiveScheduler::Stop();
+        return;
+        }
 
-	  // If key is "f" or "F"
-	  //   cancel any outstanding request
-	  //   issue a fibonacci request.
-	if (aChar == 'f' || aChar == 'F') 
-		{
-		_LIT(KTxtStartingFibonacci,"\nStarting Fibonacci....  \n");
-		iConsole->Printf(KTxtStartingFibonacci);
-		_LIT(KTxtReturnTermNumber,"\nENTER selects num\nUP    arrow increases num\nDOWN  arrow decreases num\n\n");
-		TInt iterations = GetValueFromKeyboard(5,1,2,46, KTxtReturnTermNumber, iConsole) ;
-		iThreadHandler->CalculateFibonacci(iterations);
-		return;
-		}
+    // If key is "f" or "F"
+    //   cancel any outstanding request
+    //   issue a fibonacci request.
+    if (aChar == 'f' || aChar == 'F')
+        {
+        DoFibonacci();
+        return;
+        }
 
-      // If key is "c" or "C" 
-	  //    cancel any outstanding request	
-	if (aChar == 'c' || aChar == 'C')
-		{
-		_LIT(KTxtCancelFibonacci,"\nCancelling Fibonacci....  \n");
-		iConsole->Printf(KTxtCancelFibonacci);
-		iThreadHandler->Cancel();
-		iConsole->Printf(KTxtMainInstructions);
-		return;
-		}
-
-	_LIT(KTxtNotRecognised,"\nUnwanted key pressed");
-	iConsole->Printf(KTxtNotRecognised);
-	iConsole->Printf(KTxtMainInstructions);
-	}
-
+    // If key is "c" or "C" 
+    //    cancel any outstanding request	
+    if (aChar == 'c' || aChar == 'C')
+        {
+        CancelFibonacci();
+        return;
+        }
+    
+    _LIT(KTxtNotRecognised, "\nUnwanted key pressed");
+    iConsole->Printf(KTxtNotRecognised);
+    iConsole->Printf(KTxtMainInstructions);
+    }
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -340,109 +336,110 @@ void CFibonacciKeyHandler::ProcessKeyPress(TChar aChar)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-CFibonacciThreadHandler::CFibonacciThreadHandler(CConsoleBase* aConsole, CFibonacciEngine* aFibonacciEngine)
+CFibonacciThreadHandler::CFibonacciThreadHandler(CConsoleBase* aConsole,
+        CFibonacciEngine* aFibonacciEngine)
 //
 // Constructor
 //
-	: CActive(EPriorityStandard)
-	{
-	iConsole = aConsole ;
-	iFibonacciEngine = aFibonacciEngine ;
-	CActiveScheduler::Add(this);
-	};
-
+:
+    CActive(EPriorityStandard)
+    {
+    iConsole = aConsole;
+    iFibonacciEngine = aFibonacciEngine;
+    CActiveScheduler::Add(this);
+    }
 
 // destructor
-CFibonacciThreadHandler::~CFibonacciThreadHandler() 
-	{
-	// cancel any requests and tell server 
-	Cancel() ;
-	}
+CFibonacciThreadHandler::~CFibonacciThreadHandler()
+    {
+    // cancel any requests and tell server 
+    Cancel();
+    }
 
+void CFibonacciThreadHandler::DoCancel()
+    {
+    // cancel the active object request 
+    RThread thread;
+    TInt err = thread.Open(KTxtFibThread);
+    if (err == KErrNone)
+        {
+        thread.Kill(KErrCancel);
+        thread.Close();
+        }
+    else
+        {
+        iConsole->Printf(_L("CFibonacciThreadHandler::DoCancel() = %d"), err);
+        }
+    }
 
-void CFibonacciThreadHandler::DoCancel() 
-	{
-	// cancel the active object request 
-	RThread thread ;
-	thread.Open(KTxtFibThread) ;
-	thread.Kill(KErrCancel) ;
-	thread.Close() ;
-	}
-
-
-void CFibonacciThreadHandler::RunL() 
-	{
-	// handle requests - print out result and flag as handled (ie not cancelled)
-	_LIT(KFormat2,"    Result : %u \n");  //not used
-	iConsole->Printf(KFormat2, iFibonacciParameters.iResult) ;
-	iConsole->Printf(KTxtMainInstructions);
-	}
-
+void CFibonacciThreadHandler::RunL()
+    {
+    // handle requests - print out result and flag as handled (ie not cancelled)
+    _LIT(KFormat2,"    Result : %u \n"); //not used
+    iConsole->Printf(KFormat2, iFibonacciParameters.iResult);
+    iConsole->Printf(KTxtMainInstructions);
+    }
 
 // initiate a request
 void CFibonacciThreadHandler::CalculateFibonacci(TInt aIterations)
-	{
-	const TInt KHeapSize = 0x800 ;
-	
-	_LIT(KTxtFibRequested,"\nFibonacci requested ...  ");
-	iConsole->Printf(KTxtFibRequested);
+    {
+    const TInt KHeapSize = 0x800;
+    _LIT(KTxtFibRequested,"\nFibonacci requested ...  ");
+    iConsole->Printf(KTxtFibRequested);
 
+    RThread thread;
 
-	RThread thread ;
+    // set up parameters to thread
 
-	// set up parameters to thread
+    iFibonacciParameters.iVar1 = aIterations;
+    iFibonacciParameters.iVar2 = iFibonacciEngine;
 
-	iFibonacciParameters.iVar1 = aIterations ;
-	iFibonacciParameters.iVar2 = iFibonacciEngine ;
+    // generate thread, leave if fails
 
-	// generate thread, leave if fails
-	
-  	TInt result = thread.Create(KTxtFibThread,(TThreadFunction)FibonacciThread, KDefaultStackSize,
-  								KMinHeapSize, KHeapSize, &iFibonacciParameters, EOwnerThread) ;
-  	User::LeaveIfError(result) ;
+    TInt result = thread.Create(KTxtFibThread,
+            (TThreadFunction) FibonacciThread, KDefaultStackSize,
+            KMinHeapSize, KHeapSize, &iFibonacciParameters, EOwnerThread);
+    User::LeaveIfError(result);
 
-	// log on to thread -	sets iStatus to KRequestPending 
-	//						requests notification of thread completion
-	thread.Logon(iStatus) ;
+    // log on to thread -	sets iStatus to KRequestPending 
+    //						requests notification of thread completion
+    thread.Logon(iStatus);
 
-	// give thread low priority 
-	thread.SetPriority(EPriorityMuchLess) ;
+    // give thread low priority 
+    thread.SetPriority(EPriorityMuchLess);
 
-	// resume thread (wake it up sometime after this function returns)
-  	thread.Resume() ;
+    // resume thread (wake it up sometime after this function returns)
+    thread.Resume();
 
-  	thread.Close() ;
+    thread.Close();
 
-	// ensure scheduler checks status 
-	SetActive() ;
-	
-	_LIT(KTxtOK,"OK  \n");
-	iConsole->Printf(KTxtOK);
-	}
-
+    // ensure scheduler checks status 
+    SetActive();
+    _LIT(KTxtOK,"OK  \n");
+    iConsole->Printf(KTxtOK);
+    }
 
 /////////////////////////////////////////////////////////////////////////////////
 //  Thread routine that sorts out parameters & calls engine
 /////////////////////////////////////////////////////////////////////////////////
 
 TInt CFibonacciThreadHandler::FibonacciThread(TAny* aParameters)
-	{
-	// cast the parameters pointer
-	TFibonacciParameters* parameters = (TFibonacciParameters*) aParameters ;
+    {
+    // cast the parameters pointer
+    TFibonacciParameters* parameters = (TFibonacciParameters*) aParameters;
 
-	// get variables from parameters class
-	TInt iterations = parameters->iVar1 ;
-	CFibonacciEngine* fibonacciEngine = (CFibonacciEngine*)parameters->iVar2 ;
+    // get variables from parameters class
+    TInt iterations = parameters->iVar1;
+    CFibonacciEngine* fibonacciEngine = (CFibonacciEngine*) parameters->iVar2;
 
-	// call the engine
-	fibonacciEngine->Calculate(iterations) ;
+    // call the engine
+    fibonacciEngine->Calculate(iterations);
 
-	// store result
-	parameters->iResult = fibonacciEngine->iResult ;
+    // store result
+    parameters->iResult = fibonacciEngine->iResult;
 
-	return KErrNone ;
-}
-
+    return KErrNone;
+    }
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -450,72 +447,70 @@ TInt CFibonacciThreadHandler::FibonacciThread(TAny* aParameters)
 //
 //////////////////////////////////////////////////////////////////////////////
 
-void CFibonacciEngine::Calculate (TInt aTerms) 
-	{
-	TInt iterations = aTerms ;
+void CFibonacciEngine::Calculate(TInt aTerms)
+    {
+    TInt iterations = aTerms;
 
-	TInt currentTotal = 1 ;
-	TInt previousTotal = 0 ;
-	_LIT(KTxtTooManyIterations,"Too many iterations");
-	__ASSERT_ALWAYS(iterations<47,User::Panic(KTxtTooManyIterations,iterations));
+    TInt currentTotal = 1;
+    TInt previousTotal = 0;
+    _LIT(KTxtTooManyIterations,"Too many iterations");
+    __ASSERT_ALWAYS(iterations<47,User::Panic(KTxtTooManyIterations,iterations));
 
+    // if limit not yet reached
+    while (iterations-- > 0)
+        {
+        // calculate next number in series
+        TInt newTotal = currentTotal + previousTotal;
 
-	// if limit not yet reached
-	while (iterations-- > 0)	
-		{
-		// calculate next number in series
-		TInt newTotal = currentTotal + previousTotal ;
+        // update variables
+        previousTotal = currentTotal;
+        currentTotal = newTotal;
 
-		// update variables
-		previousTotal = currentTotal ;
-		currentTotal = newTotal ;
+        // introduce a delay
+        User::After(1000000);
+        }
 
-		// introduce a delay
-		User::After(1000000) ;
-		}  
+    iResult = currentTotal;
 
-	iResult = currentTotal ;
-
-//UserHal::ModifyLedMask(1,2);
-	} 
-
+    //UserHal::ModifyLedMask(1,2);
+    }
 
 /////////////////////////////////////////////////////////////////////////////////
 // This section deals with initialisation and ensuring we have a console active
 /////////////////////////////////////////////////////////////////////////////////
 
-void doExampleL () ;
+void doExampleL();
 
 void SetupConsoleL();
 
-GLDEF_C TInt E32Main()				// main function called by E32
+GLDEF_C TInt E32Main() // main function called by E32
     {
-	CTrapCleanup* cleanup=CTrapCleanup::New();		// get clean-up stack
-	TRAPD(error,SetupConsoleL());					// more initialization, then do example
-	_LIT(KTxtFibonacciExampleError,"Fibonacci example error");
-	__ASSERT_ALWAYS(!error,User::Panic(KTxtFibonacciExampleError,error));
-	delete cleanup;									// destroy clean-up stack
-	return 0;										// and return
+    CTrapCleanup* cleanup = CTrapCleanup::New(); // get clean-up stack
+    TRAPD(error,SetupConsoleL()); // more initialization, then do example
+    _LIT(KTxtFibonacciExampleError,"Fibonacci example error");
+    __ASSERT_ALWAYS(!error,User::Panic(KTxtFibonacciExampleError,error));
+    delete cleanup; // destroy clean-up stack
+    return 0; // and return
     }
 
-void SetupConsoleL()				 // initialize and call example code under cleanup stack
+void SetupConsoleL() // initialize and call example code under cleanup stack
     {
-	_LIT(KTxtFibActObjInThread,"Active Object and thread");
-	console=Console::NewL(KTxtFibActObjInThread,TSize(KConsFullScreen,KConsFullScreen));
-	CleanupStack::PushL(console);
-	console->Printf(KTxtMainInstructions) ;
-	TRAPD(error, doExampleL());							// perform example function
-	if (error)
-		{
-		_LIT(KFormat3,"failed: leave code=%d");
-		console->Printf(KFormat3, error);
-		}
-	_LIT(KTxtPressAnyKey,"[Press any key to exit]");
-	console->Printf(KTxtPressAnyKey);
-	console->Getch();								// get and ignore character
-	CleanupStack::PopAndDestroy();					// close console
+    _LIT(KTxtFibActObjInThread,"Active Object and thread");
+    console = Console::NewL(KTxtFibActObjInThread, TSize(KConsFullScreen,
+            KConsFullScreen));
+    CleanupStack::PushL(console);
+    console->Printf(KTxtMainInstructions);
+    TRAPD(error, doExampleL()); // perform example function
+    if (error)
+        {
+        _LIT(KFormat3,"failed: leave code=%d");
+        console->Printf(KFormat3, error);
+        }
+    _LIT(KTxtPressAnyKey,"[Press any key to exit]");
+    console->Printf(KTxtPressAnyKey);
+    console->Getch(); // get and ignore character
+    CleanupStack::PopAndDestroy(); // close console
     }
-
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -524,36 +519,35 @@ void SetupConsoleL()				 // initialize and call example code under cleanup stack
 //////////////////////////////////////////////////////////////////////////////
 void doExampleL()
     {
-	  // Construct and install the active scheduler; push onto cleanup stack.
-	CExampleScheduler*  exampleScheduler = new (ELeave) CExampleScheduler;
-	CleanupStack::PushL(exampleScheduler);
-	 
-	  // Install as the active scheduler
-	CActiveScheduler::Install(exampleScheduler);
+    // Construct and install the active scheduler; push onto cleanup stack.
+    CExampleScheduler* exampleScheduler = new (ELeave) CExampleScheduler;
+    CleanupStack::PushL(exampleScheduler);
 
-	// Create CFibonacciEngine active object; push onto cleanup stack.
-	CFibonacciEngine* fibEngine = new (ELeave) CFibonacciEngine ;
+    // Install as the active scheduler
+    CActiveScheduler::Install(exampleScheduler);
+
+    // Create CFibonacciEngine active object; push onto cleanup stack.
+    CFibonacciEngine* fibEngine = new (ELeave) CFibonacciEngine;
     CleanupStack::PushL(fibEngine);
 
-	  // Create CFibonacciThreadHandler active object; push onto cleanup stack.
-	CFibonacciThreadHandler* fibThreadHandler = new (ELeave) CFibonacciThreadHandler(console, fibEngine);
+    // Create CFibonacciThreadHandler active object; push onto cleanup stack.
+    CFibonacciThreadHandler* fibThreadHandler =
+            new (ELeave) CFibonacciThreadHandler(console, fibEngine);
     CleanupStack::PushL(fibThreadHandler);
-	
-	  // Create CFibonacciKeyHandler active object; push onto cleanup stack.
-	CFibonacciKeyHandler* fibKeyHandler = new (ELeave) CFibonacciKeyHandler(console, fibThreadHandler);
-    CleanupStack::PushL(fibKeyHandler);	
 
-	  // issue initial request; push onto cleanup stack
-	fibKeyHandler->RequestCharacter() ;
-			
-	// Main part of the program:
-	//    wait loop that cycles until ActiveScheduler::Stop called
-	CActiveScheduler::Start();
+    // Create CFibonacciKeyHandler active object; push onto cleanup stack.
+    CFibonacciKeyHandler* fibKeyHandler = new (ELeave) CFibonacciKeyHandler(
+            console, fibThreadHandler);
+    CleanupStack::PushL(fibKeyHandler);
 
-	// Remove from the cleanup stack and destroy:
-	CleanupStack::PopAndDestroy(4); 
-	}
+    // issue initial request; push onto cleanup stack
+    fibKeyHandler->RequestCharacter();
 
+    // Main part of the program:
+    //    wait loop that cycles until ActiveScheduler::Stop called
+    CActiveScheduler::Start();
 
-
+    // Remove from the cleanup stack and destroy:
+    CleanupStack::PopAndDestroy(4);
+    }
 
