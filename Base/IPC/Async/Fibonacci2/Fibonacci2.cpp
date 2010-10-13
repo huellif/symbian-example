@@ -126,7 +126,6 @@ public:
     ~CFibonacciThreadHandler();
 
     void CalculateFibonacci(TInt aIterations);
-    RThread iThread;
 
 private:
     void DoCancel();
@@ -373,13 +372,6 @@ void CFibonacciThreadHandler::DoCancel()
     else
         {
         iConsole->Printf(_L("CFibonacciThreadHandler::DoCancel() = %d"), err);
-//        TRAPD(err, iThread.Kill(KErrCancel));
-//        iThread.Close();
-//        
-//        if (err == KErrNone)
-//            {
-//            iConsole->Printf(_L("Kill() = %d"), err);
-//            }
         }
     }
 
@@ -405,22 +397,23 @@ void CFibonacciThreadHandler::CalculateFibonacci(TInt aIterations)
 
     // generate thread, leave if fails
 
-    TInt result = iThread.Create(KTxtFibThread,
+    RThread thread;
+    TInt result = thread.Create(KTxtFibThread,
             (TThreadFunction) FibonacciThread, KDefaultStackSize,
             KMinHeapSize, KHeapSize, &iFibonacciParameters, EOwnerThread);
     User::LeaveIfError(result);
 
     // log on to thread -	sets iStatus to KRequestPending 
     //						requests notification of thread completion
-    iThread.Logon(iStatus);
+    thread.Logon(iStatus);
 
     // give thread low priority 
-    iThread.SetPriority(EPriorityMuchLess);
+    thread.SetPriority(EPriorityMuchLess);
 
     // resume thread (wake it up sometime after this function returns)
-    iThread.Resume();
+    thread.Resume();
 
-    iThread.Close();
+    thread.Close();
 
     // ensure scheduler checks status 
     SetActive();
