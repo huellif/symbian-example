@@ -15,7 +15,7 @@ LOCAL_C void doExampleL()
     // If the TBufC is to hold string data on
     // construction, use a _LIT macro.
     TBufC<16> bufc2(KTxtHelloWorld);
-    show_tbufc_content_len_size(bufc2);
+    dump_tbufc_content_len_size(bufc2);
 
     example_tbufc_replace_with_lit_normal(bufc2);
     example_tbufc_replace_with_lit_panic(bufc2);
@@ -46,12 +46,12 @@ LOCAL_C void doExampleL()
     // (depending on the build variant).
     // Size of data is 24
 
-    show_tbuf_content_desandcontent_address_len_size_maxlen(buf);
+    dump_tbuf_content_desandcontent_address_len_size_maxlen(buf);
 
-    example_tbuf_append_tbuf(buf);
+    example_tbuf_append(buf);
     example_tbuf_setlength(buf);
     example_tbuf_zero(buf);
-    example_tbuf_replace_with_lit_normal(buf);
-    example_tbuf_replace_with_lit_panic(buf);
+    example_tbuf_assign_with_lit_normal(buf);
+    example_tbuf_assign_with_lit_panic(buf);
     }
 

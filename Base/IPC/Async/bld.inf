@@ -1,0 +1,17 @@
+// BLD.INF
+// Component description file 
+//
+// Thomas.Liu 2010.10.13
+
+PRJ_MMPFILES
+
+.\AcceptInput1\AcceptInput1.mmp
+.\AcceptInput2\AcceptInput2.mmp
+.\AcceptPrintInput\AcceptPrintInput.mmp
+.\Fibonacci1\Fibonacci1.mmp
+.\Fibonacci2\Fibonacci2.mmp
+.\Fibonacci3\Fibonacci3.mmp
+.\RealLifeWaitLoop\RealLifeWaitLoop.mmp
+.\RunComplete\RunComplete.mmp
+.\SingleRequest\SingleRequest.mmp
+.\WaitLoop\WaitLoop.mmp
