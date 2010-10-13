@@ -12,6 +12,9 @@
 #include <e32std.h>
 #include <e32cons.h>
 #include <e32base.h>
+
+#include <e32debug.h> 
+
 //
 // Common literals
 //
@@ -123,6 +126,7 @@ public:
     ~CFibonacciThreadHandler();
 
     void CalculateFibonacci(TInt aIterations);
+    RThread iThread;
 
 private:
     void DoCancel();
@@ -369,6 +373,13 @@ void CFibonacciThreadHandler::DoCancel()
     else
         {
         iConsole->Printf(_L("CFibonacciThreadHandler::DoCancel() = %d"), err);
+//        TRAPD(err, iThread.Kill(KErrCancel));
+//        iThread.Close();
+//        
+//        if (err == KErrNone)
+//            {
+//            iConsole->Printf(_L("Kill() = %d"), err);
+//            }
         }
     }
 
@@ -387,8 +398,6 @@ void CFibonacciThreadHandler::CalculateFibonacci(TInt aIterations)
     _LIT(KTxtFibRequested,"\nFibonacci requested ...  ");
     iConsole->Printf(KTxtFibRequested);
 
-    RThread thread;
-
     // set up parameters to thread
 
     iFibonacciParameters.iVar1 = aIterations;
@@ -396,22 +405,22 @@ void CFibonacciThreadHandler::CalculateFibonacci(TInt aIterations)
 
     // generate thread, leave if fails
 
-    TInt result = thread.Create(KTxtFibThread,
+    TInt result = iThread.Create(KTxtFibThread,
             (TThreadFunction) FibonacciThread, KDefaultStackSize,
             KMinHeapSize, KHeapSize, &iFibonacciParameters, EOwnerThread);
     User::LeaveIfError(result);
 
     // log on to thread -	sets iStatus to KRequestPending 
     //						requests notification of thread completion
-    thread.Logon(iStatus);
+    iThread.Logon(iStatus);
 
     // give thread low priority 
-    thread.SetPriority(EPriorityMuchLess);
+    iThread.SetPriority(EPriorityMuchLess);
 
     // resume thread (wake it up sometime after this function returns)
-    thread.Resume();
+    iThread.Resume();
 
-    thread.Close();
+    iThread.Close();
 
     // ensure scheduler checks status 
     SetActive();
@@ -425,6 +434,7 @@ void CFibonacciThreadHandler::CalculateFibonacci(TInt aIterations)
 
 TInt CFibonacciThreadHandler::FibonacciThread(TAny* aParameters)
     {
+    RDebug::Print(_L("-> CFibonacciThreadHandler::FibonacciThread"));
     // cast the parameters pointer
     TFibonacciParameters* parameters = (TFibonacciParameters*) aParameters;
 
@@ -438,6 +448,7 @@ TInt CFibonacciThreadHandler::FibonacciThread(TAny* aParameters)
     // store result
     parameters->iResult = fibonacciEngine->iResult;
 
+    RDebug::Print(_L("<- CFibonacciThreadHandler::FibonacciThread"));
     return KErrNone;
     }
 
