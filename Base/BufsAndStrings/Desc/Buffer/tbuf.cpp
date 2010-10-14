@@ -23,28 +23,28 @@ void example_tbuf_prompt()
     console->Getch();
     }
 
-void dump_tbuf_content_len_size_maxlen_2(TBuf<16> &aBuf)
+void dump_tbuf_content_len_size_maxlen_2(const TDes &aBuf)
     {
     console->Printf(KContentFormat, &aBuf);
     console->Printf(KLenSizeFormat, aBuf.Length(), aBuf.Size());
     console->Printf(KMaxLenFormat2, aBuf.MaxLength());
     }
 
-void example_tbuf_append(TBuf<16> &aBuf)
+void example_tbuf_append(TDes &aBuf)
     {
     // The data can be modified
     aBuf.Append('@');
     dump_tbuf_content_len_size_maxlen_2(aBuf);
     }
 
-void dump_tbuf_content_len_size_maxlen(TBuf<16> &aBuf)
+void dump_tbuf_content_len_size_maxlen(const TDes &aBuf)
     {
     console->Printf(KContentFormat, &aBuf);
     console->Printf(KLenSizeFormat, aBuf.Length(), aBuf.Size());
     console->Printf(KMaxLenFormat2, aBuf.MaxLength());
     }
 
-void example_tbuf_setlength(TBuf<16> &aBuf)
+void example_tbuf_setlength(TDes &aBuf)
     {
     // Length can be changed; data represented
     // by the descriptor is now "Hel"
@@ -52,7 +52,7 @@ void example_tbuf_setlength(TBuf<16> &aBuf)
     dump_tbuf_content_len_size_maxlen(aBuf);
     }
 
-void example_tbuf_zero(TBuf<16> &aBuf)
+void example_tbuf_zero(TDes &aBuf)
     {
     // Length can be zeroised; no data is now 
     // represented by the descriptor but 
@@ -61,7 +61,7 @@ void example_tbuf_zero(TBuf<16> &aBuf)
     dump_tbuf_content_len_size_maxlen(aBuf);
     }
 
-void example_tbuf_assign_with_lit_normal(TBuf<16> &aBuf)
+void example_tbuf_assign_with_lit_normal(TDes &aBuf)
     {
     // The data can be replaced entirely 
     // using the assignment operator.
@@ -71,7 +71,7 @@ void example_tbuf_assign_with_lit_normal(TBuf<16> &aBuf)
     dump_tbuf_content_len_size_maxlen(aBuf);
     }
 
-void example_tbuf_assign_with_lit_panic(TBuf<16> &/*aBuf*/)
+void example_tbuf_assign_with_lit_panic(TDes &/*aBuf*/)
     {
     // Replacing text which has a length > 16
     // causes panic !!
