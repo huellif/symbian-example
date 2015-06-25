@@ -1,0 +1,1 @@
+example program for symbian
